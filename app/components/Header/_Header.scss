@@ -1,0 +1,47 @@
+.app-header {
+    background-color: #000;
+    color: #B9090B ;
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    .inner {
+      margin: 0 auto;
+    }
+
+    .title {
+      float:left;
+      margin: 5px;
+    }
+
+    .header-right {
+      float: right;
+    }
+
+    .search-form {
+      display: inline;
+    }
+
+    .display-select {
+      margin: 5px;
+      width: 100px;
+      -webkit-appearance: none;
+      padding: 8px 10px;
+      border: 2px solid lightgray;
+    }
+
+    .search-input {
+      margin: 5px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 2px solid lightgray;
+      -webkit-highlight: none;
+    }
+
+    .term {
+      margin: 12px;
+
+      a {
+        color: #fff;
+      }
+    }
+}

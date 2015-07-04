@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ReactJS Bootcamp</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Westin & Stephen">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="../__lib/css/reveal.css">
+		<link rel="stylesheet" href="../__lib/css/theme/sky.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="../__lib/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../__lib/css/print/pdf.css' : '../__lib/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="../__lib/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+          <h4>Welcome to Day 0 of ReactJS Bootcamp</h4>
+				</section>
+
+        <section data-transition="fade">
+          <h2>Agenda</h2>
+          <ul>
+            <li>Webpack</li>
+            <li>Babel</li>
+            <li>Eslint</li>
+            <li>Arrows</li>
+            <li>let</li>
+            <li>Destructuring</li>
+            <li>Default, Rest, Spread</li>
+            <li>Classes</li>
+            <li>Module Loader</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>Webpack</h2>
+          </section>
+					<section>
+						<h2>Script Loading</h2>
+						<ul>
+							<li>Allows for modular applications</li>
+							<li>Allow us to pull in dependencies when we need them</li>
+							<li>Can bundle scripts on a per page basis</li>
+							<li>AMD Script loading with require -> originally browser implementation of CommonJS Transport</li>
+							<li>CommonJS define and export modules as well used in Node</li>
+						</ul>
+						<pre><code>
+var component = require('../component/component'); //amd and commonjs syntax
+						</code></pre>
+					</section>
+					<section>
+						<h2>Browserify</h2>
+						<span>batteries not included</span>
+						<ul>
+							<li>Built to ship Node modules to browsers</li>
+							<li>Big plugin environment to add things like watch, factor-bundles, deAMDify etc</li>
+							<li>Manages JS only</li>
+							<li>Uses transforms to modify code</li>
+							<li>provides pre and post bundle callbacks</li>
+							<li>Minimal config</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Webpack</h2>
+						<span>batteries included</span>
+						<ul>
+							<li>Our solution for this bootcamp</li>
+							<li>Built to be a browser solution with nodejs support</li>
+							<li>Bundles all your assets and has loaders to make that easier - great for modularity</li>
+							<li>Supports all module formats out of the box</li>
+							<li>Complex setup with loaders and etc </li>
+							<li>Nice hotloading functionality with its built in dev server</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Task Runners</h2>
+						<span>Grunt vs Gulp vs npm scripts</span>
+					</section>
+					<section>
+						<h2>Grunt</h2>
+					</section>
+					<section>
+						<h2>Gulp</h2>
+					</section>
+					<section>
+						<h2>Preprocessing + Scripts</h2>
+					</section>
+					<section>
+						<h2>Example Webpack</h2>
+					</section>
+        </section>
+
+        <section>
+         <h2>Babel</h2>
+					jsx transforms built in
+					transpiles esnext javascript into es5 for all browsers
+					used as a prebuild step
+        </section>
+
+        <section>
+         <h2>Eslint</h2>
+				build on espree's javascript syntax parser
+				lots of plugins and customizable linter
+				react plugins allow us to control react and jsx specific rules
+        </section>
+
+        <section>
+          <h2>Babel</h2>
+          <ul>
+            <li>Formerly 6to5 but now handles more than es2015</li>
+            <li>Transpiles esnext code into something all browsers can use</li>
+            <li>Can transform jsx</li>
+            <li>Very up to date and community driven</li>
+            <li>Used as a pre-build step when writing esnext in the browser environments</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Eslint</h2>
+          <ul>
+            <li>Extendable code linting and style checking</li>
+            <li>Every facet is pluggable</li>
+            <li>Built on espree parser</li>
+            <li>Lints using AST to evaluate patterns unlike some other linters</li>
+            <li>Many great community plugins for frameworks like react</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h2>Arrows =></h2>
+            <ul>
+              <li>Inspired by CoffeeScript</li>
+              <li>Bind to outer this</li>
+              <li>Not newable</li>
+              <li>No arguments psuedo array</li>
+              <li>Always Anon</li>
+              <li>upgrade to es5 bind for callbacks essentially</li>
+            </ul>
+          </section>          <section>
+          <h1>Code</h1>
+<pre><code>
+//Arrows
+
+var evens = numbers.map(num => num % 2 === 0);
+
+nums.map((x) => x * 2);
+
+//or as a statement body
+var specialNums = numbers.map(num => {
+  return doSomething(num);
+});
+
+
+// Lexical this
+var person = {
+  _name: "Westin",
+  _friends: ["Not Justin", "Doug", "Brendan", "Igor"],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(`${this._name} knows ${f}`));
+  }
+}
+
+</code></pre>
+          </section>
+        </section>
+
+        <section>
+        <h2>Let</h2>       <div>Allows for block scoping</div>
+
+<pre><code>
+function() {
+  if(x) {
+    var foo = 3;
+  }
+  var baz = 1;
+
+  //foo and baz in same scope due to hoisting
+}
+</code></pre>
+
+<pre><code>
+function() {
+  if(x) {
+    let foo = 3; //only inside the conditional
+  }
+  var baz = 1;
+
+  //foo and baz NOT in same scope as foo is no longer hoisted
+}
+</code></pre>
+        </section>
+
+        <section>
+          <section>
+            <h2>Destructuring Object</h2>
+
+<pre><code>
+var people = [
+  {
+    name: 'Westin',
+    age: 25
+  }
+];
+
+people.forEach(function({name, age}) //shorthand if key = value
+{
+  console.log(name + ":" + age)
+});
+
+</code></pre>
+          </section>
+          <section>
+            <h2>Destructuring Array</h2>
+            <ul>
+              <li>Fails quietly to undefined</li>
+            </ul>
+
+<pre><code>
+var [month, date, year] = [3, 14, 1977];
+
+//swapping
+x = 3;
+y = 4;
+[x, y] = [y, x];
+
+//ignore an index
+var [a, ,b] = [1,2,3];
+
+var doWork = function() {
+    return [1, 3, 2];
+};
+
+let [, x, y, z] = doWork();
+</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Default, Rest, Spread</h2>
+            <h3>Default Params</h3>
+
+<pre><code>
+function f(x, y=12, z=y) {
+  // y is 12 if not passed (or passed as undefined)
+  return x + y;
+}
+f(3) == 15
+</code></pre>
+          </section>
+          <section>
+            <h2>Rest</h2>
+            <ul>
+              <li>rest parameters are only the ones that haven't been given a separate name, while the arguments object contains all arguments passed to the function</li>
+              <li>the arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort, map, forEach or pop can be applied on it directly</li>
+              <li>true array unlike the argument psuedo array</li>
+            </ul>
+<pre><code>
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map(function (element) {
+    return multiplier * element;
+  });
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spread</h2>
+            <div>Expand array params like Func.apply</div>
+
+<pre><code>
+function sum(x,y,z) {
+  return x + y + z;
+}
+
+total(1, 2, 3);
+
+//before
+total.apply(null, [1,2,3]);
+
+//now
+total(...[1,2,3]);
+
+
+function hello({name, age}) {
+  console.log(name, age);
+}
+
+foo({name: 'Westin', age: 25});
+</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Classes</h2>
+            <ul>
+                <li>just some syntactic sugar for prototype</li>
+                <li>we will have supers and constructors</li>
+            </ul>
+
+<pre><code style="word-wrap: break-word;">
+class TodoModel {
+    constructor(storage) {
+        this.storage = storage;
+    }
+
+    create(title) {
+        title = title || '';
+
+        var newItem = {
+            title: title.trim(),
+            completed: false
+        };
+
+        return this.storage.save(newItem);
+    }
+}
+
+export default TodoModel;
+
+</code></pre>
+          </section>
+          <section>
+<pre><code style="word-wrap: break-word;">
+class EnhancedTodoModel extends TodoModel {
+    constructor(storage) {
+        this.storage = storage;
+    }
+
+    save(item) {
+        alert('Saving a new task');
+        super.save(item);
+    }
+}
+
+</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Modules</h2>
+<pre><code>
+
+import name from "module-name";
+import { member } from "module-name";
+import {member as alias } from "module-name";
+import { member1 , member2 } from "module-name";
+import { member1 , member2 as alias2 , [...] } from "module-name";
+import name , { member [ , [...] ] } from "module-name";
+import "module-name" as name;
+
+//export syntax
+Example 1:
+export name1, name2, ..., nameN;
+
+Example 2:
+export *;
+
+Example 3:
+export default function() {...}
+</code></pre>
+          </section>
+          <section>
+            <h2>Can have both named and default exports</h2>
+            <span>Default is really just another named export</span>
+            <span>Default are favored however</span>
+<pre><code>
+//------ underscore.js ------
+export default function (obj) {
+    ...
+};
+export function each(obj, iterator, context) {
+    ...
+}
+export { each as forEach };
+
+//------ main.js ------
+import _, { each } from 'underscore';
+</code></pre>
+          </section>
+        </section>
+			</div>
+
+		</div>
+
+		<script src="../__lib/lib/js/head.min.js"></script>
+		<script src="../__lib/js/reveal.js"></script>
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '../__lib/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../__lib/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../__lib/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../__lib/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../__lib/plugin/zoom-js/zoom.js', async: true },
+					{ src: '../__lib/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

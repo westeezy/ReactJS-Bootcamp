@@ -1,0 +1,44 @@
+
+.movies-list {
+  background-color: rgba(245,245,245,.9);
+  width: 960px;
+  margin: 0 auto;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.movie-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+
+  .img-container {
+    width: 100px;
+  }
+
+  .title {
+    font-size: 1.4em;
+  }
+
+  .year {
+    font-size: 1em;
+    color: gray;
+  }
+
+  .info {
+    /*text-align: center;*/
+    padding-left: 15px;
+    width: 30%;
+  }
+
+  .desc {
+    width: 40%;
+  }
+}
+
+.movie-row .rating-stars {
+  flex-grow: 3;
+  text-align: right;
+}
