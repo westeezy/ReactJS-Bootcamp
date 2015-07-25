@@ -3,8 +3,8 @@ import './_Header.scss';
 
 export default class Header extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor(...args) {
+    super(...args);
   }
 
   render() {

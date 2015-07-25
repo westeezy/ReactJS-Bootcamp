@@ -23,10 +23,10 @@
 </h4>
 <dl>
 	<dt>What we will cover</dt>
+  <dd>Start building up wireframe app</dd>
 	<dd>Script Loading Solutions re: amd vs commonjs</dd>
 	<dd>Browserify vs Webpack</dd>
 	<dd>Task runners like grunt, gulp, broccoli vs simple npm scripts + preprocessing</dd>
-	<dd>Our simple implementation for this course</dd>
 </dl>
 
 

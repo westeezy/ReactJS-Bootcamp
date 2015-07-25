@@ -5,6 +5,7 @@ import './_App.scss';
 import React from 'react';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList';
+import mockData from '../../mock/day0.json';
 
 export default class App extends React.Component {
 
@@ -16,8 +17,12 @@ export default class App extends React.Component {
     return (
       <div className={'app'}>
         <Header />
-        <MovieList />
+        <MovieList movies={this.retrieveMovies()}/>
       </div>
     );
+  }
+
+  retrieveMovies() {
+    return mockData ? mockData.movieTitles : [];
   }
 }

@@ -1,226 +1,204 @@
 <!doctype html>
 <html lang="en">
-
-	<head>
-		<meta charset="utf-8">
-
-		<title>ReactJS Bootcamp</title>
-
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Westin & Stephen">
-
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
-		<link rel="stylesheet" href="../__lib/css/reveal.css">
-		<link rel="stylesheet" href="../__lib/css/theme/sky.css" id="theme">
-
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="../__lib/lib/css/zenburn.css">
-
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? '../__lib/css/print/pdf.css' : '../__lib/css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-
-		<!--[if lt IE 9]>
-		<script src="../__lib/lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-
-	<body>
-    <div class="reveal">
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-
-				<section>
-          <h4>Welcome to Day 1 of ReactJS Bootcamp</h4>
-				</section>
-
-        <section data-transition="fade">
-          <h2>Agenda</h2>
-          <ul>
-            <li>React as a view layer</li>
-            <li>JSX</li>
-            <li>Mounting component to DOM</li>
-            <li>Simple Components</li>
-            <li>Starting the application</li>
-          </ul>
-        </section>
-        <section>
-        	<section>
-        		<h2>Why the ^@#$% is there another js framework</h2>
-        	</section>
-        	<section>
-        		<h2>MVC isn't a holy grail</h2>
-        		<ul>
-        			<li>Decent steam behind an non MVC clientside movement</li>
-        		</ul>
-          </section>
-          <section>
-            <h2>React</h2>
-            <ul style="float:left; width:45%;font-size:20px;">
-        			<li>Small Modular Components</li>
-        			<li>Minimal API Surface Area</li>
-        			<li>Performant with JSDom</li>
-        		</ul>
-        		<ul style="float:right; width:45%;font-size:20px;">
-        			<li>Simply the view layer</li>
-        			<li>JSX can be strange at first</li>
-        			<li>Since it is just a view layer you must enforce good patterns</li>
-        		</ul>
-
-          </section>
-        	<section>
-        		<h2>Just use what makes sense and enables you to be productive!</h2>
-        	</section>
-        	<section>
-        		<h2>Angular</h2>
-        		<ul style="float:left; width:45%;font-size:20px;">
-        			<li>Directives are crazy powerful and declarative</li>
-        			<li>Filters are awesome</li>
-        			<li>Can be used modularly with some good insight. see Angular UI</li>
-        			<li>Great for prototyping</li>
-        		</ul>
-        		<ul style="float:right; width:45%;font-size:20px;">
-        			<li>Two binding with Dirty Checks and Digest Cycle</li>
-        			<li>Technically inperformant but not noticeable 99% of the time</li>
-        			<li>Code under the head is insanly complex argueable over engineered.</li>
-        			<li>Actions automagically trigger digest cycles</li>
-        			<li>Doesn't feel like writing JS as huge API surface area</li>
-        			<li>Docs still suck</li>
-        		</ul>
-        	</section>
-        	<section>
-        		<h2>Ember</h2>
-        		<ul style="float:left; width:45%;font-size:20px;">
-        			<li>Efficient data binding with accessors</li>
-        			<li>Less gotchas than Angular</li>
-        			<li>Computed Properties</li>
-        			<li>Amazing docs</li>
-        			<li>Great for prototyping</li>
-        		</ul>
-        		<ul style="float:right; width:45%;font-size:20px;">
-        			<li>Very heavy and opinionated</li>
-        			<li>Syntax isn't as clean with accessors</li>
-        			<li>Highest barrier to entry</li>
-        		</ul>
-        	</section>
-        	<section>
-        		<h2>Backbone</h2>
-        		<ul style="float:left; width:45%;font-size:20px;">
-        			<li>Binding with accessors but requires setup</li>
-        			<li>0 assumptions are made</li>
-        			<li>Extendable and versatile</li>
-        			<li>Marionette is &hearts;</li>
-        		</ul>
-        		<ul style="float:right; width:45%;font-size:20px;">
-        			<li>Less for free but it stays out of your way after</li>
-        			<li>Backbone is actually pretty great for what it does so ... </li>
-        		</ul>
-        	</section>
-        	<section>
-        		<img src="./img/just-do-it.jpg" />
-        	</section>
-        </section>
-        <section>
-    		<section>
-        		<h2>React - according to Facebook</h2>
-        		<ul>
-        			<li>It's simple</li>
-        			<li>It's declarative</li>
-        			<li>It's composable</li>
-        		</ul>
-    		</section>
-    		<section>
-    			<h2>Components are your building blocks</h2>
-    			<ul>
-    				<li>Self contained</li>
-    				<li>Modular</li>
-    				<li>Dynamic</li>
-    			</ul>
-    		</section>
-    		<section>
-    			<h2>How can we break this down into components?</h2>
-    			<img src="./img/reddit.png"/>
-    		</section>
-        </section>
-        <section>
-        	<h2>JSX</h2>
-        	<span>Render markup in your code</span>
-        	<ul>
-        	<li>This makes sense with small modular components</li>
-        	<li>you can use a prebuild step like reactify of bable to parse jsx to javascript</li>
-        	<li>You can very easily write your javascript logic alongside your presentation layer</li>
-        	<li>makes it easy to see what the component will render</li>
-        	<li>At the end of the day this converted to regular ole' js</li>
-        	</ul>
-        </section>
-        <section>
-        	<h2>Mounting a component</h2>
-        	<pre><code>
+    <head>
+        <meta charset="utf-8">
+        <title>ReactJS Bootcamp</title>
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Westin & Stephen">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <link rel="stylesheet" href="../__lib/css/reveal.css">
+        <link rel="stylesheet" href="../__lib/css/theme/sky.css" id="theme">
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="../__lib/lib/css/zenburn.css">
+        <!-- Printing and PDF exports -->
+        <script>
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = window.location.search.match( /print-pdf/gi ) ? '../__lib/css/print/pdf.css' : '../__lib/css/print/paper.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!--[if lt IE 9]>
+        <script src="../__lib/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h4>Welcome to Day 1 of ReactJS Bootcamp</h4>
+                </section>
+                <section data-transition="fade">
+                    <h2>Agenda</h2>
+                    <ul>
+                        <li>React as a view layer</li>
+                        <li>JSX</li>
+                        <li>Mounting component to DOM</li>
+                        <li>Simple Components</li>
+                        <li>Starting the application</li>
+                    </ul>
+                </section>
+                <section>
+                    <section>
+                        <h2>Why the ^@#$% is there another js framework</h2>
+                    </section>
+                    <section>
+                        <h2>MVC isn't a holy grail</h2>
+                        <ul>
+                            <li>Decent steam behind an non MVC clientside movement</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>React</h2>
+                        <ul style="float:left; width:45%;font-size:20px;">
+                            <li>Small Modular Components</li>
+                            <li>Minimal API Surface Area</li>
+                            <li>Performant with JSDom</li>
+                        </ul>
+                        <ul style="float:right; width:45%;font-size:20px;">
+                            <li>Simply the view layer</li>
+                            <li>JSX can be strange at first</li>
+                            <li>Since it is just a view layer you must enforce good patterns</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Just use what makes sense and enables you to be productive!</h2>
+                    </section>
+                    <section>
+                        <h2>Angular</h2>
+                        <ul style="float:left; width:45%;font-size:20px;">
+                            <li>Directives are crazy powerful and declarative</li>
+                            <li>Filters are awesome</li>
+                            <li>Can be used modularly with some good insight. see Angular UI</li>
+                            <li>Great for prototyping</li>
+                        </ul>
+                        <ul style="float:right; width:45%;font-size:20px;">
+                            <li>Two binding with Dirty Checks and Digest Cycle</li>
+                            <li>Technically inperformant but not noticeable 99% of the time</li>
+                            <li>Code under the head is insanly complex argueable over engineered.</li>
+                            <li>Actions automagically trigger digest cycles</li>
+                            <li>Doesn't feel like writing JS as huge API surface area</li>
+                            <li>Docs still suck</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Ember</h2>
+                        <ul style="float:left; width:45%;font-size:20px;">
+                            <li>Efficient data binding with accessors</li>
+                            <li>Less gotchas than Angular</li>
+                            <li>Computed Properties</li>
+                            <li>Amazing docs</li>
+                            <li>Great for prototyping</li>
+                        </ul>
+                        <ul style="float:right; width:45%;font-size:20px;">
+                            <li>Very heavy and opinionated</li>
+                            <li>Syntax isn't as clean with accessors</li>
+                            <li>Highest barrier to entry</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Backbone</h2>
+                        <ul style="float:left; width:45%;font-size:20px;">
+                            <li>Binding with accessors but requires setup</li>
+                            <li>0 assumptions are made</li>
+                            <li>Extendable and versatile</li>
+                            <li>Marionette is &hearts;</li>
+                        </ul>
+                        <ul style="float:right; width:45%;font-size:20px;">
+                            <li>Less for free but it stays out of your way after</li>
+                            <li>Backbone is actually pretty great for what it does so ... </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <img src="./img/just-do-it.jpg" />
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>React - according to Facebook</h2>
+                        <ul>
+                            <li>It's simple</li>
+                            <li>It's declarative</li>
+                            <li>It's composable</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Components are your building blocks</h2>
+                        <ul>
+                            <li>Self contained</li>
+                            <li>Modular</li>
+                            <li>Dynamic</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>How can we break this down into components?</h2>
+                        <img src="./img/reddit.png"/>
+                    </section>
+                </section>
+                <section>
+                    <h2>JSX</h2>
+                    <span>Render markup in your code</span>
+                    <ul>
+                        <li>This makes sense with small modular components</li>
+                        <li>you can use a prebuild step like reactify of bable to parse jsx to javascript</li>
+                        <li>You can very easily write your javascript logic alongside your presentation layer</li>
+                        <li>makes it easy to see what the component will render</li>
+                        <li>At the end of the day this converted to regular ole' js</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Mounting a component</h2>
+        <pre><code>
 import React from 'react';
 import App from './components/App/App';
-
 React.render(
   <App />,
   document.getElementById('app')
 );
-        	</code></pre>
-        </section>
-        <section>
-        	<h2>Simple Component</h2>
-        	<pre><code>
+</code></pre>
+                </section>
+                <section>
+                    <h2>Simple Component</h2>
+        <pre><code>
 import React from 'react';
 import './_Hai.scss';
-
 export default class Hai extends React.Component {
   render() {
     let img = 'React';
-
-    return (<div className="my-super-awesome-react-app-with-a-class-name">
-    	<span>Hello Margret, It's me,</span>
-    	<span>{name}</span>
-      </div>);
+                                            return (<div className="my-super-awesome-react-app-with-a-class-name">
+    <span>Hello Margret, It's me,</span>
+    <span>{name}</span>
+                                              </div>);
   }
 }
-        	</code></pre>
-        </section>
-			</div>
-    </div>
-
-		<script src="../__lib/lib/js/head.min.js"></script>
-		<script src="../__lib/js/reveal.js"></script>
-		<script>
-
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: '../__lib/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: '../__lib/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '../__lib/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: '../__lib/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: '../__lib/plugin/zoom-js/zoom.js', async: true },
-					{ src: '../__lib/plugin/notes/notes.js', async: true }
-				]
-			});
-
-		</script>
-
-	</body>
+</code></pre>
+                </section>
+            </div>
+        </div>
+        <script src="../__lib/lib/js/head.min.js"></script>
+        <script src="../__lib/js/reveal.js"></script>
+        <script>
+                // Full list of configuration options available at:
+                // https://github.com/hakimel/reveal.js#configuration
+                Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+                // Optional reveal.js plugins
+                dependencies: [
+                { src: '../__lib/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '../__lib/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '../__lib/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '../__lib/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '../__lib/plugin/zoom-js/zoom.js', async: true },
+                { src: '../__lib/plugin/notes/notes.js', async: true }
+                ]
+                });
+        </script>
+    </body>
 </html>
