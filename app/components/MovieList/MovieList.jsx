@@ -10,8 +10,8 @@ export default class MovieList extends React.Component {
     return (<div className="movie-list">
       <ul className="items">
         {
-          this.props.movies.map((movieTitle, idx) => {
-            return <MovieTile key={idx} movieTitle={movieTitle} />
+          this.props.movies.map((movie, idx) => {
+            return <MovieTile key={idx} movie={movie} />
           })
         }
       </ul>

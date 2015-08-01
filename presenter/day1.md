@@ -114,7 +114,7 @@ export default class MovieTile extends React.Component {
       return idx < this.state.stars ?
               <i key={idx} className="fa fa-star"/>
               : <i key={idx} className="fa fa-star-o"/>;
-          }.bind(this)); //TODO: why did I need to bind this.
+          }.bind(this));
   }
 }
 

@@ -5,22 +5,25 @@ export default class Header extends React.Component {
 
   constructor(...args) {
     super(...args);
+    this.state = {
+      searchTerm: null
+    };
   }
 
   render() {
 
     var searchBox;
-    if (this.props.term) {
+    if (this.state.searchTerm) {
       searchBox = (
         <h3 className="term">
-          {this.props.term} <a href='#'><i className="fa fa-times"/></a>
+          {this.state.searchTerm} <a href='#'><i className="fa fa-times"/></a>
         </h3>
       );
     }
     else {
       searchBox = (
-        <form className="search-form">
-          <input className="search-input" type="text" placeholder="Search" />
+        <form className="search-form" onSubmit={this.search.bind(this)}>
+          <input ref="searchBox" className="search-input" type="text" placeholder="Search" />
         </form>
       );
     }
@@ -31,10 +34,11 @@ export default class Header extends React.Component {
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
             {searchBox}
-            <select value={this.props.layout} className="display-select">
+            <select className="display-select"
+                    onChange={this.sort.bind(this)}>
               <option>View By:</option>
-              <option value="tile">Tile</option>
-              <option value="list">List</option>
+              <option value="title">Title</option>
+              <option value="rating">Rating</option>
             </select>
           </div>
         </div>
@@ -42,4 +46,24 @@ export default class Header extends React.Component {
     );
   }
 
+  search(e) {
+    e.preventDefault();
+    //this is not efficient but for day 3 this is what we will be doing
+    //fixing on day 4
+    let searchTerm = this.refs.searchBox.getDOMNode().value;
+    this.setState({searchTerm});
+    this.props.search(searchTerm); //can't use state because its async
+  }
+
+  sort(e) {
+    //this does not properly sort by user selected rating so we talk about that limitation and fix
+    //on day 4
+    this.props.sort(e.target.value);
+  }
+
+}
+
+Header.defaultProps = {
+  sort: function() {},
+  search: function() {}
 }

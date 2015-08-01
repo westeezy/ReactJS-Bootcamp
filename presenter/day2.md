@@ -74,8 +74,10 @@ MovieList.propTypes = {
 
 ### movietile.jsx
 
-```javascript
-import React from 'react';
+* talk about how refactoring stars into its own component can cleaner logical flow
+* talk about how stars doesn't change upwards in the stack to app.jsx which may have reprocussions day 3 during sorting.
+
+```javascriptimport React from 'react';
 import _ from 'lodash';
 import './_MovieTile.scss';
 
@@ -94,26 +96,36 @@ export default class MovieTile extends React.Component {
     let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
 
     return (<li className="movie-tile-container item">
-    		<div className="bg-img" style={{'backgroundImage': `url('${img}')`}}></div>
+        <div className="bg-img" style={{'backgroundImage': `url('${img}')`}}></div>
         <a href="#">
-    			<div className="content">
-    				<h2>{this.props.movieTitle}</h2>
+          <div className="content">
+            <h2>{this.props.movieTitle}</h2>
             <div className="stars">
               {
                 this.retrieveRating()
               }
             </div>
-    			</div>
-    		</a>
+          </div>
+        </a>
       </li>);
   }
 
   retrieveRating() {
     return _.map(_.range(MAX_STARS), (idx) => {
       return idx < this.state.stars ?
-              <i key={idx} className="fa fa-star"/>
-              : <i key={idx} className="fa fa-star-o"/>;
-          }.bind(this)); //TODO: why did I need to bind this.
+              <i key={idx} className="fa fa-star"
+                           data-rating={idx}
+                           onClick={this.updateRating.bind(this)}/>
+              : 
+              <i key={idx} className="fa fa-star-o"
+                           data-rating={idx}
+                           onClick={this.updateRating.bind(this)}/>;
+          }.bind(this));
+  }
+
+  updateRating(e) {
+    let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
+    this.setState({stars});
   }
 }
 
