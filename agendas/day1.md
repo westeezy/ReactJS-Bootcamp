@@ -10,7 +10,7 @@
   <dd>JSX syntax</dd>
   <dd>How to mount a component into the DOM</dd>
   <dd>What a simple component looks like</dd>
-  <dd>Start building out our first component in our application</dd>
+  <dd>Start improving our application</dd>
 </dl>
 
 

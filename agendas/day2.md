@@ -11,7 +11,7 @@ width="100" />
   <dd>Composibility</dd>
   <dd>Passing Props to children components</dd>
   <dd>Refs</dd>
-  <dd>Add logic to our application for favoriting items</dd>
+  <dd>Add logic to our application for rating items</dd>
 </dl>
 
 

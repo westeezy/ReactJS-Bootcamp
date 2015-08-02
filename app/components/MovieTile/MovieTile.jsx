@@ -46,14 +46,17 @@ export default class MovieTile extends React.Component {
   updateRating(e) {
     let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
     this.setState({stars});
+    this.props.rate(this.props.movie.title, stars);
   }
 }
 
 
 MovieTile.defaultProps = {
-  movie: {}
+  movie: {},
+  rate: function() {}
 }
 
 MovieTile.propTypes = {
-  movies: React.PropTypes.string
+  movies: React.PropTypes.string,
+  rate: React.PropTypes.func
 };

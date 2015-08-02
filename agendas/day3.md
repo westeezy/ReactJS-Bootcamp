@@ -10,6 +10,7 @@
   <dd>Manipulating State</dd>
   <dd>How components can store their data</dd>
   <dd>Add logic to our application for handling data via a promise</dd>
+  <dd>Start fixing up the header a bit</dd>
 </dl>
 
 

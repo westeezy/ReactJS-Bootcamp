@@ -14,7 +14,7 @@
   <dd> Eslint
       <img src="http://eslint.org/img/logo.svg" alt="eslint" width="25"/>
   </dd>
-  <dd>Karma + Mocha + Chai + Sinon <i>if we have time</i></dd>
+  <dd>Create Application shell</i></dd>
 </dl>
 
 

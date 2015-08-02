@@ -9,7 +9,8 @@
   <dd>Data binding to form components</dd>
   <dd>Controlled vs Uncontrolled Inputs</dd>
   <dd>Updating state after form fields change</dd>
-  <dd>Add logic to our application for handling CRUD from form</dd>
+  <dd>Update inputs in our app header</dd>
+  <dd>Add logic to our application for handling Rating more properly from form</dd>
 </dl>
 
 
