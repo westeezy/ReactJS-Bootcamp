@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import './_MovieTile.scss';
+import AppActions from '../../actions/AppActions';
 
 const MAX_STARS = 5;
 
@@ -15,7 +16,7 @@ export default class MovieTile extends React.Component {
 
   render() {
     return (<li className="movie-tile-container item">
-    		<div className="bg-img" 
+    		<div className="bg-img"
              style={{'backgroundImage': `url('img/${this.props.movie.cover}')`}}></div>
         <a href="#">
     			<div className="content">
@@ -36,7 +37,7 @@ export default class MovieTile extends React.Component {
               <i key={idx} className="fa fa-star"
                            data-rating={idx}
                            onClick={this.updateRating.bind(this)}/>
-              : 
+              :
               <i key={idx} className="fa fa-star-o"
                            data-rating={idx}
                            onClick={this.updateRating.bind(this)}/>;
@@ -46,17 +47,15 @@ export default class MovieTile extends React.Component {
   updateRating(e) {
     let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
     this.setState({stars});
-    this.props.rate(this.props.movie.title, stars);
+    AppActions.rateMovie(this.props.movie.title, stars);
   }
 }
 
 
 MovieTile.defaultProps = {
-  movie: {},
-  rate: function() {}
+  movie: {}
 }
 
 MovieTile.propTypes = {
-  movies: React.PropTypes.string,
-  rate: React.PropTypes.func
+  movie: React.PropTypes.object
 };

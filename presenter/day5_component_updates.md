@@ -1,8 +1,10 @@
-## Code to write for day 4
-
+## Code to write for Day 5 (2/2)
 
 ### app.jsx
 
+* could include the Movies on MovieList instead. talk pros and cons
+* componentDidMount vs componentWillMount
+* action namings
 
 ```javascript
 'use strict';
@@ -13,8 +15,8 @@ import React from 'react';
 import _ from 'lodash';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList';
-import MoviesModel from '../../models/movies';
-import { getMovies } from '../../util/api';
+import AppActions from '../../actions/AppActions';
+import MovieStore from '../../stores/MovieStore';
 
 export default class App extends React.Component {
 
@@ -23,59 +25,37 @@ export default class App extends React.Component {
     this.state = {
       movies: []
     };
-    this.moviesModel = new MoviesModel();
   }
 
   componentDidMount() {
-    getMovies().then((movies) => {
-      this.moviesModel.movies = movies.movies;
-      this.setState({movies:this.moviesModel.movies});
-    });
+    AppActions.fetchMovies();
+    MovieStore.addChangeListener(this.moviesUpdated.bind(this))
   }
 
   render() {
     return (
       <div className={'app'}>
-        <Header sort={this.sortMovies.bind(this)}
-                search={this.searchMovies.bind(this)}
-                reset={this.reset.bind(this)}/>
-        <MovieList movies={this.retrieveMovies()}
-                   rate={this.rateMovie.bind(this)}/>
+        <Header />
+        <MovieList movies={this.state.movies} />
       </div>
     );
   }
 
-  retrieveMovies() {
-    return this.state.movies || [];
-  }
-
-  reset() {
-    this.setState({movies: this.moviesModel.movies});
-  }
-
-  searchMovies(key) {
-    let searchResult = this.moviesModel.getBySearch(key);
-    this.setState({movies: searchResult});
-  }
-
-  sortMovies(key) {
-    let sorted = this.moviesModel.getSorted(key);
-    this.setState({movies: sorted});
-  }
-
-  rateMovie(...args) {
-    this.moviesModel.updateRating(...args);
+  moviesUpdated() {
+    this.setState({
+      movies: MovieStore.getAll()
+    });
   }
 }
 
 ```
-
 
 ### header.jsx
 
 ```javascript
 import React from 'react';
 import './_Header.scss';
+import AppActions from '../../actions/AppActions';
 
 export default class Header extends React.Component {
 
@@ -139,35 +119,20 @@ export default class Header extends React.Component {
 
   search(e) {
     e.preventDefault();
-    this.props.search(this.state.searchTerm);
+    AppActions.searchMovie(this.state.searchTerm);
     this.setState({submitted: true});
   }
 
   sort(e) {
-    this.props.sort(e.target.value);
+    AppActions.sortMovies(e.target.value);
   }
 
   reset() {
-    this.props.reset();
+    AppActions.fetchMovies();
     this.setState({submitted: false, searchTerm: undefined});
   }
 
 }
-
-Header.defaultProps = {
-  sort: function() {},
-  search: function() {},
-  reset: function() {}
-}
-
-
-
-Header.propTypes = {
-  sort: React.PropTypes.func,
-  search: React.PropTypes.func,
-  reset: React.PropTypes.func
-};
-
 ```
 
 ### movielist.jsx
@@ -186,7 +151,7 @@ export default class MovieList extends React.Component {
       <ul className="items">
         {
           this.props.movies.map((movie, idx) => {
-            return <MovieTile key={idx} movie={movie} rate={this.props.rate} />
+            return <MovieTile key={idx} movie={movie} />
           })
         }
       </ul>
@@ -195,22 +160,21 @@ export default class MovieList extends React.Component {
 }
 
 MovieList.deafultProps = {
-  movies: [],
-  rate: function() {}
+  movies: []
 };
 
 MovieList.propTypes = {
-  movies: React.PropTypes.array,
-  rate: React.PropTypes.func
+  movies: React.PropTypes.array
 };
-
 ```
 
 ### movietile.jsx
+
 ```javascript
 import React from 'react';
 import _ from 'lodash';
 import './_MovieTile.scss';
+import AppActions from '../../actions/AppActions';
 
 const MAX_STARS = 5;
 
@@ -256,69 +220,16 @@ export default class MovieTile extends React.Component {
   updateRating(e) {
     let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
     this.setState({stars});
-    this.props.rate(this.props.movie.title, stars);
+    AppActions.rateMovie(this.props.movie.title, stars);
   }
 }
 
 
 MovieTile.defaultProps = {
-  movie: {},
-  rate: function() {}
+  movie: {}
 }
 
 MovieTile.propTypes = {
-  movie: React.PropTypes.object,
-  rate: React.PropTypes.func
+  movie: React.PropTypes.object
 };
-
-```
-
-### models/movies.js
-
-```javascript
-import _ from 'lodash';
-
-/*
- * Could clean this up to be export new MoviesModel() instead and then just
- * use it as a singleton but for the purpose of demo we are not yet
- */
-
-export default class movies {
-	//no constructor on purpose
-
-	get movies() {
-		return _.clone(this._movies);
-	}
-
-	set movies(movies) { //only way to modify movies
-						 // could have used Symbols trick as well
-		this._movies = movies;
-	}
-
-	getSorted(key) {
-		let movies = this.movies;
-		return _.sortBy(movies, (movie) => {
-	      if(key === 'rating') {
-	        return parseInt(movie[key])
-	      }
-
-	      return movie[key];
-	    });
-	}
-
-	getBySearch(title, moviesArray) {
-		let movies = moviesArray || this.movies;
-		let result = _.findWhere(movies, {title});
-		return result ? [result] : [];
-	}
-
-	updateRating(title, rating) {
-		let moviesList = this.movies;
-		let [movie] = this.getBySearch(title, moviesList);
-		if(movie) {
-			movie.rating = '' + rating;
-			this.movies = moviesList;
-		}
-	}
-}
 ```

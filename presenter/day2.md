@@ -116,7 +116,7 @@ export default class MovieTile extends React.Component {
               <i key={idx} className="fa fa-star"
                            data-rating={idx}
                            onClick={this.updateRating.bind(this)}/>
-              : 
+              :
               <i key={idx} className="fa fa-star-o"
                            data-rating={idx}
                            onClick={this.updateRating.bind(this)}/>;
@@ -135,7 +135,7 @@ MovieTile.defaultProps = {
 }
 
 MovieTile.propTypes = {
-  movies: React.PropTypes.string
+  moviesTitle React.PropTypes.string
 };
 
 ````

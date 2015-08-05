@@ -6,8 +6,8 @@ import React from 'react';
 import _ from 'lodash';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList';
-import MoviesModel from '../../models/Movies';
-import { getMovies } from '../../util/api';
+import AppActions from '../../actions/AppActions';
+import MovieStore from '../../stores/MovieStore';
 
 export default class App extends React.Component {
 
@@ -16,47 +16,25 @@ export default class App extends React.Component {
     this.state = {
       movies: []
     };
-    this.moviesModel = new MoviesModel();
   }
 
   componentDidMount() {
-    getMovies().then((movies) => {
-      this.moviesModel.movies = movies.movies;
-      this.setState({movies:this.moviesModel.movies});
-    });
+    AppActions.fetchMovies();
+    MovieStore.addChangeListener(this.moviesUpdated.bind(this))
   }
 
   render() {
     return (
       <div className={'app'}>
-        <Header sort={this.sortMovies.bind(this)}
-                search={this.searchMovies.bind(this)}
-                reset={this.reset.bind(this)}/>
-        <MovieList movies={this.retrieveMovies()}
-                   rate={this.rateMovie.bind(this)}/>
+        <Header />
+        <MovieList movies={this.state.movies} />
       </div>
     );
   }
 
-  retrieveMovies() {
-    return this.state.movies || [];
-  }
-
-  reset() {
-    this.setState({movies: this.moviesModel.movies});
-  }
-
-  searchMovies(key) {
-    let searchResult = this.moviesModel.getBySearch(key);
-    this.setState({movies: searchResult});
-  }
-
-  sortMovies(key) {
-    let sorted = this.moviesModel.getSorted(key);
-    this.setState({movies: sorted});
-  }
-
-  rateMovie(...args) {
-    this.moviesModel.updateRating(...args);
+  moviesUpdated() {
+    this.setState({
+      movies: MovieStore.getAll()
+    });
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './_Header.scss';
+import AppActions from '../../actions/AppActions';
 
 export default class Header extends React.Component {
 
@@ -63,32 +64,17 @@ export default class Header extends React.Component {
 
   search(e) {
     e.preventDefault();
-    this.props.search(this.state.searchTerm);
+    AppActions.searchMovie(this.state.searchTerm);
     this.setState({submitted: true});
   }
 
   sort(e) {
-    this.props.sort(e.target.value);
+    AppActions.sortMovies(e.target.value);
   }
 
   reset() {
-    this.props.reset();
+    AppActions.fetchMovies();
     this.setState({submitted: false, searchTerm: undefined});
   }
 
 }
-
-Header.defaultProps = {
-  sort: function() {},
-  search: function() {},
-  reset: function() {}
-}
-
-
-
-Header.propTypes = {
-  sort: React.PropTypes.func,
-  search: React.PropTypes.func,
-  reset: React.PropTypes.func
-};
-

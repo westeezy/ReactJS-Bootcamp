@@ -1,3 +1,6 @@
+//TODO: create for demo purposes
+// wait until movie model is finalized though
+
 import _ from 'lodash';
 
 /*
@@ -5,8 +8,8 @@ import _ from 'lodash';
  * use it as a singleton but for the purpose of demo we are not yet
  */
 
-export default class movies {
-  //no constructor on purpose 
+let MovieModel = class movies {
+  //no constructor on purpose
 
   get movies() {
     return _.clone(this._movies);
@@ -45,3 +48,5 @@ export default class movies {
     }
   }
 }
+
+export default new MovieModel();

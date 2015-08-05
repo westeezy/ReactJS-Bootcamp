@@ -194,7 +194,7 @@ export default class MovieTile extends React.Component {
 
   render() {
     return (<li className="movie-tile-container item">
-    		<div className="bg-img" 
+    		<div className="bg-img"
              style={{'backgroundImage': `url('img/${this.props.movie.cover}')`}}></div>
         <a href="#">
     			<div className="content">
@@ -215,7 +215,7 @@ export default class MovieTile extends React.Component {
               <i key={idx} className="fa fa-star"
                            data-rating={idx}
                            onClick={this.updateRating.bind(this)}/>
-              : 
+              :
               <i key={idx} className="fa fa-star-o"
                            data-rating={idx}
                            onClick={this.updateRating.bind(this)}/>;
@@ -234,7 +234,7 @@ MovieTile.defaultProps = {
 }
 
 MovieTile.propTypes = {
-  movies: React.PropTypes.string
+  movie: React.PropTypes.object
 };
 
 ```

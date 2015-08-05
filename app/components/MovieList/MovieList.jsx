@@ -11,7 +11,7 @@ export default class MovieList extends React.Component {
       <ul className="items">
         {
           this.props.movies.map((movie, idx) => {
-            return <MovieTile key={idx} movie={movie} rate={this.props.rate} />
+            return <MovieTile key={idx} movie={movie} />
           })
         }
       </ul>
@@ -20,11 +20,9 @@ export default class MovieList extends React.Component {
 }
 
 MovieList.deafultProps = {
-  movies: [],
-  rate: function() {}
+  movies: []
 };
 
 MovieList.propTypes = {
-  movies: React.PropTypes.array,
-  rate: React.PropTypes.func
+  movies: React.PropTypes.array
 };
