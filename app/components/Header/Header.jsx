@@ -1,6 +1,7 @@
 import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
+import page from 'page'; //Note: Can abstract to not rely heavily on page
 
 export default class Header extends React.Component {
 
@@ -13,7 +14,6 @@ export default class Header extends React.Component {
   }
 
   render() {
-
     var searchBox;
     if (this.state.submitted) {
       searchBox = (
@@ -64,8 +64,9 @@ export default class Header extends React.Component {
 
   search(e) {
     e.preventDefault();
-    AppActions.searchMovie(this.state.searchTerm);
     this.setState({submitted: true});
+    page('/movies/' + this.state.searchTerm); //Note: can cleanup
+
   }
 
   sort(e) {
@@ -73,7 +74,7 @@ export default class Header extends React.Component {
   }
 
   reset() {
-    AppActions.fetchMovies();
+    page('/');
     this.setState({submitted: false, searchTerm: undefined});
   }
 

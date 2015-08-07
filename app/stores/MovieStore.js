@@ -1,5 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import MovieModel from '../models/Movies';
+import _ from 'lodash';
+
 import {
   EventEmitter
 }
@@ -23,6 +25,10 @@ class MovieStore extends EventEmitter {
 
   getAll() {
     return this.movieModel.movies || [];
+  }
+
+  getByTitle(title) { //TODO: move this to model
+    return _.findWhere(this.getAll(), {title});
   }
 
   set(movies) {
@@ -67,7 +73,7 @@ AppDispatcher.register((action) => {
       store.sort(action.data);
       break;
     case RATE_MOVIE:
-      store.rate(action.data.title, action.data.rating)
+      store.rate(action.data.title, action.data.rating);
       break;
     default:
   }

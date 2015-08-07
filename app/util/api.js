@@ -14,8 +14,8 @@ export function getMovies() {
 export function searchMovies(title) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      let movie = _.findWhere(movies.movies, {title})
-      resolve(movie)
+      let movie = _.findWhere(movies.movies, {title});
+      resolve(movie);
     }, 1000);
   });
 }

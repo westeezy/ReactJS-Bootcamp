@@ -1,0 +1,23 @@
+.movie-detail-container {
+  color: white;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  .movie-detail-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pull-right {
+    margin-left: 25px;
+    width: 250px;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  p {
+    margin-top: 15px;
+  }
+}

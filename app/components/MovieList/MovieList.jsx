@@ -1,4 +1,5 @@
 import React from 'react';
+import './_MovieList.scss';
 import MovieTile from '../MovieTile/MovieTile';
 
 export default class MovieList extends React.Component {
@@ -11,7 +12,7 @@ export default class MovieList extends React.Component {
       <ul className="items">
         {
           this.props.movies.map((movie, idx) => {
-            return <MovieTile key={idx} movie={movie} />
+            return <MovieTile key={idx} movie={movie} />;
           })
         }
       </ul>

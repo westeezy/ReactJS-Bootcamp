@@ -27,7 +27,7 @@ export default {
         AppDispatcher.dispatch({
           data: [movie],
           actionType: FIND_MOVIE_GET_SUCCESS
-        })
+        });
       });
     },
 
@@ -35,7 +35,7 @@ export default {
       AppDispatcher.dispatch({
         data: key,
         actionType: SORT_MOVIES_BY_KEY
-      })
+      });
     },
 
     rateMovie(title, rating) {
@@ -44,7 +44,7 @@ export default {
           title, rating
         },
         actionType: RATE_MOVIE
-      })
+      });
     }
 
 };
