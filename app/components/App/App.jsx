@@ -32,7 +32,9 @@ class App extends React.Component {
             <this.props.component context={this.props.context}
                                   movies={this.state.movies}/>
             :
-            <div className="loader">Loading...</div>
+            <div className="loader-overlay">
+              <div className="loader">Loading...</div>
+            </div>
         }
         </div>
       </div>
