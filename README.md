@@ -11,6 +11,15 @@ Run `npm install` to pull in dependencies followed by `npm start` to start the w
 The slides are a deck built using <a href="https://github.com/hakimel/reveal.js/">RevealJS</a> so any <a href="https://gist.github.com/willurd/5720255">static file server</a> can serve them so for instance on OS X you can 
 `cd slides` followed by `python -m SimpleHTTPServer 8000` and each day has an index.html file to view the slides.
 
+<<<<<<< HEAD
+=======
+### PDF of slides
+Slides also available as pdfs in the pdfs folder. These pdfs are exported from the slideshow so will be updated with the slides.
+
+### Bootcamp Start
+Bootcamp starts on a stripped down version of the master branch to start building up the application from scratch. Please see branch <a href="https://github.com/westeezy/ReactJS-Bootcamp/tree/ndc_day_one">ndc_day_one</a>
+
+>>>>>>> 9dacf3e... Slides + PDF + ReadME
 ####Day 0 - Intro to tooling and ES2015
 <h5><a href="https://github.com/westeezy/ReactJS-Bootcamp/blob/master/agendas/day0.md">Link to Agenda for Day 0</a></h5>
 

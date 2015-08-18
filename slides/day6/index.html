@@ -37,6 +37,50 @@
                         <li>Create a router for our application</li>
                     </ul>
                 </section>
+                <section>
+                    <h4>Stores are more than just models</h4>
+                    <ul>
+                      <li>We can use stores to hold onto state</li>  
+                      <li>This makes stores powerful in routing</li>
+                      <li>Can update and emit change event to parent views to rerender children</li>
+                      <li>This demo chooses to go a slightly different route and uses page.js</li>
+                    </ul>
+                </section>
+                <section>
+                    <section>
+                        <h4>Higher-Order Functions</h4>
+                        <ul>
+                            <li>Mixin API for React while stable does not play with es6 classes</li>
+                            <li>High Order Functions are a more ideal solution for numerous reasons</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Compare and Contrast these solutions</h4>
+                        <pre><code>
+var array = [1, 2, 3];
+for (var i = 0; i < array.length; i++) {
+  var current = array[i];
+  console.log(current);
+}
+
+//vs........
+
+function forEach(array, action) {
+  for (var i = 0; i < array.length; i++)
+    action(array[i]);
+}
+
+forEach([1, 2, 3], console.log);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h4>Higher-Order Functions</h4>
+                        <ul>
+                            <li>Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.</li>
+                            <li>Higher-order functions allow us to abstract over actions, not just values.</li>
+                        </ul>                    
+                    </section>
+                </section>
             </div>
         </div>
         <script src="../__lib/lib/js/head.min.js"></script>
