@@ -40,7 +40,8 @@
                         <li>Refs</li>
                     </ul>
                 </section>
-                <section data-transition="fade">
+                <section>
+                  <section data-transition="fade">
                     <h2>React Lifecycle Methods</h2>
                     <ul>
                         <li style="color:red;">render()</li>
@@ -57,24 +58,134 @@
                     <br />
                     <br />
                     <div style="color:red;">these can not update state</div>
+                  </section>
+                  <section>
+                    <h4>render</h4>
+                    <ul>
+                      <li>This is the meat of your component and generates the React Element to draw into the DOM</li>
+                      <li>Pure function - does not modify state</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>getInitialState</h4>
+                    <ul>
+                      <li>return the basic representation of your state. Invocked once before component is mounted</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>getDefaultProps</h4>
+                    <ul>
+                      <li>return the basic representation of your props. Invocked once before component is mounted</li>
+                      <li>values set on this.props in case something does not come in</li>
+                      <li>Can also set propTypes to enforce type of objects passed in as props</li>
+                      <li>propType mismatch issues a warning in development</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>componentWillMount</h4>
+                    <ul>
+                      <li>Invoked once before initial render</li>
+                      <li>chance to update state before render</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>componentDidMount</h4>
+                    <ul>
+                      <li>Good place to use 3rd party libs or attach listeners or use ajax</li>
+                      <li>First chance to interact with the DOM node</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>componentWillRecieveProps</h4>
+                    <ul>
+                      <li>invocked when props from parent change</li>
+                      <li>can react to prop transistion before the rerender is called</li>
+                      <li>can still access old props via this.props and new props via the first parameter</li>
+                      <li>calling setState here does not cause an additional render but rather changes state before the render occurs</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>shouldComponentUpdate</h4>
+                    <ul>
+                      <li>see PureRenderMixin</li>
+                      <li>can return false to stop a rerender and gain that bit of performance</li>
+                      <li>defaultly always returns true</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>componentWillUpdate</h4>
+                    <ul>
+                      <li>not called for initial render</li>
+                      <li>can not call this.setState</li>
+                      <li>perform prep before rerender</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>componentDidUpdate</h4>
+                    <ul>
+                      <li>not called for initial render</li>
+                      <li>perform work on domNode</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>componentWillUnmount</h4>
+                    <ul>
+                      <li>place to perform teardown code and remove listeners etc</li>
+                    </ul>
+                  </section>
                 </section>
                 <section>
-                    <h2>Composibility</h2>
+                  <section>
+                      <h2>Composibility</h2>
+                      <ul>
+                          <li>React components can be nested in each other and pass information down to children</li>
+                      </ul>
+                  </section>
+                  <section>
+                    <img src="./img/compose.jpg"/>
                     <ul>
-                        <li>React components can be nested in each other and pass information down to children</li>
+                      <li>Notice how Cart Component is a parent to CartListComponent</li>
+                      <li>CartListComponent may contain child components to render each list item</li>
+                      <li>With this scheme the list items can own their state of qty and total while the cart list is only concerned with having x amount of generic items</li>
                     </ul>
+                  </section>
+                  <section>
+                    <ul>
+                      <li>An owner is the component that sets the props of other components.</li>
+                      <li>React components can be created and rerendered with props from parent components</li>
+                      <li>Children usually rendered in the order they appear in the DOM but can dynamically be added like search results</li>
+                    </ul>
+                  </section>
                 </section>
                 <section>
                     <h2>Passing Props</h2>
-                    <ul>
-                        <li>React components can be created and rerendered with props from parent components</li>
-                    </ul>
+                    <pre><code>
+<div className="wrapper">
+  <ChildComponent propToPass={this.propToPass} />
+</div>
+                    </code></pre>
                 </section>
                 <section>
+                  <section>
                     <h2>Refs</h2>
                     <ul>
                         <li>Reference to a component in that view</li>
+                        <li>Can be accessed in parent component by this.refs.refName</li>
                     </ul>
+                    <pre><code>
+<div className="wrapper">
+  <ChildComponent ref="childComponent" />
+</div>
+                    </code></pre>
+                  </section>
+                  <section>
+                    <ul>
+                      <li>Can reach out to components public facing methods</li>
+                      <li>Can reach out to native components like an input tag</li>
+                      <li>NEVER access a ref during render</li>
+                      <li>Automagically created and destroyed for you</li>
+                    </ul>
+                  </section>
                 </section>
             </div>
         </div>

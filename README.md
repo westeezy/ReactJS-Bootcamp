@@ -1,5 +1,16 @@
 ## ReactJS Bootcamp
 
+###How to Run the App
+First make sure you have nodejs (npm in a companion to node) installed. This application was built using node 0.12 but should be fine with most versions of node and io.
+
+<a href="https://github.com/joyent/node/wiki/installation">Installing Node</a>
+
+Run `npm install` to pull in dependencies followed by `npm start` to start the webpack dev server which will open a Chrome window.
+
+###How to view the slides
+The slides are a deck built using <a href="https://github.com/hakimel/reveal.js/">RevealJS</a> so any <a href="https://gist.github.com/willurd/5720255">static file server</a> can serve them so for instance on OS X you can 
+`cd slides` followed by `python -m SimpleHTTPServer 8000` and each day has an index.html file to view the slides.
+
 ####Day 0 - Intro to tooling and ES2015
 <h5><a href="https://github.com/westeezy/ReactJS-Bootcamp/blob/master/agendas/day0.md">Link to Agenda for Day 0</a></h5>
 
