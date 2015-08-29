@@ -34,6 +34,7 @@
                 <section data-transition="fade">
                     <h2>Agenda</h2>
                     <ul>
+                        <li>Grunt and Gulp</li>
                         <li>Webpack</li>
                         <li>Babel</li>
                         <li>Eslint</li>
@@ -46,9 +47,77 @@
                     </ul>
                 </section>
                 <section>
-                    <section>
-                        <h2>Webpack</h2>
-                    </section>
+                  <section>
+                    <img src="https://d262ilb51hltx0.cloudfront.net/max/949/1*Wh_DnDH2zLPQSovOSMIy-w.jpeg" />
+                  </section>
+                  <section>
+                    <h2>Grunt</h2>
+                    <img src="http://gruntjs.com/img/grunt-logo.png" />
+                  </section>
+                  <section>
+                    <li>focus on configuration</li>
+                    <li>does common tasks very well and very easily configured when going down a happy path</li>
+                    <li>picks up and drops files from src and dest options so each task opens file readers/writers</li>
+                  </section>
+                  <section>
+                    <pre><code>
+grunt.initConfig({
+clean: {
+  src: ['build/app.js', 'build/vendor.js']
+},
+
+copy: {
+  files: [{
+    src: 'build/app.js',
+    dest: 'build/dist/app.js'
+  }]
+}
+
+concat: {
+  'build/app.js': ['build/vendors.js', 'build/app.js']
+}
+
+// ... other task configurations ...
+
+});
+
+//Notice how plugins are registered before the build
+grunt.registerTask('build', ['clean', 'bower', 'browserify', 'concat', 'copy']);
+                    </code></pre>
+                  </section>
+                  <section>
+                    <h2>Gulp</h2>
+                    <img src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png" />
+                  </section>
+                  <section>
+                    <li>focus on code</li>
+                    <li>leverages streams for piping inbetween tasks</li>
+                    <li>doesn't enforce much of anything. just use code to wire up tasks and pipe information</li>
+                  </section>
+                  <section>
+                    <pre><code>
+//import the necessary gulp plugins
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var minifyCss = require('gulp-minify-css');
+var rename = require('gulp-rename');
+
+//declare the task
+gulp.task('sass', function(done) {
+  gulp.src('./scss/ionic.app.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./www/css/'))
+    .pipe(minifyCss({
+      keepSpecialComments: 0
+    }))
+    .pipe(rename({ extname: '.min.css' }))
+    .pipe(gulp.dest('./www/css/'))
+    .on('end', done);
+});
+                    </code></pre>
+                  </section>
+              </section>
+                <section>
                     <section>
                         <h2>Script Loading</h2>
                         <ul>
@@ -75,6 +144,68 @@ var component = require('../component/component'); //amd and commonjs syntax
                         </ul>
                     </section>
                     <section>
+                      <pre><code>
+var outputs = [ // <- Add new bundle names to this list
+  'common',
+  'contact',
+  'help',
+  'enrollment',
+  'forgot-credentials',
+  'index',
+  'initialLogin',
+  'login',
+  'plan-selection',
+  'user-registration',
+  'producer-services',
+  'reset-password'
+];
+
+
+function generateOutputs(options) {
+  var path = options.paths.distPath + '/js/' + options.pkg.name + '.';
+  return outputs.map(function(output){
+    return path + output + '.js';
+  });
+}
+
+module.exports = function(grunt, options) {
+  return {
+    dev: {
+      src: defaults.src,
+      dest: defaults.dest,
+      options: {
+        watch: true,
+        browserifyOptions: {
+          debug: true, //add sourcemaps
+        },
+        preBundleCB: function(b) {
+          b.plugin(factorBundle, {
+            outputs: generateOutputs(options)
+          });
+        }
+      }
+    },
+    dist: {
+      src: defaults.src,
+      dest: defaults.dest,
+      options: {
+        watch: false,
+        browserifyOptions: {
+          debug: false, //no sourcemaps
+          transform: ['reactify', 'uglifyify']
+        },
+        preBundleCB: function(b) {
+          b.plugin(factorBundle, {
+            outputs: generateOutputs(options)
+          });
+        }
+      }
+    }
+  };
+};
+                      </code></pre>
+                    </section>
+                    <section>
                         <h2>Webpack</h2>
                         <span>batteries included</span>
                         <ul>
@@ -86,21 +217,41 @@ var component = require('../component/component'); //amd and commonjs syntax
                             <li>Nice hotloading functionality with its built in dev server</li>
                         </ul>
                     </section>
+                    <section>
+                      <pre><code>
+var pkg  = require('../package.json'),
+    path = require('path');
+
+var DEBUG = process.env.NODE_ENV === 'development';
+var TEST = process.env.NODE_ENV === 'test';
+
+module.exports = {
+  context: path.join(__dirname, '../public'),
+  cache: DEBUG,
+  debug: DEBUG,
+  watch: DEBUG,
+  devtool: DEBUG || TEST ? '#inline-source-map' : false,
+  target: 'web',
+  entry: './scripts/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(pkg.config.buildDir)
+  },
+  module: { //Notice the loaders for sass and jsx files
+    loaders: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+      { test: /\.scss$/, loaders: ['style', 'css', 'sass']}
+    ],
+    noParse: [
+      './public/scripts/dist/'
+    ]
+  }
+}
+                      </pre></code>
+                    </section>
                 </section>
                 <section>
-                    <h2>Babel</h2>
-                    jsx transforms built in
-                    transpiles esnext javascript into es5 for all browsers
-                    used as a prebuild step
-                </section>
-                <section>
-                    <h2>Eslint</h2>
-                    build on espree's javascript syntax parser
-                    lots of plugins and customizable linter
-                    react plugins allow us to control react and jsx specific rules
-                </section>
-                <section>
-                    <h2>Babel</h2>
+                    <img height="150px" width="300px" src="https://raw.githubusercontent.com/babel/logo/master/babel.png" />
                     <ul>
                         <li>Formerly 6to5 but now handles more than es2015</li>
                         <li>Transpiles esnext code into something all browsers can use</li>
@@ -110,7 +261,8 @@ var component = require('../component/component'); //amd and commonjs syntax
                     </ul>
                 </section>
                 <section>
-                    <h2>Eslint</h2>
+                  <section>
+                    <h2>Eslint <br /><img style="border:none!important;" height="100px" width="100px" src="http://eslint.org/img/logo.svg" /></h2>
                     <ul>
                         <li>Extendable code linting and style checking</li>
                         <li>Every facet is pluggable</li>
@@ -118,8 +270,35 @@ var component = require('../component/component'); //amd and commonjs syntax
                         <li>Lints using AST to evaluate patterns unlike some other linters</li>
                         <li>Many great community plugins for frameworks like react</li>
                     </ul>
+                  </section>
+                  <section>
+                    <pre><code>
+{
+  "rules": {
+      "eqeqeq": 0,
+      "curly": 2,
+      "quotes": [2, "double"]
+  }
+}
+                    </code></pre>
+                  </section>
                 </section>
                 <section>
+                    <section>
+                      <h2>ES2015</h2>
+                      <img src="http://m.memegen.com/bvnpsq.jpg" />
+                    </section>
+                    <section>
+                      <blockquote>
+                        Innovation debt is the cost that companies incur when they don't invest in their developers.
+                        <br />
+                        <small>- Peter Bell</small>
+                        <br />
+                        - Westin Wrzesinski
+                      </blockquote>
+                    </section>
+                    <section>
+                    </section>
                     <section>
                         <h2>Arrows =></h2>
                         <ul>
@@ -130,7 +309,8 @@ var component = require('../component/component'); //amd and commonjs syntax
                             <li>Always Anon</li>
                             <li>upgrade to es5 bind for callbacks essentially</li>
                         </ul>
-                    </section>          <section>
+                    </section>
+                    <section>
                     <h1>Code</h1>
 <pre><code>
 //Arrows
@@ -151,9 +331,9 @@ var person = {
 }
 </code></pre>
                 </section>
-            </section>
             <section>
-                <h2>Let</h2>       <div>Allows for block scoping</div>
+                <h2>Let</h2>
+                <div>Allows for block scoping</div>
 <pre><code>
 function() {
   if(x) {
@@ -173,8 +353,7 @@ function() {
 }
 </code></pre>
             </section>
-            <section>
-                <section>
+              <section>
                     <h2>Destructuring Object</h2>
 <pre><code>
 var people = [
@@ -187,6 +366,13 @@ people.forEach(function({name, age}) //shorthand if key = value
 {
   console.log(name + ":" + age)
 });
+
+let { first: f, last: l } = {first: 'westin', last: 'w'}; //assign multiple at same time
+
+let [x, y] = ['a', 'b']; // x = 'a'; y = 'b'; //extract multiple values at same time
+
+let {length : len} = 'abc'; // len = 3 nifty trick to call string.length
+
 </code></pre>
                 </section>
                 <section>
@@ -208,8 +394,6 @@ var doWork = function() {
 let [, x, y, z] = doWork();
 </code></pre>
                 </section>
-            </section>
-            <section>
                 <section>
                     <h2>Default, Rest, Spread</h2>
                     <h3>Default Params</h3>
@@ -218,7 +402,10 @@ function f(x, y=12, z=y) {
   // y is 12 if not passed (or passed as undefined)
   return x + y;
 }
-f(3) == 15
+f(3) == 15;
+
+let [x=3, y] = []; // x = 3; y = undefined nifty use with destructuring
+
 </code></pre>
                 </section>
                 <section>
@@ -248,14 +435,11 @@ total(1, 2, 3);
 total.apply(null, [1,2,3]);
 //now
 total(...[1,2,3]);
-function hello({name, age}) {
-  console.log(name, age);
-}
-foo({name: 'Westin', age: 25});
+
+let [x,...y] = 'abc'; // x='a'; y=['b', 'c']; //using with destructuring
+
 </code></pre>
                 </section>
-            </section>
-            <section>
                 <section>
                     <h2>Classes</h2>
                     <ul>
@@ -264,9 +448,21 @@ foo({name: 'Westin', age: 25});
                     </ul>
 <pre><code style="word-wrap: break-word;">
 class TodoModel {
+
     constructor(storage) {
         this.storage = storage;
     }
+
+    get todo() {
+      return this.storage.get();
+    }
+
+    set todo(title) {
+      //... can override setters of properties to do same as create
+      // todo.x = 'xyz'; will call todo.create('xyz');
+      this.create(title);
+    }
+
     create(title) {
         title = title || '';
         var newItem = {
@@ -275,6 +471,12 @@ class TodoModel {
         };
         return this.storage.save(newItem);
     }
+
+    ['h'+'ello' + 'world']() { //dynamic class properties
+        return 'Hello World';
+    }
+};
+console.log(obj.hello()); // hi
 }
 export default TodoModel;
 </code></pre>
@@ -292,8 +494,6 @@ class EnhancedTodoModel extends TodoModel {
 }
 </code></pre>
                 </section>
-            </section>
-            <section>
                 <section>
                     <h2>Modules</h2>
 <pre><code>

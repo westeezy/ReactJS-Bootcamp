@@ -2,16 +2,14 @@
 
 ###### Introduction to React and JSX
 <img src="http://facebook.github.io/react/img/logo.svg" alt="react" width="100" />
-<dl>
-  <dt>
-      <h5>What we will be covering</h5>
-  </dt>
-  <dd>React as a view layer</dd>
-  <dd>JSX syntax</dd>
-  <dd>How to mount a component into the DOM</dd>
-  <dd>What a simple component looks like</dd>
-  <dd>Start improving our application</dd>
-</dl>
+
+*What we will cover:*
+
+* React as a view layer
+* JSX syntax
+* How to mount a component into the DOM
+* What a simple component looks like
+* Start improving our application
 
 ###### What is React
 
@@ -212,5 +210,8 @@ export default class MovieTile extends React.Component {
 
 So at this point we have an app with a header and a single static movie tile. Tomorrow we can start looking into how to build a list of movies and leverage our movieTile.jsx more generically.
 
-<h5><a href="https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day2">Link to Day 2 - More React</a></h5>
+## [Link to Day 1 - React Components][Day 1]
+
+
+[Day 1]:https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day2
 

@@ -1,10 +1,20 @@
+## Talking points
+
+* The main difference between Gulp and Grunt lies in how they deal with their automation tasks on the inside. Gulp uses Node streams while Grunt uses temp files.
+* Grunt uses intermediary files while gulp does it all in memory
+* The argument goes like this: Gulp is a good example that code over configuration can be a good thing when configuration gets a bit confusing. Other people say that while this is true and Gulp is easier to read, it is more difficult to write because piping can be a bit confusing.
+
+
+* CommonJS give you two tools:
+ 1. the require() function, which allows to import a given module into the current scope.
+ 2. the module object, which allows to export something from the current scope.
+
+
 ## Code to write for Day 0
 
 =======
 
 ### app.jsx
-* don't write movielist just yet and keep just the tiles - day 2 is composition
-
 ```javascript
 'use strict';
 

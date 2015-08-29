@@ -2,16 +2,14 @@
 
 ###### React Component State
 <img src="http://facebook.github.io/react/img/logo.svg" alt="react" width="100" />
-<dl>
-  <dt>
-      <h5>What we will be covering</h5>
-  </dt>
-  <dd>Component State and more on Lifecycle</dd>
-  <dd>Manipulating State</dd>
-  <dd>How components can store their data</dd>
-  <dd>Add logic to our application for handling data via a promise</dd>
-  <dd>Start fixing up the header a bit</dd>
-</dl>
+
+*What we will cover:*
+
+* Component State and more on Lifecycle
+* Manipulating State
+* How components can store their data
+* Add logic to our application for handling data via a promise
+* Start fixing up the header a bit
 
 ######Component State
 At the end of Day2 we addd some state logic into MovieTile.jsx to hold data about a movie's rating. Now we will dive into React's component state and proper usage of state.
@@ -25,7 +23,7 @@ React State is immutable in its own right but you can update a components state 
 As mentioned we can update state through `this.setState({})` but because that triggers a rerender we can not update state in render's lifecycle.  A good place for state to update is with dom events or maybe ajax call completion etc. 
 
 ######Pure Rendering
-We can also tell React not to rerender on all state changes by using `shouldComponentUpdate(nextProps, nextState)`. This is a powerful tool and is actually use in React's `pureRenderMixin` located <a href="https://github.com/facebook/react/blob/531e6280a357515512dbcefe9170dbd8bf109d4a/src/addons/ReactComponentWithPureRenderMixin.js">here</a>
+We can also tell React not to rerender on all state changes by using `shouldComponentUpdate(nextProps, nextState)`. This is a powerful tool and is actually use in React's `pureRenderMixin` located [here][React Pure Render]
 
 ```
 //code for convenience 
@@ -60,5 +58,174 @@ var ReactComponentWithPureRenderMixin = {
 };
 ```
 
+###Wiring this all into our Application
 
-<h5><a href="https://github.com/westeezy/ReactJS-Bootcamp/blob/master/agendas/day4.md">Link to Day 4 - React Forms and Events</a></h5>
+We want to start by updating our App.jsx to get movies from a fake api.
+
+```javascript
+//app.jsx
+'use strict';
+
+import './_App.scss';
+
+import React from 'react';
+import _ from 'lodash';
+import Header from '../Header/Header';
+import MovieList from '../MovieList/MovieList';
+import { getMovies } from '../../util/api'; //new api file
+
+export default class App extends React.Component {
+
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      movies: []
+      //set default state of movies to empty for when component first loads and is waiting for ajax
+    };
+  }
+
+  componentDidMount() { //Remember from LifeCycle discussion that componentDidMount is the location 
+                        // to integrate with APIs or 3rd party libraries
+    getMovies().then((movies) => {
+      movies = movies.movies;
+      this.setState({movies}); //Component will rerender when we update the state to have the result
+                               // of the api call.
+    });
+  }
+
+  render() { //We want to past the movies down to the movieList component so it can render them
+    return (
+      <div className={'app'}>
+        <Header />
+        <MovieList movies={this.retrieveMovies()}/>
+      </div>
+    );
+  }
+
+  retrieveMovies() { //method to get movies in case we need to do any transformations
+    return this.state.movies || [];
+  }
+```
+
+```javascript
+//utils/api.js
+'use strict';
+
+import movies from '../mock/movies.json';
+
+export function getMovies() {
+  return new Promise((resolve) => { //really simple fake way to get movies
+    setTimeout(() => {
+      resolve(movies);
+    }, 1000);
+  });
+}
+```
+
+
+Now if you notice since we are still passing movies as a prop to MovieList.jsx there are absolutely no updates needed to that file.
+
+Now we can actually start updating Header.jsx to do something more functional. So first update app.jsx to have the following in render
+
+```javascript
+//inside of render ->
+ <Header sort={this.sortMovies.bind(this)}
+                search={this.searchMovies.bind(this)}/>
+//new class methods
+searchMovies(key) { //search for movies that we can pass down into Header to call
+  let searchResults = _.findWhere(this.state.movies, {title: key});
+  this.setState({movies: [searchResults]});
+}
+
+sortMovies(key) { //sort for movies we can pass into Header to call
+  let sorted = _.sortBy(this.state.movies, (movie) => {
+    if(key === 'rating') {
+      return parseInt(movie[key])
+    }
+
+    return movie[key];
+  });
+
+  this.setState({movies: sorted});
+}
+```
+
+Now we can update Header.jsx to take advantage of these. And tomorrow we will go into detail about how forms and inputs are used in React.
+
+```javascript
+mport React from 'react';
+import './_Header.scss';
+
+export default class Header extends React.Component {
+
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      searchTerm: null
+    };
+  }
+
+  render() {
+
+    var searchBox;
+    if (this.state.searchTerm) {
+      searchBox = (
+        <h3 className="term">
+          {this.state.searchTerm} <a href='#'><i className="fa fa-times"/></a>
+        </h3>
+      );
+    }
+    else {
+      searchBox = ( //we will talk about forms more tomorrow
+        <form className="search-form" onSubmit={this.search.bind(this)}>
+          <input ref="searchBox" className="search-input" type="text" placeholder="Search" />
+        </form>
+      );
+    }
+
+    return (
+      <header className="app-header">
+        <div className="inner">
+          <h1 className="title">FakeFlix</h1>
+          <div className="header-right">
+            {searchBox}
+            <select className="display-select"
+                    onChange={this.sort.bind(this)}>
+              <option>View By:</option>
+              <option value="title">Title</option>
+              <option value="rating">Rating</option>
+            </select>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  search(e) {
+    e.preventDefault();
+    //this is not efficient but for day 3 this is what we will be doing
+    //fixing on day 4
+    let searchTerm = this.refs.searchBox.getDOMNode().value; //we can use refs to grab the value form the DOMNode
+    this.setState({searchTerm});
+    this.props.search(searchTerm); //can't use state because its async
+  }
+
+  sort(e) {
+    //this does not properly sort by user selected rating so we talk about that limitation and fix
+    //on day 4
+    this.props.sort(e.target.value);
+  }
+
+}
+
+Header.defaultProps = { //Set default props so we can fail gracefully if app.jsx doesn't pass them in
+  sort: function() {},
+  search: function() {}
+}
+```
+
+
+##[Link to Day 4 - React Forms and Events][Day 4]
+
+[Day 4]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day4/
+[React Pure Render]: https://github.com/facebook/react/blob/531e6280a357515512dbcefe9170dbd8bf109d4a/src/addons/ReactComponentWithPureRenderMixin.js

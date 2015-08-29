@@ -3,21 +3,14 @@
 ###### React Component Lifecycle
 <img src="http://facebook.github.io/react/img/logo.svg" alt="react"
 width="100" />
-<dl>
-  <dt>
-      <h5>What we will be covering</h5>
-  </dt>
-  <dd>React Lifecycle Methods</dd>
-  <dd>Composibility</dd>
-  <dd>Passing Props to children components</dd>
-  <dd>Refs</dd>
-  <dd>Add logic to our application for rating items</dd>
-</dl>
 
+*What we will cover:*
 
-<h5><a
-href="https://github.com/westeezy/ReactJS-Bootcamp/blob/master/agendas/day3.md">Link to
-Day 3 - React Component State</a></h5>
+* React Lifecycle Methods
+* Composibility
+* Passing Props to children components
+* Refs
+* Add logic to our application for rating item
 
 React components have their own lifecycle and API for dealing with changes. This is an important thing to really understand when building large applications with React. 
 
@@ -251,5 +244,6 @@ MovieTile.propTypes = {
 };
 ```
 
+##[Link to Day 3 - React Component State][Day 3]
 
-<h5><a href="https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day3">Link to Day 3 - React Component State</a></h5>
+[Day 3]: https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day3
