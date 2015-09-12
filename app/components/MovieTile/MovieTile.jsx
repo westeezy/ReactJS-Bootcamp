@@ -1,32 +1,26 @@
 import React from 'react';
-import _ from 'lodash';
+import '../MovieList/_MovieList.scss';
 import './_MovieTile.scss';
-import Rating from '../Rating/Rating';
+
+
+// TODO: Add some more text and see hot reloader
+
 
 export default class MovieTile extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
-	}
+  constructor(...args) {
+    super(...args);
+  }
 
-	render() {
-		return (<li className="movie-tile-container item">
-				<div className="bg-img"
-							style={{'backgroundImage': `url('img/${this.props.movie.cover}')`}}></div>
-				<a href={'/movies/' + this.props.movie.title}>
-					<div className="content">
-						<h2>{this.props.movie.title}</h2>
-            <Rating stars={parseInt(_.get(this.props, 'movie.rating',0))}
-                    title={_.get(this.props, 'movie.title')}/>
-					</div>
-				</a>
-			</li>);
-	}
+  render() {
+    return (
+      <div className="movie-list">
+        <ul className="items">
+          <li className="movie-tile-container item">
+            Hello Seattle - From Chicago
+          </li>
+        </ul>
+      </div>
+    );
+  }
 }
 
-MovieTile.defaultProps = {
-	movie: {}
-};
-
-MovieTile.propTypes = {
-	movie: React.PropTypes.object
-};

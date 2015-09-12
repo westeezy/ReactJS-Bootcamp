@@ -6,6 +6,9 @@ import 'normalize.css/normalize.css';
 import './scss/app.scss';
 import 'font-awesome/css/font-awesome.css';
 
+// Below is to load images via webpack.
+// Remember webpack is a manage EVERYTHING build tool
+
 let context = require.context('.', true, /\.jpg?$/);
 context.keys().forEach(context);
 
