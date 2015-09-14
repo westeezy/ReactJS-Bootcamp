@@ -43,6 +43,8 @@
 * De-structuring
 * Default, rest, spread
 
+For reference [here][Previous ES6 Talk] is the deck from the previous ES6 Brownbag
+
 ### Tooling
 
 There is no shortage of Javascript tooling out there and no doubt most people have heard of at least a couple of various ones out there between Grunt, Gulp, jspm etc. For this bootcamp the focus will be using Webpack and just simple scripts (executed through npm). But its important to understand the tooling out there to make informed decisions. The big two often discussed first are Grunt and Gulp.
@@ -352,3 +354,4 @@ With that we should see the shell of the appication loaded when we run `npm star
 [Webpack Browserify Drama]: http://blog.namangoel.com/browserify-vs-webpack-js-drama
 [Webpack vs Browserify]: https://medium.com/@housecor/browserify-vs-webpack-b3d7ca08a0a9
 [ES6 in depth]: https://hacks.mozilla.org/category/es6-in-depth/
+[Previous ES6 Talk]: http://westinwrz.me/presentations/es6/#/
