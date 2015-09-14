@@ -27,6 +27,7 @@
   .search-form {
     display: inline;
     position: relative;
+    float: left;
 
     &:before {
       content: "\f002";
@@ -35,6 +36,13 @@
       left: 12px;
       color: white;
       font-family: FontAwesome;
+    }
+  }
+
+  .fa-user {
+    &:before {
+      font-size: 48px;
+      color: red;
     }
   }
 

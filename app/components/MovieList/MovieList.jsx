@@ -10,20 +10,8 @@ export default class MovieList extends React.Component {
   render() {
     return (<div className="movie-list">
       <ul className="items">
-        {
-          this.props.movies.map((movie, idx) => {
-            return <MovieTile key={idx} movie={movie} />;
-          })
-        }
+        <MovieTile />
       </ul>
     </div>);
   }
 }
-
-MovieList.deafultProps = {
-  movies: []
-};
-
-MovieList.propTypes = {
-  movies: React.PropTypes.array
-};
