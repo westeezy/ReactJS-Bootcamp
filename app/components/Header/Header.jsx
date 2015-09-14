@@ -13,10 +13,7 @@ export default class Header extends React.Component {
         {/*<div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-            <form className="search-form">
-              <input className="search-input" type="text" placeholder="Search" />
-            </form>
-            <div>view options</div>
+          search/sort
           </div>
         </div>
         */}
