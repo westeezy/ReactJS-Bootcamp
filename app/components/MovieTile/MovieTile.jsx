@@ -1,32 +1,39 @@
 import React from 'react';
-import _ from 'lodash';
 import './_MovieTile.scss';
-import Rating from '../Rating/Rating';
+import '../MovieList/_MovieList.scss';
 
 export default class MovieTile extends React.Component {
 	constructor(props, ...args) {
 		super(props, ...args);
 	}
 
+  // TODO: Make Movie Title a variable that gets interpolated
+  // TODO: Abstract the stars into a method that returns the JSX
+  // TODO: How might we have this function accept the parameters of getStars(filledStars, totalStars)?
+  // TODO: How might we abstract Stars into it's own component? (named Rating)
+
 	render() {
-		return (<li className="movie-tile-container item">
-				<div className="bg-img"
-							style={{'backgroundImage': `url('img/${this.props.movie.cover}')`}}></div>
-				<a href={'/movies/' + this.props.movie.title}>
-					<div className="content">
-						<h2>{this.props.movie.title}</h2>
-            <Rating stars={parseInt(_.get(this.props, 'movie.rating',0))}
-                    title={_.get(this.props, 'movie.title')}/>
-					</div>
-				</a>
-			</li>);
+		let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
+		return (
+				<div className="movie-list">
+	        <ul className="items">
+	          <li className="movie-tile-container item">
+	            <div className="bg-img" style={{backgroundImage: `url('${img}')`}} />
+							<a href="#">
+								<div className="content">
+									<h2>Movie Title</h2>
+									<div className="stars">
+											<i className="fa fa-star" />
+											<i className="fa fa-star" />
+											<i className="fa fa-star" />
+											<i className="fa fa-star-o" />
+											<i className="fa fa-star-o" />
+									</div>
+								</div>
+							</a>
+	          </li>
+	        </ul>
+	      </div>);
 	}
 }
 
-MovieTile.defaultProps = {
-	movie: {}
-};
-
-MovieTile.propTypes = {
-	movie: React.PropTypes.object
-};

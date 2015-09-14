@@ -8,10 +8,6 @@ export default class Header extends React.Component {
     super(...args);
   }
 
-  // TODO: Create a select box with Title View By and options Title and Rating
-  // TODO: How to wire in onSubmit of the search box to console.log the value of the query using document.querySelector
-  // TODO: Create a method for when the user change the sort option to console.log it out
-
   render() {
     return (
       <header className="app-header">
@@ -19,15 +15,29 @@ export default class Header extends React.Component {
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
             <Login />
-            <form className="search-form">
+            <form className="search-form" onSubmit={this._submit}>
               <input className="search-input"
                      type="text"
                      placeholder="Search" />
             </form>
+            <select onChange={this._viewChange} className={"display-select"}>
+              <option>View By:</option>
+              <option value="Title">Title</option>
+            </select>
           </div>
         </div>
       </header>
     );
+  }
+
+  _submit(e) {
+    e.preventDefault();
+    console.log('submitted');
+  }
+
+  _viewChange(e) {
+    e.preventDefault();
+    console.log('select changed');
   }
 
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import './_Login.scss';
 
-let Login = ({user}) => {
+let Login = () => {
    return (
     <div className="app-login">
-      <div>{user}</div>
+      <div>User</div>
     </div>
   );
  };

@@ -1,58 +1,19 @@
-import React from 'react';
-import _ from 'lodash';
-import AppActions from '../../actions/AppActions';
+var React = require('react');
 
-const MAX_STARS = 5;
+// TODO: Build a proper ES6 Rating Component
+// We will talk later about how to pass in the starCount form the parent
 
-export default class Rating extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
-		this.state = {
-			stars: props.stars
-		};
-	}
+module.exports = React.createClass({
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			stars: nextProps.stars
-		});
-	}
-
-	render() {
-		return (<div className="stars">
-							{
-								this.retrieveRating()
-							}
-						</div>);
-	}
-
-	retrieveRating() {
-		return _.map(_.range(MAX_STARS), (idx) => {
-			return idx < this.state.stars ?
-							<i 	key={idx} className="fa fa-star"
-									onClick={this.updateRating.bind(this)}
-									data-rating={idx}/>
-							:
-							<i 	key={idx} className="fa fa-star-o"
-									onClick={this.updateRating.bind(this)}
-									data-rating={idx}/>;
-			});
-	}
-
-	updateRating(e) {
-		e.preventDefault();
-		let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
-		this.setState({stars});
-		AppActions.rateMovie(this.props.title, stars);
-	}
-}
-
-Rating.defaultProps = {
-	stars: 0,
-	title: ''
-};
-
-Rating.propTypes = {
-	stars: React.PropTypes.number,
-	title: React.PropTypes.string
-};
+  render: function() {
+    return (
+      <div className="stars" style={{color: 'gold'}}>
+        <i className="fa fa-star" />
+        <i className="fa fa-star" />
+        <i className="fa fa-star" />
+        <i className="fa fa-star-o" />
+        <i className="fa fa-star-o" />
+      </div>
+    );
+  }
+});
