@@ -9,14 +9,14 @@ export default class Header extends React.Component {
   render() {
     return (
       <header className="app-header">
-        Application Header
-        {/*<div className="inner">
+        <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-          search/sort
+            <form className="search-form">
+              <input className="search-input" type="text" placeholder="Search" />
+             </form>
           </div>
         </div>
-        */}
       </header>
     );
   }

@@ -8,11 +8,12 @@ export default class MovieTile extends React.Component {
   }
 
   render() {
+    let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
     return (
       <div className="movie-list">
         <ul className="items">
           <li className="movie-tile-container item">
-            hello
+            <div className="bg-img" style={{backgroundImage: `url('${img}')`}} />
           </li>
         </ul>
       </div>
