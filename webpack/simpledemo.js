@@ -1,5 +1,5 @@
-var pkg  = require('../package.json'),
-    path = require('path');
+var pkg = require('../package.json');
+var path = require('path');
 
 var DEBUG = process.env.NODE_ENV === 'development';
 var TEST = process.env.NODE_ENV === 'test';
@@ -25,4 +25,4 @@ module.exports = {
       './public/scripts/dist/'
     ]
   }
-}
+};
