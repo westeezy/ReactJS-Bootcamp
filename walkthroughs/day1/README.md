@@ -15,7 +15,7 @@
 
 There is definitely a lot of buzz around JavaScript frameworks now and there is no shortage of them out there in the wild. One of the newcomers has also become one of the most popular, that framework is React. You can easily read all the documentation and articles from Facebook <a href="http://facebook.github.io/react/docs/why-react.html">here</a>, but if you did that I could stop here and move on with my life.
 
-React is a view library for our front end applications. It makes no assumptions about what we are trying to do and just provides view components with a small but easily understood public facing APIs. This public facing API is basically a list of lifecycle methods; the most important of these methods is `render()`. Render is the only mandatory method to implement and just draws the component to a specified location (eg div.class).  
+React is a view library for our front end applications. It makes no assumptions about what we are trying to do and just provides view components with a small but easily understandable public API. This public facing API is basically a list of lifecycle methods; the most important of these methods is `render()`. Render is the only mandatory method to implement and just draws the component to a specified location (eg div.class).  
 
 So far that sounds pretty simple and it really is simple. The React components can compose other components as well. Keeping these components modular and independent can  lead to building an easy to maintain application.
 
