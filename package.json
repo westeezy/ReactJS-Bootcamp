@@ -46,7 +46,7 @@
     "glob": "^5.0.6",
     "html-loader": "^0.3.0",
     "json-loader": "^0.5.1",
-    "karma": "^0.12.31",
+    "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.1.12",
     "karma-cli": "0.0.4",
     "karma-mocha": "^0.1.10",
