@@ -3,19 +3,16 @@ import './_MovieTile.scss';
 import '../MovieList/_MovieList.scss';
 import Stars from './Stars';
 
+const starCount = 5;
+
 export default class MovieTile extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
+	constructor(...args) {
+		super(...args);
 	}
 
-	/*
-		1. With that in mind how might we break down a Twitter Feed into different components
-		2. Make Movie Title a variable
-		3. Abstract the stars into a method that returns the JSX
-		4. How might we have this function accept the parameters of getStars(filledStars, totalStars)
-	*/
-	render() {
-		let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
+  render() {
+    let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
+    let title = 'Burtons Movie';
 		return (
 				<div className="movie-list">
 	        <ul className="items">
@@ -23,18 +20,21 @@ export default class MovieTile extends React.Component {
 	            <div className="bg-img" style={{backgroundImage: `url('${img}')`}} />
 							<a href="#">
 								<div className="content">
-									<h2>Movie Title</h2>
-									<div className="stars">
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star-o" />
-											<i className="fa fa-star-o" />
-									</div>
-								</div>
+                  <h2> {title} </h2>
+                  <Stars />
+                  <div className="stars">
+                    {this._stars()}
+                  </div>
+							</div>
 							</a>
 	          </li>
 	        </ul>
 	      </div>);
-	}
+  }
+
+  _stars(totalStars=starCount) {
+    return Array(totalStars).fill(0).map((stars, idx) => {
+      return <i key={idx} className="fa fa-star" />;
+    });
+  }
 }
