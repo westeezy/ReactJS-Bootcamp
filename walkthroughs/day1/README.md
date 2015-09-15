@@ -11,6 +11,9 @@
 * What a simple component looks like
 * Start improving our application
 
+[Great article on UI Components][UI Components]
+
+
 ###### What is React
 
 There is definitely a lot of buzz around JavaScript frameworks now and there is no shortage of them out there in the wild. One of the newcomers has also become one of the most popular, that framework is React. You can easily read all the documentation and articles from Facebook <a href="http://facebook.github.io/react/docs/why-react.html">here</a>, but if you did that I could stop here and move on with my life.
@@ -214,4 +217,5 @@ So at this point we have an app with a header and a single static movie tile. To
 
 
 [Day 2]:https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day2
+[UI Components]:http://derickbailey.com/2015/08/26/building-a-component-based-web-ui-with-modern-javascript-frameworks/
 
