@@ -137,6 +137,7 @@ Once script loading is understood and it is time to make an informed decision th
 * Batteries included solution - has a lot of build in support for things like AMD vs Common and factor bundling
 * Can require images and css files because it is focused on managing ALL static assets if possible and configured to
 
+[Great slideshow here][Slides Webpack]
 [Here is a nice objective article on the two][Webpack Browserify Drama]
 [Add another][Webpack vs Browserify]
 
@@ -349,6 +350,7 @@ With that we should see the shell of the appication loaded when we run `npm star
 [React]: https://facebook.github.io/react/ "React"
 [Day 1]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day1/README.md "Day 1 - Introduction to React"
 [Grunt Created]: https://bocoup.com/weblog/introducing-grunt/
+[Slides Webpack]: http://alp82.github.io/webpack-experiment-slides/#/
 [Browserify for Webpack]: https://gist.github.com/substack/68f8d502be42d5cd4942
 [Webpack for Browserify]: http://webpack.github.io/docs/webpack-for-browserify-users.html
 [Webpack Browserify Drama]: http://blog.namangoel.com/browserify-vs-webpack-js-drama
