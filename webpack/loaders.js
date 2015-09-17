@@ -29,9 +29,6 @@ var sassParams = [
 
 if (DEBUG || TEST) {
   jsxLoader = [];
-  if (!TEST) {
-    jsxLoader.push('react-hot');
-  }
   jsxLoader.push('babel-loader?optional=runtime');
   sassParams.push('sourceMap', 'sourceMapContents=true');
   sassLoader = [
