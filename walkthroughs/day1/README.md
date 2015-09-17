@@ -11,11 +11,14 @@
 * What a simple component looks like
 * Start improving our application
 
+[Great article on UI Components][UI Components]
+
+
 ###### What is React
 
-There is definitely a lot of buzz around JavaScript frameworks now and there is no shortage of them out there in the wild. One of the new comers has also become one of the most popular, that framework is React. You can easily read all the documentation and articles from Facebook <a href="http://facebook.github.io/react/docs/why-react.html">here</a>, but if you did that I could stop here and have pound a few redbulls and move on with my life.
+There is definitely a lot of buzz around JavaScript frameworks now and there is no shortage of them out there in the wild. One of the newcomers has also become one of the most popular, that framework is React. You can easily read all the documentation and articles from Facebook <a href="http://facebook.github.io/react/docs/why-react.html">here</a>, but if you did that I could stop here and move on with my life.
 
-React is a view library for our front end applications. It makes no assumptions about what we are trying to do and just provides view components with a small but easily understand public facing API. This public facing API is basically a list of lifecycle methods; the most important of these methods is `render()`. Render is the only mandatory method to implement and just draws the component to a specified location (eg div.class).  
+React is a view library for our front end applications. It makes no assumptions about what we are trying to do and just provides view components with a small but easily understandable public API. This public facing API is basically a list of lifecycle methods; the most important of these methods is `render()`. Render is the only mandatory method to implement and just draws the component to a specified location (eg div.class).  
 
 So far that sounds pretty simple and it really is simple. The React components can compose other components as well. Keeping these components modular and independent can  lead to building an easy to maintain application.
 
@@ -210,8 +213,9 @@ export default class MovieTile extends React.Component {
 
 So at this point we have an app with a header and a single static movie tile. Tomorrow we can start looking into how to build a list of movies and leverage our movieTile.jsx more generically.
 
-## [Link to Day 1 - React Components][Day 1]
+## [Link to Day 2 - React Components][Day 2]
 
 
-[Day 1]:https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day2
+[Day 2]:https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/day2
+[UI Components]:http://derickbailey.com/2015/08/26/building-a-component-based-web-ui-with-modern-javascript-frameworks/
 
