@@ -1,16 +1,11 @@
 import React from 'react';
 import './_Header.scss';
-import AppActions from '../../actions/AppActions';
-import page from 'page'; //Note: Can abstract to not rely heavily on page
 
 export default class Header extends React.Component {
 
   constructor(...args) {
     super(...args);
-    this.state = {
-      searchTerm: null,
-      submitted: false
-    };
+    this.state = {};
   }
 
   render() {
@@ -65,16 +60,13 @@ export default class Header extends React.Component {
   search(e) {
     e.preventDefault();
     this.setState({submitted: true});
-    page('/movies/' + this.state.searchTerm); //Note: can cleanup
 
   }
 
   sort(e) {
-    AppActions.sortMovies(e.target.value);
   }
 
   reset() {
-    page('/');
     this.setState({submitted: false, searchTerm: undefined});
   }
 
