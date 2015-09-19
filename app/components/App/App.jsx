@@ -5,7 +5,9 @@ import './_App.scss';
 import React from 'react';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList';
-import mockData from '../../mock/movieTitles.json';
+import api from '../../utils/api';
+
+let MoviesApi = new api();
 
 export default class App extends React.Component {
 
@@ -24,7 +26,6 @@ export default class App extends React.Component {
   }
 
   retrieveMovies() {
-    debugger;
-    return mockData ? mockData.movieTitles : [];
+    return MoviesApi.getMovies().movies;
   }
 }

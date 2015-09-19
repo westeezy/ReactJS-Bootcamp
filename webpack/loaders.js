@@ -57,7 +57,7 @@ if (DEBUG || TEST) {
 
 var loaders = [
   {
-    test: /\.jsx?$/,
+    test: /\.js(x|)?$/,
     exclude: /node_modules/,
     loaders: jsxLoader
   },

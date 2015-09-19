@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieTile from '../MovieTile/MovieTile';
+import './_MovieList.scss';
 
 export default class MovieList extends React.Component {
   constructor(...args) {
