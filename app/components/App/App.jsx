@@ -3,59 +3,56 @@
 import './_App.scss';
 
 import React from 'react';
-import { Enhance } from '../Router/Router';
 import Header from '../Header/Header';
-import AppActions from '../../actions/AppActions';
-import MovieStore from '../../stores/MovieStore';
+import MovieList from '../MovieList/MovieList';
+import { getMoviesNow } from '../../util/api';
+import MoviesModel from '../../models/Movies';
 
-class App extends React.Component {
+/*
+ * 1. Fetch Movies from API in proper lifecycle method
+ * 2. Set up search and sort for Header.jsx
+ */
+let moviesModel = new MoviesModel();
+
+export default class App extends React.Component {
 
   constructor(...args) {
     super(...args);
+    moviesModel.movies = getMoviesNow();
     this.state = {
-      movies: []
+      movies: moviesModel.movies
     };
-  }
-
-  componentDidMount() {
-    AppActions.fetchMovies();
-    MovieStore.addChangeListener(this.moviesUpdated.bind(this));
   }
 
   render() {
     return (
       <div className={'app'}>
-        <Header />
+        <Header search={this.search.bind(this)}
+                sort={this.sort.bind(this)}
+                reset={this.reset.bind(this)}/>
         <div className="main">
-        {
-          this.props.component && this.state.movies.length ?
-            <this.props.component context={this.props.context}
-                                  movies={this.state.movies}/>
-            :
-            <div className="loader-overlay">
-              <div className="loader">Loading...</div>
-            </div>
-        }
+          <MovieList movies={this.state.movies}/>
         </div>
       </div>
     );
   }
 
-  moviesUpdated() {
+  search(query) {
     this.setState({
-      movies: MovieStore.getAll()
+      movies: moviesModel.getBySearch(query)
+    });
+  }
+
+  sort(key) {
+    this.setState({
+      movies: moviesModel.getSorted(key)
+    });
+  }
+
+  reset() {
+    moviesModel.movies = getMoviesNow();
+    this.setState({
+      movies: moviesModel.movies
     });
   }
 }
-
-App.defaultProps = {
-  component: {},
-  context: {}
-};
-
-App.propTypes = {
-  component: React.PropTypes.object,
-  context: React.PropTypes.object
-};
-
-export default Enhance(App); //Note: the move of export to wrap

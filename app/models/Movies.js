@@ -1,15 +1,14 @@
 import _ from 'lodash';
 
-/*
- * Could clean this up to be export new MoviesModel() instead and then just
- * use it as a singleton but for the purpose of demo we are not yet
- */
-
 export default class movies {
+
+  constructor(_movies) {
+    this._movies = _movies;
+  }
   //no constructor on purpose
 
   get movies() {
-    return _.clone(this._movies);
+    return _.clone(this._movies) || [];
   }
 
   set movies(_movies) { //only way to modify movies

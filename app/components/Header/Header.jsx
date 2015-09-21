@@ -1,8 +1,10 @@
 import React from 'react';
 import './_Header.scss';
-import AppActions from '../../actions/AppActions';
-import page from 'page'; //Note: Can abstract to not rely heavily on page
 
+/*
+ * 1. Set up a search method on Header to load a specific movie
+ * 2. Set up a sort method on Header to sort the movies
+ */
 export default class Header extends React.Component {
 
   constructor(...args) {
@@ -65,17 +67,27 @@ export default class Header extends React.Component {
   search(e) {
     e.preventDefault();
     this.setState({submitted: true});
-    page('/movies/' + this.state.searchTerm); //Note: can cleanup
-
+    this.props.search(document.querySelector('.search-input').value);
   }
 
   sort(e) {
-    AppActions.sortMovies(e.target.value);
+    this.props.sort(e.target.value);
   }
 
   reset() {
-    page('/');
     this.setState({submitted: false, searchTerm: undefined});
+    this.props.reset();
   }
-
 }
+
+Header.defaultProps = {
+  search: function(){},
+  sort: function(){},
+  reset: function(){}
+};
+
+Header.propTypes = {
+  search: React.PropTypes.func,
+  sort: React.PropTypes.func,
+  reset: React.PropTypes.func
+};

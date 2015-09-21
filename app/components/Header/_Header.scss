@@ -27,6 +27,7 @@
   .search-form {
     display: inline;
     position: relative;
+    float: left;
 
     &:before {
       content: "\f002";
