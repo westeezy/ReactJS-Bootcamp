@@ -1,7 +1,5 @@
 import './_MovieDetail.scss';
 import React from 'react';
-import _ from 'lodash';
-import MovieStore from '../../stores/MovieStore';
 
 export default class MovieTile extends React.Component {
 	constructor(props, ...args) {
@@ -9,7 +7,7 @@ export default class MovieTile extends React.Component {
 	}
 
 	render() {
-		let movie = this.findMovieFromAll() || {};
+		let movie = {};
 		return (
 			<div className='movie-detail-container'>
 				<div className='movie-detail-content'>
@@ -29,11 +27,6 @@ export default class MovieTile extends React.Component {
 					</div>
 				</div>
 			</div>);
-	}
-
-	findMovieFromAll() {
-		let title = _.get(this.props.context, 'params.title', '');
-		return MovieStore.getByTitle(title);
 	}
 }
 
