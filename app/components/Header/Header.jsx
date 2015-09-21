@@ -1,10 +1,6 @@
 import React from 'react';
 import './_Header.scss';
 
-/*
- 1. Create Search method to call to App.jsx from props
- 2. Use this.refs over querySelectorAll
-*/
 export default class Header extends React.Component {
 
   constructor(...args) {
@@ -13,7 +9,7 @@ export default class Header extends React.Component {
 
   render() {
     var searchBox = (
-        <form className="search-form">
+        <form className="search-form" onSubmit={this.search.bind(this)}>
           <input ref="searchBox"
                  className="search-input"
                  type="text"
@@ -37,4 +33,17 @@ export default class Header extends React.Component {
       </header>
     );
   }
+
+  search(e) {
+    e.preventDefault();
+    this.props.search(document.querySelectorAll('.search-input')[0].value);
+  }
 }
+
+Header.defaultProps = {
+  search: function() {}
+};
+
+Header.propTypes = {
+  search: React.PropTypes.func
+};

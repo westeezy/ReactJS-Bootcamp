@@ -1,31 +1,38 @@
-'use strict';
-
 import './_App.scss';
 
 import React from 'react';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList';
+import api from '../../utils/api';
+import _ from 'lodash';
 
-/*
-  1. Build MovieList and Wire up MovieList Wrapper for MovieTiles
-  2. Wire up retrieveMovies api - have the group help with that
-  3. Retrieve the movies in the proper lifecycle method
-  4. Wire up search to Header and setMovie
-  5. What is wrong with forceUpdate? Hint: lots of things
- */
+
+let MoviesApi = new api();
 
 export default class App extends React.Component {
 
   constructor(...args) {
     super(...args);
+    this.movies = this.retrieveMovies();
+    this.currentMovie = null;
   }
 
   render() {
+    let currentMovie = this.currentMovie ? [this.currentMovie] : null;
     return (
       <div className={'app'}>
-        <Header />
-        <MovieList />
+        <Header search={this.setMovie.bind(this)} />
+        <MovieList movies={currentMovie || this.movies}/>
       </div>
     );
+  }
+
+  setMovie(query) {
+    this.currentMovie = _.findWhere(this.movies, {title: query});
+    this.forceUpdate(); //terrible don't do this
+  }
+
+  retrieveMovies() {
+    return MoviesApi.getMovies().movies;
   }
 }
