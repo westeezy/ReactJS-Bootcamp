@@ -1,32 +1,30 @@
 import React from 'react';
-import _ from 'lodash';
 import './_MovieTile.scss';
 import Rating from '../Rating/Rating';
 
-export default class MovieTile extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
-	}
+// TODO: Set DefaultProps
+// TODO: Set PropTypes
+// TODO: Pass in value to Rating
+// TODO: Update MovieImg
 
-	render() {
-		return (<li className="movie-tile-container item">
-				<div className="bg-img"
-							style={{'backgroundImage': `url('img/${this.props.movie.cover}')`}}></div>
-				<a href={'/movies/' + this.props.movie.title}>
-					<div className="content">
-						<h2>{this.props.movie.title}</h2>
-            <Rating stars={parseInt(_.get(this.props, 'movie.rating',0))}
-                    title={_.get(this.props, 'movie.title')}/>
-					</div>
-				</a>
-			</li>);
-	}
+export default class MovieTile extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
+    let title= 'Sleepless in Seattle';
+
+    return (<li className="movie-tile-container item">
+        <div className="bg-img" style={{'backgroundImage': `url('${img}')`}}></div>
+        <a href="#">
+          <div className="content">
+            <h2>{title}</h2>
+            <Rating />
+          </div>
+        </a>
+      </li>);
+  }
 }
 
-MovieTile.defaultProps = {
-	movie: {}
-};
-
-MovieTile.propTypes = {
-	movie: React.PropTypes.object
-};
