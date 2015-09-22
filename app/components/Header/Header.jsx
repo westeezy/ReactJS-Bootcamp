@@ -9,44 +9,29 @@ export default class Header extends React.Component {
 
   constructor(...args) {
     super(...args);
-    this.state = {
-      searchTerm: null,
-      submitted: false
-    };
   }
 
   render() {
-    var searchBox;
-    if (this.state.submitted) {
-      searchBox = (
+    let searchBox = (
         <h3 className="term">
-          {this.state.searchTerm}
+          {'searchTerm'}
           <a href='#'>
             <i className="fa fa-times"
                 onClick={this.reset.bind(this)}/>
           </a>
-        </h3>
-      );
-    }
-    else {
-      searchBox = (
-        <form className="search-form" onSubmit={this.search.bind(this)}>
-          <input ref="searchBox"
-                 className="search-input"
-                 type="text"
-                 placeholder="Search"
-                 value={this.state.searchTerm}
-                 onChange={this.updateSearchTerm.bind(this)}/>
-        </form>
-      );
-    }
+        </h3>);
 
     return (
       <header className="app-header">
         <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-            {searchBox}
+            <form className="search-form" onSubmit={this.search.bind(this)}>
+              <input ref="searchBox"
+                     className="search-input"
+                     type="text"
+                     placeholder="Search"/>
+            </form>
             <select className="display-select"
                     onChange={this.sort.bind(this)}>
               <option>View By:</option>
@@ -61,13 +46,13 @@ export default class Header extends React.Component {
 
   updateSearchTerm(e) {
     let searchTerm = e.target.value;
-    this.setState({searchTerm});
+    console.log(searchTerm);
   }
 
   search(e) {
     e.preventDefault();
-    this.setState({submitted: true});
-    this.props.search(document.querySelector('.search-input').value);
+    let query = document.querySelector('.search-input').value;
+    this.props.search(query);
   }
 
   sort(e) {
@@ -75,7 +60,6 @@ export default class Header extends React.Component {
   }
 
   reset() {
-    this.setState({submitted: false, searchTerm: undefined});
     this.props.reset();
   }
 }
