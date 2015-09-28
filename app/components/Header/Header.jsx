@@ -9,12 +9,25 @@ export default class Header extends React.Component {
 
   constructor(...args) {
     super(...args);
+    this.state = {
+      searchTerm: null,
+      submitted: false
+    };
   }
 
   render() {
-    let searchBox = (
+    let searchBox = !this.state.submitted ?
+        <form className="search-form" onSubmit={this.search.bind(this)}>
+          <input ref="searchBox"
+                 className="search-input"
+                 type="text"
+                 value={this.state.searchTerm}
+                 onChange={this.updateSearchTerm.bind(this)}
+                 placeholder="Search"/>
+        </form>
+      : (
         <h3 className="term">
-          {'searchTerm'}
+          {this.state.searchTerm}
           <a href='#'>
             <i className="fa fa-times"
                 onClick={this.reset.bind(this)}/>
@@ -26,12 +39,7 @@ export default class Header extends React.Component {
         <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-            <form className="search-form" onSubmit={this.search.bind(this)}>
-              <input ref="searchBox"
-                     className="search-input"
-                     type="text"
-                     placeholder="Search"/>
-            </form>
+            {searchBox}
             <select className="display-select"
                     onChange={this.sort.bind(this)}>
               <option>View By:</option>
@@ -46,13 +54,16 @@ export default class Header extends React.Component {
 
   updateSearchTerm(e) {
     let searchTerm = e.target.value;
-    console.log(searchTerm);
+    this.setState({searchTerm});
   }
 
   search(e) {
     e.preventDefault();
-    let query = document.querySelector('.search-input').value;
+    let query = this.state.searchTerm;
     this.props.search(query);
+    this.setState({
+      submitted: true
+    });
   }
 
   sort(e) {
@@ -61,6 +72,10 @@ export default class Header extends React.Component {
 
   reset() {
     this.props.reset();
+    this.setState({
+      submitted: false,
+      searchTerm: null
+    });
   }
 }
 

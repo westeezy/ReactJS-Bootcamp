@@ -3,9 +3,6 @@
 import moviesJSON from '../mock/movies.json';
 import _ from 'lodash';
 
-/*
- * 1. Set up a getMoviesNow method using the MoviesModel
- */
 export function getMoviesNow() {
   return moviesJSON.movies;
 }

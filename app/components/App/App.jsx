@@ -5,17 +5,19 @@ import './_App.scss';
 import React from 'react';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList';
-import movies from '../../mock/movies.json';
+import { getMoviesNow } from '../../util/api';
+import MoviesModel from '../../models/Movies';
 
-/*
- * 1. Fetch Movies from API in proper lifecycle method
- * 2. Set up search and sort for Header.jsx
- */
+let moviesModel = new MoviesModel();atom
 
 export default class App extends React.Component {
 
   constructor(...args) {
     super(...args);
+    moviesModel.movies = getMoviesNow();
+    this.state = {
+      movies: moviesModel.movies
+    }
   }
 
   render() {
@@ -25,21 +27,27 @@ export default class App extends React.Component {
                 sort={this.sort.bind(this)}
                 reset={this.reset.bind(this)}/>
         <div className="main">
-          <MovieList movies={movies.movies}/>
+          <MovieList movies={this.state.movies}/>
         </div>
       </div>
     );
   }
 
   search(query) {
-    console.log('search');
+    console.log(query);
+    this.setState({
+      movies: moviesModel.getBySearch(query)
+    });
   }
 
   sort(key) {
-    console.log('sort');
+    this.setState({
+      movies: moviesModel.getSorted(key)
+    });
   }
 
   reset() {
-    console.log('reset');
+    moviesModel.movies = getMoviesNow();
+    this.setState({movies: moviesModel.movies})
   }
 }
