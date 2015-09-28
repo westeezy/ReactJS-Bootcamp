@@ -5,8 +5,8 @@ import AppActions from '../../actions/AppActions';
 const MAX_STARS = 5;
 
 export default class Rating extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
+	constructor(props) {
+		super(props);
 		this.state = {
 			stars: props.stars
 		};
@@ -39,7 +39,7 @@ export default class Rating extends React.Component {
 			});
 	}
 
-	updateRating(e) {
+  updateRating(e) {
 		e.preventDefault();
 		let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
 		this.setState({stars});

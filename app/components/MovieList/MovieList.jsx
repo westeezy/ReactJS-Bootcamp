@@ -3,8 +3,8 @@ import './_MovieList.scss';
 import MovieTile from '../MovieTile/MovieTile';
 
 export default class MovieList extends React.Component {
-  constructor(...args) {
-      super(...args);
+  constructor(props) {
+      super(props);
   }
 
   render() {

@@ -1,18 +1,17 @@
 import React from 'react';
-import _ from 'lodash';
 import './_MovieTile.scss';
 import Rating from '../Rating/Rating';
 
 export default class MovieTile extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
+	constructor(props) {
+		super(props);
 	}
 
 	render() {
 		return (<li className="movie-tile-container item">
 				<div className="bg-img"
 							style={{'backgroundImage': `url('img/${this.props.movie.cover}')`}}></div>
-				<a href={'/movies/' + this.props.movie.title}>
+				<a href="#">
 					<div className="content">
 						<h2>{this.props.movie.title}</h2>
             <Rating stars={parseInt(_.get(this.props, 'movie.rating',0))}

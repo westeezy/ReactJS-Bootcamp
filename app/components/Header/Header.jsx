@@ -2,12 +2,11 @@ import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
 import Login from '../Login/Login';
-import page from 'page'; //Note: Can abstract to not rely heavily on page
 
 export default class Header extends React.Component {
 
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.state = {
       searchTerm: null,
       submitted: false
@@ -66,8 +65,8 @@ export default class Header extends React.Component {
 
   search(e) {
     e.preventDefault();
+    AppActions.searchMovie(this.state.searchTerm);
     this.setState({submitted: true});
-    page('/movies/' + this.state.searchTerm); //Note: can cleanup
 
   }
 
@@ -76,7 +75,7 @@ export default class Header extends React.Component {
   }
 
   reset() {
-    page('/');
+    AppActions.fetchMovies();
     this.setState({submitted: false, searchTerm: undefined});
   }
 
