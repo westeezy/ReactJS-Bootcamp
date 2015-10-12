@@ -7,3 +7,19 @@
 * presenter notes for whoever may choose to give the presentation.
 
 * The first few days will be discussion about core concepts followed by how to start setting up our FakeFlix Movie app. As the days progress, application code and concepts will start blending together and we can more quickly build up our application.
+
+
+
+## Single Day Walkthrough
+* Talking about Build Tools + ES6 - 1 hour
+* Code Katas from [link][ES6 Katas] - 45 minutes
+* Intro to React as a view layer
+* Make a React view that displays some information inside the netflix
+  application - 25min
+*
+
+
+##Ideas of stuff to buil in interim
+* simple login form that just posts a success
+
+[ES6 Katas]: http://es6katas.org/
