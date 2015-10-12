@@ -8,6 +8,9 @@ See these instructions for help [installing Node].
 
 In the terminal, run `npm install` to pull in dependencies, followed by `npm start` to start the webpack dev server which will open a Chrome window.
 
+* Note for windows users: environment variables are set differently so
+  please use `npm run start-windows`
+
 #### Docker Setup
 If you are familiar with Docker, or are willing to learn it, there is a Dockerfile provided that will simply call `npm start` by default.  To get this running you could:
 - CD into the working directory
