@@ -55,9 +55,9 @@
                     <img src="http://gruntjs.com/img/grunt-logo.png" />
                   </section>
                   <section>
-                    <li>focus on configuration</li>
-                    <li>does common tasks very well and very easily configured when going down a happy path</li>
-                    <li>picks up and drops files from src and dest options so each task opens file readers/writers</li>
+                    <li>Focus on configuration</li>
+                    <li>Does common tasks very well and very easily configured when going down a happy path</li>
+                    <li>Picks up and drops files from src and dest options so each task opens file readers/writers</li>
                   </section>
                   <section>
                     <pre><code>
@@ -90,9 +90,9 @@ grunt.registerTask('build', ['clean', 'bower', 'browserify', 'concat', 'copy']);
                     <img src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png" />
                   </section>
                   <section>
-                    <li>focus on code</li>
-                    <li>leverages streams for piping inbetween tasks</li>
-                    <li>doesn't enforce much of anything. just use code to wire up tasks and pipe information</li>
+                    <li>Focus on code</li>
+                    <li>Leverages streams for piping inbetween tasks</li>
+                    <li>Doesn't enforce much of anything. Just use code to wire up tasks and pipe information</li>
                   </section>
                   <section>
                     <pre><code>
@@ -124,8 +124,8 @@ gulp.task('sass', function(done) {
                             <li>Allows for modular applications</li>
                             <li>Allow us to pull in dependencies when we need them</li>
                             <li>Can bundle scripts on a per page basis</li>
-                            <li>AMD Script loading with require -> originally browser implementation of CommonJS Transport</li>
-                            <li>CommonJS define and export modules as well used in Node</li>
+                            <li>AMD Script loading with require was originally browser implementation of CommonJS Transport</li>
+                            <li>CommonJS and ES6 are the popular formats over AMD</li>
                         </ul>
 <pre><code>
 var component = require('../component/component'); //amd and commonjs syntax
@@ -133,7 +133,7 @@ var component = require('../component/component'); //amd and commonjs syntax
                     </section>
                     <section>
                         <h2>Browserify</h2>
-                        <span>batteries not included</span>
+                        <span>Batteries not included solution</span>
                         <ul>
                             <li>Built to ship Node modules to browsers</li>
                             <li>Big plugin environment to add things like watch, factor-bundles, deAMDify etc</li>
@@ -207,7 +207,7 @@ module.exports = function(grunt, options) {
                     </section>
                     <section>
                         <h2>Webpack</h2>
-                        <span>batteries included</span>
+                        <span>Batteries included solution</span>
                         <ul>
                             <li>Our solution for this bootcamp</li>
                             <li>Built to be a browser solution with nodejs support</li>
@@ -255,7 +255,7 @@ module.exports = {
                     <ul>
                         <li>Formerly 6to5 but now handles more than es2015</li>
                         <li>Transpiles esnext code into something all browsers can use</li>
-                        <li>Can transform jsx</li>
+                        <li>Can transform jsx + do hot loading transformations</li>
                         <li>Very up to date and community driven</li>
                         <li>Used as a pre-build step when writing esnext in the browser environments</li>
                     </ul>
@@ -307,7 +307,7 @@ module.exports = {
                             <li>Not newable</li>
                             <li>No arguments psuedo array</li>
                             <li>Always Anon</li>
-                            <li>upgrade to es5 bind for callbacks essentially</li>
+                            <li>Upgrade to ES5's `.bind(this)` essentially</li>
                         </ul>
                     </section>
                     <section>

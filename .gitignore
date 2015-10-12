@@ -28,3 +28,5 @@ node_modules
 
 # IDEA stuff
 .idea
+
+.DS_Store

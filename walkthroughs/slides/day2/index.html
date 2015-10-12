@@ -60,20 +60,20 @@
                     <div style="color:red;">these can not update state</div>
                   </section>
                   <section>
-                    <h4>render</h4>
+                    <h4>render()</h4>
                     <ul>
                       <li>This is the meat of your component and generates the React Element to draw into the DOM</li>
                       <li>Pure function - does not modify state</li>
                     </ul>
                   </section>
                   <section>
-                    <h4>getInitialState</h4>
+                    <h4>getInitialState()</h4>
                     <ul>
                       <li>return the basic representation of your state. Invocked once before component is mounted</li>
                     </ul>
                   </section>
                   <section>
-                    <h4>getDefaultProps</h4>
+                    <h4>getDefaultProps()</h4>
                     <ul>
                       <li>return the basic representation of your props. Invocked once before component is mounted</li>
                       <li>values set on this.props in case something does not come in</li>
@@ -82,21 +82,21 @@
                     </ul>
                   </section>
                   <section>
-                    <h4>componentWillMount</h4>
+                    <h4>componentWillMount()</h4>
                     <ul>
                       <li>Invoked once before initial render</li>
                       <li>chance to update state before render</li>
                     </ul>
                   </section>
                   <section>
-                    <h4>componentDidMount</h4>
+                    <h4>componentDidMount()</h4>
                     <ul>
                       <li>Good place to use 3rd party libs or attach listeners or use ajax</li>
                       <li>First chance to interact with the DOM node</li>
                     </ul>
                   </section>
                   <section>
-                    <h4>componentWillRecieveProps</h4>
+                    <h4>componentWillRecieveProps()</h4>
                     <ul>
                       <li>invocked when props from parent change</li>
                       <li>can react to prop transistion before the rerender is called</li>
@@ -105,7 +105,7 @@
                     </ul>
                   </section>
                   <section>
-                    <h4>shouldComponentUpdate</h4>
+                    <h4>shouldComponentUpdate()</h4>
                     <ul>
                       <li>see PureRenderMixin</li>
                       <li>can return false to stop a rerender and gain that bit of performance</li>
@@ -113,7 +113,7 @@
                     </ul>
                   </section>
                   <section>
-                    <h4>componentWillUpdate</h4>
+                    <h4>componentWillUpdate()</h4>
                     <ul>
                       <li>not called for initial render</li>
                       <li>can not call this.setState</li>
@@ -121,14 +121,14 @@
                     </ul>
                   </section>
                   <section>
-                    <h4>componentDidUpdate</h4>
+                    <h4>componentDidUpdate()</h4>
                     <ul>
                       <li>not called for initial render</li>
                       <li>perform work on domNode</li>
                     </ul>
                   </section>
                   <section>
-                    <h4>componentWillUnmount</h4>
+                    <h4>componentWillUnmount()</h4>
                     <ul>
                       <li>place to perform teardown code and remove listeners etc</li>
                     </ul>
@@ -139,6 +139,7 @@
                       <h2>Composibility</h2>
                       <ul>
                           <li>React components can be nested in each other and pass information down to children</li>
+                          <li>New function syntax for "dumb" components in React 0.14</li>
                       </ul>
                   </section>
                   <section>

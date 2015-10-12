@@ -1,8 +1,7 @@
-/* globals beforeEach, expect */
-/* eslint-disable no-unused-expressions, no-unused-vars */
+/* eslint-disable no-unused-expressions */
 
-import React from 'react/addons';
-import TestUtils from 'react/lib/ReactTestUtils';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
 import MovieTile from './MovieTile';
 
@@ -22,5 +21,3 @@ describe('Components', () => {
     });
   });
 });
-
-/* eslint-enable no-unused-expressions */
