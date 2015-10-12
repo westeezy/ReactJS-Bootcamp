@@ -1,6 +1,7 @@
 import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
+import Login from '../Login/Login';
 import page from 'page'; //Note: Can abstract to not rely heavily on page
 
 export default class Header extends React.Component {
@@ -51,6 +52,7 @@ export default class Header extends React.Component {
               <option value="title">Title</option>
               <option value="rating">Rating</option>
             </select>
+            <Login user={'Westin'}/>
           </div>
         </div>
       </header>
