@@ -12,8 +12,7 @@
 
 ## Single Day Walkthrough
 * Talking about Build Tools + ES6 - 1 hour
-* Code Katas - 30 minutes
-  * [ES6 Katas][ES6 Katas]
+  * [ES6 Katas][ES6 Katas] - 30 mins
 * Intro to React as a view layer - 30min
   * [React View Kata][React View Kata] - 30min
 * Intro to React Props/State
