@@ -62,6 +62,10 @@ var loaders = [
     loaders: jsxLoader
   },
   {
+    test: /\.(ts|tsx)$/,
+    loader: 'babel-loader!ts-loader'
+  },
+  {
     test: /\.css$/,
     loader: cssLoader
   },
