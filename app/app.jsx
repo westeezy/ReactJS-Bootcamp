@@ -10,9 +10,10 @@ let context = require.context('.', true, /\.jpg?$/);
 context.keys().forEach(context);
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './components/App/App';
 
-React.render(
+ReactDOM.render(
   <App />,
   document.getElementById('app')
 );
