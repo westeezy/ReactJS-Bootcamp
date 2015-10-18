@@ -32,7 +32,7 @@ Day 2
 | :------------ |:---------------:| -----:|
 | All Day | Q and As | No Link |
 
-* Can demo Simple TypeScript components
+* Can demo Simple TypeScript components [Link][TypeScript]
 
 [ES6 Katas]: http://codepen.io/westeezy/pen/EVvJQJ?editors=001
 [React View Kata]: http://codepen.io/westeezy/pen/RWLoPp?editors=001
@@ -45,3 +45,4 @@ Day 2
 [Day4]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day4/
 [Day5]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day5/
 [Day6]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day6/
+[TypeScript]: https://github.com/westeezy/ReactJS-Bootcamp/tree/typescript
