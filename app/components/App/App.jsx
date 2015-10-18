@@ -8,7 +8,7 @@ import MovieList from '../MovieList/MovieList';
 import { getMoviesNow } from '../../util/api';
 import MoviesModel from '../../models/Movies';
 
-let moviesModel = new MoviesModel();atom
+let moviesModel = new MoviesModel();
 
 export default class App extends React.Component {
 
