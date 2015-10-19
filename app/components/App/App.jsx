@@ -54,7 +54,7 @@ App.defaultProps = {
 };
 
 App.propTypes = {
-  component: React.PropTypes.object,
+  component: React.PropTypes.func,
   context: React.PropTypes.object
 };
 
