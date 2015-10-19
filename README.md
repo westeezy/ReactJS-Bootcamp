@@ -25,9 +25,13 @@ Bootcamp starts on a stripped down version of the master branch to start buildin
 ####Walkthrough
 If you aren't able to attend and want to go through a walkthrough on your own, all materials are available in the [walkthrough] directory.
 
+####TypeScript
+For the TypeScript version of the code see [here][typescript]
+
 [Node.js]: https://nodejs.org "Node.js"
 [npm]: https://www.npmjs.com "npm"
 [io.js]: https://iojs.org/ "io.js"
 [installing Node]: https://github.com/joyent/node/wiki/installation "Installing Node"
 [ndc_day_one]: https://github.com/westeezy/ReactJS-Bootcamp/tree/ndc_day_one "Branch ndc_day_one"
 [walkthrough]: href="https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs "Walkthrough directory"
+[typescript]: https://github.com/westeezy/ReactJS-Bootcamp/tree/typescript
