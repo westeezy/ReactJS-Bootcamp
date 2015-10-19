@@ -90,8 +90,9 @@ request(Constants.URL_A, (error, response, body) => { ... }); // example usage
 ##Ideas of stuff to buil in interim  
 
 * simple login form that just posts a success
-* [ES6 Katas](http://codepen.io/westeezy/pen/EVvJQJ?editors=001)
-* [React View Kata](http://codepen.io/westeezy/pen/RWLoPp?editors=001)
+
+[ES6Katas]: http://codepen.io/westeezy/pen/EVvJQJ?editors=001
+[React View Kata]: http://codepen.io/westeezy/pen/RWLoPp?editors=001
 
 =======
 
