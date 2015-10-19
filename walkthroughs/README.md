@@ -41,8 +41,6 @@ console.log(square(2)); // 4
 const multiply = (x, y) => { return x * y };
 console.log(multiply(3, 4)); // 12
 ```
-	  
-
 
 * Class declaration
 	* `class B { ... }`
@@ -84,12 +82,6 @@ export const URL_B = "modules/b"; // multiple export
 import * as Constants from "constants"; // multiple import under namespace, "Constants"
 request(Constants.URL_A, (error, response, body) => { ... }); // example usage
 ```
-
-* ES6 Katas - 30 mins
- 	* [Classes](http://tddbin.com/#?kata=es6/language/class/creation)
-  	* [Static Methods](http://tddbin.com/#?kata=es6/language/class/static)
-  	* [Get/Set](http://tddbin.com/#?kata=es6/language/class/accessors)
-  	* [Extends](http://tddbin.com/#?kata=es6/language/class/extends)
 
 * Intro to React as a view layer - 30min
   * [React View Kata][React View Kata] - 30min
