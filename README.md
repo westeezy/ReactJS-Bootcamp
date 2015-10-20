@@ -1,5 +1,12 @@
 ## ReactJS Bootcamp
 
+
+###Walkthrough
+If you aren't able to attend and want to go through a walkthrough on your own, all materials are available in the [walkthrough directory].
+
+Which also includes a [single day] format for presentations.
+
+
 ###How to Run the App
 #### Running Locally
 First, make sure you have [Node.js] installed ([npm] is Node's companion package manager). This application was built using Node 0.12, but it should work fine with most versions of Node and [io.js].
@@ -22,8 +29,7 @@ NOTE: If you want to have the live updates enabled, you would need to properly m
 ### Bootcamp Start
 Bootcamp starts on a stripped down version of the master branch to start building up the application from scratch. Please see branch [ndc_day_one].
 
-####Walkthrough
-If you aren't able to attend and want to go through a walkthrough on your own, all materials are available in the [walkthrough] directory.
+
 
 ####TypeScript
 For the TypeScript version of the code see [here][typescript]
@@ -33,5 +39,6 @@ For the TypeScript version of the code see [here][typescript]
 [io.js]: https://iojs.org/ "io.js"
 [installing Node]: https://github.com/joyent/node/wiki/installation "Installing Node"
 [ndc_day_one]: https://github.com/westeezy/ReactJS-Bootcamp/tree/ndc_day_one "Branch ndc_day_one"
-[walkthrough]: href="https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs "Walkthrough directory"
 [typescript]: https://github.com/westeezy/ReactJS-Bootcamp/tree/typescript
+[walkthrough directory]: https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs
+[single day]: https://github.com/westeezy/ReactJS-Bootcamp/tree/master/walkthroughs/SingleDayFormat
