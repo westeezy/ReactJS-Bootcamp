@@ -29,7 +29,13 @@ var sassParams = [
 
 if (DEBUG || TEST) {
   jsxLoader = [];
-  jsxLoader.push('babel-loader?optional=runtime');
+  if(TEST) {
+    jsxLoader.push('isparta');
+    //Not needed since .babelrc. keeping for legacy reasons
+    //jsxLoader.push('babel-loader?optional[]=runtime&stage=0&plugins=rewire');
+  } else {
+    jsxLoader.push('babel-loader?optional[]=runtime&stage=0');
+  }
   sassParams.push('sourceMap', 'sourceMapContents=true');
   sassLoader = [
     'style-loader',
@@ -57,8 +63,12 @@ if (DEBUG || TEST) {
 
 var loaders = [
   {
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
+    test: /-test.js(x|)*/,
+    loader: 'babel-loader'
+  },
+  {
+    test: /\.js(x|)?$/,
+    exclude: /(node_modules|-test*)/,
     loaders: jsxLoader
   },
   {

@@ -19,5 +19,10 @@ describe('Components', () => {
       let result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-tile-container');
       expect(result).to.be.defined;
     });
+
+    it('should compose the rating component', () => {
+      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'stars');
+      expect(result).to.be.defined;
+    });
   });
 });

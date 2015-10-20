@@ -18,15 +18,11 @@
     "react"
   ],
   "rules": {
-    "strict": true,
-    "no-underscore-dangle": false,
-    "new-cap": false,
     "quotes": [
       2,
       "single"
     ],
     "react/display-name": 0,
-    "react/jsx-quotes": 1,
     "react/jsx-no-undef": 1,
     "react/jsx-sort-props": 0,
     "react/jsx-uses-react": 1,

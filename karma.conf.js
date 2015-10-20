@@ -7,10 +7,23 @@ module.exports = function(config) {
     ],
     exclude: [],
     preprocessors: {
-      'app/app.tests.js': ['webpack', 'sourcemap'],
+      'app/app.tests.js': ['coverage', 'webpack', 'sourcemap'],
     },
-    reporters: ['mocha'],
-    port: 9876,
+    reporters: ['mocha', 'coverage'],
+    coverageReporter: {
+      // configure the reporter to use isparta for JavaScript coverage
+      // Only on { "karma-coverage": "douglasduteil/karma-coverage#next" }
+      instrumenters: { isparta : require('isparta') },
+      instrumenter: {
+        '**/*.js': 'isparta',
+        '**/*.jsx': 'isparta'
+      },
+      reporters: [
+        {type: 'lcov'},
+        {type: 'text'}
+      ]
+    },
+    pora: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
