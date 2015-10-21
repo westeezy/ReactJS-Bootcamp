@@ -15,7 +15,7 @@ export default class MovieTile extends React.Component {
 				<a href={'/movies/' + this.props.movie.title}>
 					<div className="content">
 						<h2>{this.props.movie.title}</h2>
-            <Rating stars={_.get(this.props, 'movie.rating')}
+            <Rating stars={parseInt(_.get(this.props, 'movie.rating',0))}
                     title={_.get(this.props, 'movie.title')}/>
 					</div>
 				</a>

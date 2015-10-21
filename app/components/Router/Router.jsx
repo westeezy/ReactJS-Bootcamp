@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-mount-set-state */
 import React from 'react';
 import page from 'page';
 import MovieList from '../MovieList/MovieList';
@@ -10,8 +11,6 @@ export var Enhance = ComposedComponent => class extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ data: 'Hello' });
-
     page('/', (ctx) => {
       this.setState({
         component: MovieList,

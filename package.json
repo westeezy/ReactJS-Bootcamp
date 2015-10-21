@@ -27,7 +27,7 @@
   "dependencies": {
     "classnames": "^2.1.1",
     "flux": "^2.0.3",
-    "font-awesome-webpack": "0.0.3",
+    "font-awesome-webpack": "0.0.4",
     "normalize.css": "^3.0.3",
     "page": "^1.6.3",
     "react": "^0.14.0",
@@ -35,26 +35,28 @@
     "url-loader": "^0.5.6"
   },
   "devDependencies": {
-    "autoprefixer-core": "^5.1.11",
-    "babel-core": "^5.3.3",
+    "autoprefixer": "^6.0.3",
+    "babel-core": "^5.8.3",
     "babel-loader": "^5.0.0",
     "babel-plugin-react-transform": "^1.0.5",
+    "babel-plugin-rewire": "^0.1.23-beta-3",
     "babel-runtime": "^5.3.3",
-    "chai": "^2.3.0",
-    "css-loader": "^0.12.1",
-    "eslint": "^0.21.0",
-    "eslint-plugin-react": "^2.3.0",
+    "chai": "^3.3.0",
+    "css-loader": "^0.20.2",
+    "eslint": "^1.7.2",
+    "eslint-plugin-react": "^3.6.3",
     "extract-text-webpack-plugin": "^0.8.0",
     "file-loader": "^0.8.1",
     "glob": "^5.0.6",
     "html-loader": "^0.3.0",
+    "isparta-loader": "^1.0.0",
     "json-loader": "^0.5.1",
     "karma": "^0.13.3",
-    "karma-chrome-launcher": "^0.1.12",
-    "karma-cli": "0.0.4",
-    "karma-mocha": "^0.1.10",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-cli": "0.1.1",
+    "karma-mocha": "^0.2.0",
     "karma-mocha-reporter": "^1.0.2",
-    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-phantomjs-launcher": "^0.2.1",
     "karma-sinon": "^1.0.4",
     "karma-source-map-support": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.4",
@@ -63,61 +65,20 @@
     "mocha": "^2.2.4",
     "mocha-loader": "^0.7.1",
     "node-libs-browser": "^0.5.0",
-    "opn": "^1.0.2",
-    "postcss-loader": "^0.4.3",
-    "react-transform-hmr": "^0.1.5",
+    "opn": "^3.0.2",
+    "postcss-loader": "^0.7.0",
+    "react-addons-test-utils": "^0.14.0",
+    "react-transform-hmr": "^1.0.1",
     "rimraf": "^2.3.3",
-    "sass-loader": "^0.4.2",
+    "sass-loader": "^3.0.0",
     "sinon": "^1.14.1",
-    "source-map-support": "^0.2.10",
-    "style-loader": "^0.12.2",
+    "source-map-support": "^0.3.2",
+    "style-loader": "^0.13.0",
     "template-html-loader": "0.0.3",
     "webpack": "^1.9.5",
     "webpack-dev-server": "^1.8.2"
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "node": true,
-      "es6": true
-    },
-    "ecmaFeatures": {
-      "modules": true,
-      "jsx": true
-    },
-    "globals": {
-      "describe": true,
-      "it": true,
-      "sinon": true
-    },
-    "plugins": [
-      "react"
-    ],
-    "rules": {
-      "strict": true,
-      "no-underscore-dangle": false,
-      "new-cap": false,
-      "quotes": [
-        2,
-        "single"
-      ],
-      "react/display-name": 0,
-      "react/jsx-quotes": 1,
-      "react/jsx-no-undef": 1,
-      "react/jsx-sort-props": 0,
-      "react/jsx-uses-react": 1,
-      "react/jsx-uses-vars": 1,
-      "react/no-did-mount-set-state": 1,
-      "react/no-did-update-set-state": 1,
-      "react/no-multi-comp": 1,
-      "react/no-unknown-property": 1,
-      "react/prop-types": 1,
-      "react/react-in-jsx-scope": 1,
-      "react/self-closing-comp": 1,
-      "react/wrap-multilines": 1
-    }
   }
 }

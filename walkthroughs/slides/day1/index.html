@@ -137,16 +137,20 @@
                         <h2>How can we break this down into components?</h2>
                         <img src="./img/reddit.png"/>
                     </section>
+                    <section>
+                      <div>Great Comparison Article here</div>
+                      <a href="http://derickbailey.com/2015/08/26/building-a-component-based-web-ui-with-modern-javascript-frameworks/">
+                        http://derickbailey.com/2015/08/26/building-a-component-based-web-ui-with-modern-javascript-frameworks
+                      </a>
+                    </section>
                 </section>
                 <section>
                     <h2>JSX</h2>
                     <span>Render markup in your code</span>
                     <ul>
                         <li>This makes sense with small modular components</li>
-                        <li>you can use a prebuild step like reactify of bable to parse jsx to javascript</li>
+                        <li>Babel can transpile JSX into plain old javascript</li>
                         <li>You can very easily write your javascript logic alongside your presentation layer</li>
-                        <li>makes it easy to see what the component will render</li>
-                        <li>At the end of the day this converted to regular ole' js</li>
                     </ul>
                 </section>
                 <section>
@@ -168,10 +172,12 @@ import './_Hai.scss';
 export default class Hai extends React.Component {
   render() {
     let img = 'React';
-                                            return (<div className="my-super-awesome-react-app-with-a-class-name">
-    <span>Hello Margret, It's me,</span>
-    <span>{name}</span>
-                                              </div>);
+    return (
+      <div className="my-super-awesome-react-app-with-a-class-name">
+        <span>Hello Margret, It's me,</span>
+        <span>{name}</span>
+      </div>
+    );
   }
 }
 </code></pre>

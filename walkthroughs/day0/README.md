@@ -137,15 +137,15 @@ Once script loading is understood and it is time to make an informed decision th
 * Batteries included solution - has a lot of build in support for things like AMD vs Common and factor bundling
 * Can require images and css files because it is focused on managing ALL static assets if possible and configured to
 
-[Great slideshow here][Slides Webpack]
-[Here is a nice objective article on the two][Webpack Browserify Drama]
-[Add another][Webpack vs Browserify]
+* [Great slideshow here][Slides Webpack]
+* [Here is a nice objective article on the two][Webpack Browserify Drama]
+* [Add another][Webpack vs Browserify]
 
 ###Note:
 With these conversations around build tools (Grunt vs Gulp) and script loading (Webpack vs Browserify) it is important to not lose sight of the fact that these are all great tools. Sure there are pros and cons to each but if you are comfortable with one and it suits your needs there is no reason to stress and prematurely switch from one to another due to popularity or someone else opinion. I suggesst being familiar with them all and deeply understanding one from each category so that you can find a rythem to get your work done and understand any potential trade offs.
 
 ###ES2015 (ES6)
-[ES6 in depth][https://hacks.mozilla.org/category/es6-in-depth/] This is a great place to go to learn about ES6 features. Through this bootcamp we will be focuses on classes, spread, comprehensions, etc. It is important to be familar with ES6 syntax and usage but as we go through the code it should be pretty easy to grok what is happening.
+[ES6 in depth][ES6 Depth] This is a great place to go to learn about ES6 features. Through this bootcamp we will be focuses on classes, spread, comprehensions, etc. It is important to be familar with ES6 syntax and usage but as we go through the code it should be pretty easy to grok what is happening.
 
 ####Babel
 This is a tool that allows us to transpile ES6 code into something all current browsers can support and use.  Babel also has support for React's JSX syntax to transpile that as well. We will begin to get more into JSX as we start to learn about React.
@@ -344,6 +344,7 @@ With that we should see the shell of the appication loaded when we run `npm star
 [Grunt]: http://gruntjs.com "Grunt"
 [Gulp]: http://gulpjs.com "Gulp"
 [Broccoli.js]: http://broccolijs.com "Broccoli.js"
+[ES6 Depth]: https://hacks.mozilla.org/category/es6-in-depth/
 [JSX]: https://facebook.github.io/react/docs/jsx-in-depth.html "JSX In Depth"
 [Espree]: https://github.com/eslint/espree "Espree"
 [ES2015]: http://www.ecma-international.org/ecma-262/6.0/ "ECMAScript 2015"

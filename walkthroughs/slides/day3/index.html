@@ -50,9 +50,13 @@
                 </section>
                 <section>
                     <h2>... but seriously</h2>
-                    <div>State isn't that awful but you should be mindful of it while
-                        designing your components
-                    </div>
+                    <ul>
+                      <li>State isn't that awful but you should be mindful of it while
+                          designing your components
+                      </li>
+                      <li>Favor "dumb" stateless components getting data from "smart" parent components
+                      </li>
+                    </ul>
                 </section>
                 <section>
                     <h2>Component State</h2>
@@ -60,7 +64,7 @@
                         <li>Keep state as simple as possible including keeping simple data types</li>
                         <li>Only place something on state if the component 100% owns it</li>
                         <li>Leave complex calculations on render if possible</li>
-                        <li>this.state is immutable so use this.setState({})</li>
+                        <li>this.state is immutable so use `this.setState({})`</li>
                         <li>Less on state means easier testing</li>
                     </ul>
                 </section>

@@ -1,8 +1,7 @@
-/* globals beforeEach, expect */
-/* eslint-disable no-unused-expressions, no-unused-vars */
+/* eslint-disable no-unused-expressions */
 
-import React from 'react/addons';
-import TestUtils from 'react/lib/ReactTestUtils';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
 import MovieTile from './MovieTile';
 
@@ -20,7 +19,10 @@ describe('Components', () => {
       let result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-tile-container');
       expect(result).to.be.defined;
     });
+
+    it('should compose the rating component', () => {
+      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'stars');
+      expect(result).to.be.defined;
+    });
   });
 });
-
-/* eslint-enable no-unused-expressions */

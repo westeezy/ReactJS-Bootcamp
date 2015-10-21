@@ -17,9 +17,9 @@ export default class MovieTile extends React.Component {
 						<img height='300px' src={'img/' + movie.cover} width='200px'/>
 					</div>
 					<div className="pull-right">
-						<h2>{movie.title}</h2>
-						<h3>{movie.year}</h3>
-						<p>{movie.description}</p>
+						<h2 className="title">{movie.title}</h2>
+						<h3 className="year">{movie.year}</h3>
+						<p className="description">{movie.description}</p>
 						<p>
 							<a href="/">
 								<i className="fa fa-backward"/>

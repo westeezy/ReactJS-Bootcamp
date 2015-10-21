@@ -53,6 +53,6 @@ Rating.defaultProps = {
 };
 
 Rating.propTypes = {
-	stars: React.PropTypes.string,
+	stars: React.PropTypes.number,
 	title: React.PropTypes.string
 };
