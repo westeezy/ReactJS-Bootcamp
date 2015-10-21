@@ -1,6 +1,7 @@
 ## ReactJS Bootcamp
-
-
+[![Build Status](https://travis-ci.org/westeezy/ReactJS-Bootcamp.svg?branch=master)](https://travis-ci.org/westeezy/ReactJS-Bootcamp)
+[![Dependency Status](https://david-dm.org/westeezy/ReactJS-Bootcamp.svg)](https://david-dm.org/westeezy/ReactJS-Bootcamp)
+[![devDependency Status](https://david-dm.org/westeezy/ReactJS-Bootcamp/dev-status.svg)](https://david-dm.org/westeezy/ReactJS-Bootcamp#info=devDependencies)
 ###Walkthrough
 If you aren't able to attend and want to go through a walkthrough on your own, all materials are available in the [walkthrough directory].
 
