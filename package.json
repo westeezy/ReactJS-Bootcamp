@@ -49,6 +49,7 @@
     "file-loader": "^0.8.1",
     "glob": "^5.0.6",
     "html-loader": "^0.3.0",
+    "isparta": "^3.1.0",
     "isparta-loader": "^1.0.0",
     "json-loader": "^0.5.1",
     "karma": "^0.13.3",
