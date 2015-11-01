@@ -97,7 +97,8 @@ var loaders = [
   },
   {
     test: /\.scss$/,
-    loader: sassLoader
+    loader: sassLoader,
+    exclude: /(node_modules)/
   }
 ];
 

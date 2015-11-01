@@ -47,6 +47,7 @@
     "eslint-plugin-react": "^3.6.3",
     "extract-text-webpack-plugin": "^0.8.0",
     "file-loader": "^0.8.1",
+    "font-awesome": "^4.4.0",
     "glob": "^5.0.6",
     "html-loader": "^0.3.0",
     "isparta": "^3.1.0",
