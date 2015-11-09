@@ -7,8 +7,9 @@ var TEST = process.env.NODE_ENV === 'test';
 
 var jsxLoader;
 var sassLoader;
-var cssLoader;
 var fileLoader = 'file-loader?name=[path][name].[ext]';
+var cssLoader = 'style!css!postcss';
+var fontLoader = 'url?limit=10000&mimetype=application/font-woff&prefix=fonts';
 var htmlLoader = [
   'file-loader?name=[path][name].[ext]',
   'template-html-loader?' + [
@@ -43,21 +44,12 @@ if (DEBUG || TEST) {
     'postcss-loader',
     'sass-loader?' + sassParams.join('&')
   ].join('!');
-  cssLoader = [
-    'style-loader',
-    'css-loader?sourceMap',
-    'postcss-loader'
-  ].join('!');
 } else {
   jsxLoader = ['babel-loader?optional=runtime'];
   sassLoader = ExtractTextPlugin.extract('style-loader', [
     'css-loader',
     'postcss-loader',
     'sass-loader?' + sassParams.join('&')
-  ].join('!'));
-  cssLoader = ExtractTextPlugin.extract('style-loader', [
-    'css-loader',
-    'postcss-loader'
   ].join('!'));
 }
 
@@ -76,8 +68,8 @@ var loaders = [
     loader: cssLoader
   },
   {
-    test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-    loader: fileLoader
+    test: /\.(woff|woff2|ttf|eot|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+    loader: fontLoader
   },
   {
     test: /\.jpe?g$|\.gif$|\.png$/,
