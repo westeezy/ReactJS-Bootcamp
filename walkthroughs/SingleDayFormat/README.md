@@ -9,6 +9,7 @@ Day 1
 | 9:30am-10:30am | ES6 and Build Tools | [Link][Day0] | Basics of ES6 (arrows, classes, let, destructoring), Concepts around Browserify & Webpack, and using Babel + Eslint |
 | 10:30am-11:00am | ES6 Exercise | [ES6 Katas][ES6 Katas] | Run through a few exercises of writing ES6 code |
 | 11:00am-12:00pm | React as a View Layer | [React Basics][Day1] | How to use React as a view layer. How to render components into the DOM. What makes React appealing compared to other frameworks/libraries |
+| 12:00pm-1:00pm | Lunch | Lunch | Lunch |
 | 1:00pm-1:30pm | React View Exercise | [React View Kata][React View Kata] | Run through a few exercises of setting up basic React components to display data |
 | 1:30pm-2:30pm | React State and Props | [Props][Day2] [State][Day3] | How to interact with React lifecyle methods and pass information between components. How to store data on teh internal state of a React component instance |
 | 2:30pm-3:00pm | React State Exercise | [React State Kata][React State Kata] | Run through a few exercises of passing data to composed React components and storing data on state in a React component. |
