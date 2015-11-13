@@ -155,14 +155,13 @@
                 </section>
                 <section>
                     <h2>Mounting a component</h2>
-        <pre><code>
+        <pre>
 import React from 'react';
+
 import App from './components/App/App';
-React.render(
-  <App />,
-  document.getElementById('app')
-);
-</code></pre>
+
+React.render(<App />, document.getElementById('app'));
+</pre>
                 </section>
                 <section>
                     <h2>Simple Component</h2>
@@ -171,7 +170,7 @@ import React from 'react';
 import './_Hai.scss';
 export default class Hai extends React.Component {
   render() {
-    let img = 'React';
+    let name = 'React';
     return (
       <div className="my-super-awesome-react-app-with-a-class-name">
         <span>Hello Margret, It's me,</span>
