@@ -26,7 +26,7 @@ Day 2
 * Can demo Simple TypeScript components [Link][TypeScript]
 
 [ES6 Katas]: http://codepen.io/westeezy/pen/EVvJQJ?editors=001
-[React View Kata]: http://codepen.io/westeezy/pen/RWLoPp?editors=001
+[React View Kata]: http://codepen.io/westeezy/pen/epGgdB
 [React State Kata]: http://codepen.io/westeezy/pen/Qjqddw
 
 [Day0]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day0/
