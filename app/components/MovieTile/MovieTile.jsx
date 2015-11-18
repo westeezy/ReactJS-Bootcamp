@@ -15,25 +15,25 @@ export default class MovieTile extends React.Component {
 	render() {
 		let img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
 		return (
-				<div className="movie-list">
-	        <ul className="items">
-	          <li className="movie-tile-container item">
-	            <div className="bg-img" style={{backgroundImage: `url('${img}')`}} />
-							<a href="#">
-								<div className="content">
-									<h2>Movie Title</h2>
-									<div className="stars">
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star-o" />
-											<i className="fa fa-star-o" />
-									</div>
+			<div className="movie-list">
+				<ul className="items">
+					<li className="movie-tile-container item">
+						<div className="bg-img" style={{backgroundImage: `url('${img}')`}}/>
+						<a href="#">
+							<div className="content">
+								<h2>Movie Title</h2>
+								<div className="stars">
+									<i className="fa fa-star"/>
+									<i className="fa fa-star"/>
+									<i className="fa fa-star"/>
+									<i className="fa fa-star-o"/>
+									<i className="fa fa-star-o"/>
 								</div>
-							</a>
-	          </li>
-	        </ul>
-	      </div>);
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>);
 	}
 }
 

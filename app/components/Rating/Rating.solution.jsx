@@ -1,22 +1,54 @@
 import React from 'react';
+import _ from 'lodash';
 
-// Introduction to stateless component syntax
-// This is a good example of a 'dumb' component
+const MAX_STARS = 5;
 
-let Rating = () => {
-  const totalStars = 5;
-  const starMarkup = Array(totalStars).fill(0).map((stars, idx) => {
-    return <i key={idx} className="fa fa-star" />;
-  });
+export default class Rating extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            stars: props.stars
+        };
+    }
 
-  return (
-    <div className="stars">
-      {
-        starMarkup /*Notice how similar to MovieTile we can interpolate the value*/
-      }
-    </div>
-  );
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            stars: nextProps.stars
+        });
+    }
 
+    render() {
+        return (<div className="stars">
+            {
+                    this.retrieveRating()
+                    }
+        </div>);
+    }
+
+    retrieveRating() {
+        return _.map(_.range(MAX_STARS), (idx) => {
+            return idx < this.state.stars ?
+                    <i key={idx} className="fa fa-star"
+                       onClick={this.updateRating.bind(this)}
+                       data-rating={idx}/>
+                    :
+                    <i key={idx} className="fa fa-star-o"
+                       onClick={this.updateRating.bind(this)}
+                       data-rating={idx}/>;
+        });
+    }
+
+    updateRating(e) {
+        e.preventDefault();
+        let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
+        this.setState({stars});
+    }
+}
+
+Rating.defaultProps = {
+    stars: 0
 };
 
-export default Rating;
+Rating.propTypes = {
+    stars: React.PropTypes.number
+};

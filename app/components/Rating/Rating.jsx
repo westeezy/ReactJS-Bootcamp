@@ -5,15 +5,15 @@ var React = require('react');
 
 module.exports = React.createClass({
 
-  render: function() {
-    return (
-      <div className="stars" style={{color: 'gold'}}>
-        <i className="fa fa-star" />
-        <i className="fa fa-star" />
-        <i className="fa fa-star" />
-        <i className="fa fa-star-o" />
-        <i className="fa fa-star-o" />
-      </div>
-    );
-  }
+    render: function () {
+        return (
+            <div className="stars" style={{color: 'gold'}}>
+                <i className="fa fa-star"/>
+                <i className="fa fa-star"/>
+                <i className="fa fa-star"/>
+                <i className="fa fa-star-o"/>
+                <i className="fa fa-star-o"/>
+            </div>
+        );
+    }
 });
