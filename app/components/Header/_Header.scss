@@ -39,6 +39,13 @@
     }
   }
 
+  .fa-user {
+    &:before {
+      font-size: 48px;
+      color: red;
+    }
+  }
+
   .search-input,
   .display-select {
     -webkit-appearance: none;

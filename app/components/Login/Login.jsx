@@ -1,12 +1,12 @@
 import React from 'react';
 import './_Login.scss';
 
-let Login = ({user}) => {
-   return (
-    <div className="app-login">
-      <div>{user}</div>
-    </div>
-  );
- };
+let Login = () => {
+    return (
+        <div className="app-login">
+            <div>User</div>
+        </div>
+    );
+};
 
- export default Login;
+export default Login;
