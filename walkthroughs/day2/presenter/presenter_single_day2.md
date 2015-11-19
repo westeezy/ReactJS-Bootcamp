@@ -220,7 +220,7 @@ export default class Rating extends React.Component {
 that data down to our MovieList which will then be responsible for rendering it's
 child MovieTile elements;
 
-* First add the following to App.jsx:
+* Add the following to App.jsx:
 
 ```javascript
 
@@ -228,7 +228,9 @@ child MovieTile elements;
 
 ```
 
-* Then to pass our moviesList prop to the MoviesList component we do the following
+## Props
+
+* To pass our moviesList prop to the MoviesList component we do the following
 
 ```javascript
 
@@ -360,3 +362,123 @@ MovieList.propTypes = { movies: React.PropTypes.array };
     }
 
 ```
+## State
+
+* read day3.pdf
+
+* First lets set our initial state in our App Component and then  we can 
+  add our api call in the componentDidMount method of the App Component:
+
+```javascript
+
+import './_App.scss';
+
+import React from 'react';
+import Header from '../Header/Header';
+import MovieList from '../MovieList/MovieList';
+
+import { getMoviesNow } from '../../util/api';
+
+export default class App extends React.Component {
+
+    constructor(...args) {
+        super(...args);
+        this.state = {
+            movies: []
+        }
+    }
+
+    componentDidMount() {
+        let moviesList = getMoviesNow();
+        this.setState({
+            movies: moviesList
+        });
+    }
+
+    render() {
+
+        return (
+            <div className="app">
+                <Header />
+                <MovieList movies={this.state.movies} />
+            </div>);
+    }
+}
+
+```
+
+* Note that in the React dev tools we can see the state properties on our App
+Component.  Also note that we can change these state values in the dev tools
+(not refs) to update the app in real time.
+
+* Next we update the Ratings component to utilize state and React's event system
+ in order to get our ratings to work
+ 
+* First we'll need to update the retrieveStars elements to include the onClick event
+and handler and the data-rating attribute so that we can access the data
+
+* Then we'll need to set up the initial state and make sure that render is 
+passing the state variable into the retrieve Stars method
+
+* create the udpateRating method to preventDefault on the event, get the integer
+value from e.target.attributes['data-rating'].value (using parseInt() + 1, then
+setting the state with that value:
+
+```javascript
+
+import React from "react";
+
+import _ from "lodash";
+
+// We will talk later about how to pass in a star count from the parent
+
+const MAX_STARS = 5;
+
+export default class Rating extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            stars: props.stars
+        }
+    }
+
+    render() {
+        return (
+            <div className="stars" style={{color: 'gold'}}>
+                {this.retrieveStars(this.state.stars)}
+            </div>
+        );
+    }
+
+    retrieveStars(numStars) {
+        return (
+            _.map(_.range(MAX_STARS), (idx) => {
+                    return idx < numStars ? <i key={idx}
+                                               onClick={this.updateRating.bind(this)}
+                                               className="fa fa-star"
+                                               data-rating={idx}/> :
+                                            <i key={idx}
+                                               onClick={this.updateRating.bind(this)}
+                                               className="fa fa-star-o"
+                                               data-rating={idx}/>;
+                }
+            )
+        );
+    }
+
+    updateRating(e) {
+        e.preventDefault();
+        let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
+        this.setState({ stars });
+
+    }
+};
+
+Rating.defaultProps = { rating: 0};
+Rating.propTypes = {rating: React.PropTypes.number};
+
+
+```
+
+## Wiring up Search
