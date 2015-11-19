@@ -1,7 +1,7 @@
 import './_App.scss';
 
 import React from 'react';
-import Header from '../Header/Header';
+import Header from '../Header/Header.solution';
 import MovieTile from '../Movietile/MovieTile';
 
 export default class App extends React.Component {

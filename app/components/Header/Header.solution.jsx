@@ -15,14 +15,15 @@ export default class Header extends React.Component {
                     <h1 className="title">FakeFlix</h1>
                     <div className="header-right">
                         <Login />
-                        <form className="search-form" onSubmit={this._submit}>
+                        <form className="search-form" onSubmit={this.search.bind(this)}>
                             <input className="search-input"
                                    type="text"
                                    placeholder="Search"/>
                         </form>
-                        <select onChange={this._viewChange} className={"display-select"}>
+                        <select onChange={this.sort.bind(this)} className={"display-select"}>
                             <option>View By:</option>
-                            <option value="Title">Title</option>
+                            <option value="title">Title</option>
+                            <option value="rating">Rating</option>
                         </select>
                     </div>
                 </div>
@@ -30,12 +31,12 @@ export default class Header extends React.Component {
         );
     }
 
-    _submit(e) {
+    search(e) {
         e.preventDefault();
         console.log('submitted');
     }
 
-    _viewChange(e) {
+    sort(e) {
         e.preventDefault();
         console.log('select changed');
     }
