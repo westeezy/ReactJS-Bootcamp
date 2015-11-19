@@ -482,3 +482,144 @@ Rating.propTypes = {rating: React.PropTypes.number};
 ```
 
 ## Wiring up Search
+
+* In order to get search working we'll have to make use of another helper method in 
+Movies.js in the /app/models/ directory.
+
+* The model helps us by allowing us to set the movies we get from the api on it
+then it can handle changing our moviesList, at which time we'll update our state
+on the app, letting those changes propagate downward to the other components.
+
+* Lets add it to the App.js file:
+
+```javascript
+
+import './_App.scss';
+
+import React from 'react';
+import Header from '../Header/Header.solution';
+import MovieList from '../MovieList/MovieList';
+
+import MoviesModel from '../../models/Movies';
+import { getMoviesNow } from '../../util/api';
+
+let moviesModel = new MoviesModel();
+
+export default class App extends React.Component {
+
+    constructor(...args) {
+        super(...args);
+        this.state = {
+            movies: []
+        }
+    }
+
+    componentDidMount() {
+        MoviesModel.movies = getMoviesNow();
+        this.setState({
+            movies: moviesModel.movies
+        });
+    }
+
+    render() {
+
+        return (
+            <div className="app">
+                <Header />
+                <MovieList movies={this.state.movies} />
+            </div>);
+    }
+}
+
+```
+
+* Next we can set up methods to call our MoviesModel's search and sort methods:
+
+
+```javascript
+
+
+    render() {
+
+        return (
+            <div className="app">
+                <Header search={this.search.bind(this)}
+                        sort={this.sort.bind(this)}/>
+                <MovieList movies={this.state.movies} />
+            </div>);
+    }
+
+    search(term) {
+        this.setState({
+            movies: moviesModel.getBySearch(term)
+        });
+    }
+    
+    sort(term) {
+        this.setState({
+            movies: moviesModel.getSorted(term)
+        });
+    }
+}
+
+```
+
+* Then we need to add it into the Header Component
+
+* In the Header first we need a way to get the search value, which we do by utilizing the
+ref attribute on the search input:
+
+```javascript
+
+render() {
+        return (
+            <header className="app-header">
+                <div className="inner">
+                    <h1 className="title">FakeFlix</h1>
+                    <div className="header-right">
+                        <Login />
+                        <form className="search-form" onSubmit={this._submit.bind(this)}>
+                            <input ref="searchBox"
+                                   className="search-input"
+                                   type="text"
+                                   placeholder="Search"/>
+                        </form>
+                        <select onChange={this._viewChange} className={"display-select"}>
+                            <option>View By:</option>
+                            <option value="Title">Title</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+        );
+    }
+
+```
+
+* Then in the submit method we can get the inputs value buy using the searchBox id
+
+```javascript
+
+ search(e) {
+        e.preventDefault();
+        let value = this.refs.searchBox.value;
+        this.props.search(value);
+    }
+
+```
+
+* The sort method is even easier
+
+```javascript
+
+sort(e) {
+    e.preventDefault();
+    this.props.sort(e.target.value);
+
+}
+
+```
+
+
+
+
