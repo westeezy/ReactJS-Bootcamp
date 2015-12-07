@@ -20,7 +20,12 @@ describe('Components', () => {
         props = { context: { params: {title: 'Monopoly'} } };
 
     beforeEach(() => {
-      let element = React.createElement(MovieDetail, props);
+      let wrapper = React.createClass({
+        render: () => {
+          return <MovieDetail {...props} />;
+        }
+      });
+      let element = React.createElement(wrapper);
       component = TestUtils.renderIntoDocument(element);
     });
 

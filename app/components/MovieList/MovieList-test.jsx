@@ -10,7 +10,13 @@ describe('Components', () => {
         props = {movies: [{title: 'One'}, {title: 'Two'}]};
 
     beforeEach(() => {
-      let element = React.createElement(MovieList, props);
+      let wrapper = React.createClass({
+        render: () => {
+          return <MovieList {...props} />;
+        }
+      });
+
+      let element = React.createElement(wrapper);
       component = TestUtils.renderIntoDocument(element);
     });
 
