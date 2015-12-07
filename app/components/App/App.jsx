@@ -12,6 +12,7 @@ class App extends React.Component {
 
   constructor(...args) {
     super(...args);
+    this.moviesUpdated = this.moviesUpdated.bind(this);
     this.state = {
       movies: []
     };
@@ -19,7 +20,11 @@ class App extends React.Component {
 
   componentDidMount() {
     AppActions.fetchMovies();
-    MovieStore.addChangeListener(this.moviesUpdated.bind(this));
+    MovieStore.addChangeListener(this.moviesUpdated);
+  }
+
+  componentWillUnmount() {
+    MovieStore.removeChangeListener(this.moviesUpdated);
   }
 
   render() {
