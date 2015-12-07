@@ -171,7 +171,7 @@ export default class Header extends React.Component {
     if (this.state.searchTerm) {
       searchBox = (
         <h3 className="term">
-          {this.state.searchTerm} <a href='#'><i className="fa fa-times"/></a>
+          {this.state.searchTerm} <a href='#'><i className="fa fa-remove"/></a>
         </h3>
       );
     }

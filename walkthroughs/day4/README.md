@@ -74,7 +74,7 @@ render() {
       <h3 className="term">
         {this.state.searchTerm}
         <a href='#'>
-          <i className="fa fa-times"
+          <i className="fa fa-remove"
               onClick={this.reset.bind(this)}/>
         </a>
       </h3>
@@ -154,7 +154,7 @@ export default class Header extends React.Component {
         <h3 className="term">
           {this.state.searchTerm}
           <a href='#'>
-            <i className="fa fa-times"
+            <i className="fa fa-remove"
                 onClick={this.reset.bind(this)}/>
           </a>
         </h3>

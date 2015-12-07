@@ -39,7 +39,7 @@ describe('Components', () => {
       let result = TestUtils.findRenderedDOMComponentWithClass(component, 'app-header');
       searchAction(result, 'Query');
       expect(result.querySelector('form')).to.be.null;
-      TestUtils.Simulate.click(result.querySelector('.fa-times'));
+      TestUtils.Simulate.click(result.querySelector('.fa-remove'));
       expect(result.querySelector('form')).to.be.defined;
     });
   });
