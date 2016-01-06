@@ -38,12 +38,7 @@
                         <li>Webpack</li>
                         <li>Babel</li>
                         <li>Eslint</li>
-                        <li>Arrows</li>
-                        <li>let</li>
-                        <li>Destructuring</li>
-                        <li>Default, Rest, Spread</li>
-                        <li>Classes</li>
-                        <li>Module Loader</li>
+                        <li>Some ES2015 Features</li>
                     </ul>
                 </section>
                 <section>
@@ -52,57 +47,41 @@
                   </section>
                   <section>
                     <h2>Grunt</h2>
-                    <img src="http://gruntjs.com/img/grunt-logo.png" />
-                  </section>
-                  <section>
                     <li>Focus on configuration</li>
                     <li>Does common tasks very well and very easily configured when going down a happy path</li>
                     <li>Picks up and drops files from src and dest options so each task opens file readers/writers</li>
                   </section>
-                  <section>
-                    <pre><code>
-grunt.initConfig({
-clean: {
-  src: ['build/app.js', 'build/vendor.js']
-},
+                  <section
+                  <h3>GruntFile.js</h3>
+                    <pre><code>grunt.initConfig({
+  clean: {
+    src: ['build/app.js', 'build/vendor.js']
+  },
 
-copy: {
-  files: [{
-    src: 'build/app.js',
-    dest: 'build/dist/app.js'
-  }]
-}
-
-concat: {
-  'build/app.js': ['build/vendors.js', 'build/app.js']
-}
-
-// ... other task configurations ...
-
+  copy: {
+    files: [{
+      src: 'build/app.js',
+      dest: 'build/dist/app.js'
+    }]
+  }
+  // ... other task configurations ...
 });
 
 //Notice how plugins are registered before the build
-grunt.registerTask('build', ['clean', 'bower', 'browserify', 'concat', 'copy']);
+grunt.registerTask('build', ['clean', 'copy']);
                     </code></pre>
                   </section>
                   <section>
                     <h2>Gulp</h2>
-                    <img src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png" />
-                  </section>
-                  <section>
                     <li>Focus on code</li>
                     <li>Leverages streams for piping inbetween tasks</li>
                     <li>Doesn't enforce much of anything. Just use code to wire up tasks and pipe information</li>
                   </section>
                   <section>
-                    <pre><code>
-//import the necessary gulp plugins
-var gulp = require('gulp');
+                    <pre><code>var gulp = require('gulp');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
 
-//declare the task
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
@@ -110,7 +89,6 @@ gulp.task('sass', function(done) {
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
-    .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
 });
@@ -120,6 +98,7 @@ gulp.task('sass', function(done) {
                 <section>
                     <section>
                         <h2>Script Loading</h2>
+<pre><code>var component = require('../component/component');</code></pre>
                         <ul>
                             <li>Allows for modular applications</li>
                             <li>Allow us to pull in dependencies when we need them</li>
@@ -127,9 +106,6 @@ gulp.task('sass', function(done) {
                             <li>AMD Script loading with require was originally browser implementation of CommonJS Transport</li>
                             <li>CommonJS and ES6 are the popular formats over AMD</li>
                         </ul>
-<pre><code>
-var component = require('../component/component'); //amd and commonjs syntax
-</code></pre>
                     </section>
                     <section>
                         <h2>Browserify</h2>
@@ -144,47 +120,9 @@ var component = require('../component/component'); //amd and commonjs syntax
                         </ul>
                     </section>
                     <section>
-                      <pre><code>
-var outputs = [ // <- Add new bundle names to this list
-  'common',
-  'contact',
-  'help',
-  'enrollment',
-  'forgot-credentials',
-  'index',
-  'initialLogin',
-  'login',
-  'plan-selection',
-  'user-registration',
-  'producer-services',
-  'reset-password'
-];
-
-
-function generateOutputs(options) {
-  var path = options.paths.distPath + '/js/' + options.pkg.name + '.';
-  return outputs.map(function(output){
-    return path + output + '.js';
-  });
-}
-
-module.exports = function(grunt, options) {
+                      <h3>tasks/browserify.js</h3>
+                      <pre><code>module.exports = function(grunt, options) {
   return {
-    dev: {
-      src: defaults.src,
-      dest: defaults.dest,
-      options: {
-        watch: true,
-        browserifyOptions: {
-          debug: true, //add sourcemaps
-        },
-        preBundleCB: function(b) {
-          b.plugin(factorBundle, {
-            outputs: generateOutputs(options)
-          });
-        }
-      }
-    },
     dist: {
       src: defaults.src,
       dest: defaults.dest,
@@ -193,11 +131,6 @@ module.exports = function(grunt, options) {
         browserifyOptions: {
           debug: false, //no sourcemaps
           transform: ['reactify', 'uglifyify']
-        },
-        preBundleCB: function(b) {
-          b.plugin(factorBundle, {
-            outputs: generateOutputs(options)
-          });
         }
       }
     }
@@ -218,32 +151,22 @@ module.exports = function(grunt, options) {
                         </ul>
                     </section>
                     <section>
-                      <pre><code>
-var pkg  = require('../package.json'),
-    path = require('path');
-
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
-
-module.exports = {
+                      <h3>webpack.config.js</h3>
+                      <pre><code>module.exports = {
   context: path.join(__dirname, '../public'),
-  cache: DEBUG,
   debug: DEBUG,
   watch: DEBUG,
-  devtool: DEBUG || TEST ? '#inline-source-map' : false,
+  devtool: '#inline-source-map',
   target: 'web',
   entry: './scripts/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(pkg.config.buildDir)
+    path: '/dist'
   },
   module: { //Notice the loaders for sass and jsx files
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'] },
       { test: /\.scss$/, loaders: ['style', 'css', 'sass']}
-    ],
-    noParse: [
-      './public/scripts/dist/'
     ]
   }
 }
@@ -253,11 +176,11 @@ module.exports = {
                 <section>
                     <img height="150px" width="300px" src="https://raw.githubusercontent.com/babel/logo/master/babel.png" />
                     <ul>
-                        <li>Formerly 6to5 but now handles more than es2015</li>
-                        <li>Transpiles esnext code into something all browsers can use</li>
-                        <li>Can transform jsx + do hot loading transformations</li>
+                        <li>Formerly 6to5 but now handles more than ES2015</li>
+                        <li>Transpiles ESNext Code</li>
+                        <li>Can transform jsx & hot loading transformations</li>
                         <li>Very up to date and community driven</li>
-                        <li>Used as a pre-build step when writing esnext in the browser environments</li>
+                        <li>Used as a pre-build step when writing ESNext in the browser environments</li>
                     </ul>
                 </section>
                 <section>
@@ -272,8 +195,8 @@ module.exports = {
                     </ul>
                   </section>
                   <section>
-                    <pre><code>
-{
+                    <h3>.eslintrc</h3>
+                    <pre><code>{
   "rules": {
       "eqeqeq": 0,
       "curly": 2,
@@ -292,22 +215,17 @@ module.exports = {
                       <blockquote>
                         Innovation debt is the cost that companies incur when they don't invest in their developers.
                         <br />
-                        <small>- Peter Bell</small>
-                        <br />
-                        - Westin Wrzesinski
+                        - Peter Bell
                       </blockquote>
-                    </section>
-                    <section>
                     </section>
                     <section>
                         <h2>Arrows =></h2>
                         <ul>
                             <li>Inspired by CoffeeScript</li>
-                            <li>Bind to outer this</li>
+                            <li>Bind to outer this (have no context)</li>
                             <li>Not newable</li>
                             <li>No arguments psuedo array</li>
                             <li>Always Anon</li>
-                            <li>Upgrade to ES5's `.bind(this)` essentially</li>
                         </ul>
                     </section>
                     <section>
@@ -355,68 +273,60 @@ function() {
             </section>
               <section>
                     <h2>Destructuring Object</h2>
-<pre><code>
-var people = [
+<pre><code>var people = [
   {
     name: 'Westin',
     age: 25
   }
 ];
-people.forEach(function({name, age}) //shorthand if key = value
-{
+
+people.forEach(({name, age}) => {
   console.log(name + ":" + age)
 });
-
-let { first: f, last: l } = {first: 'westin', last: 'w'}; //assign multiple at same time
-
-let [x, y] = ['a', 'b']; // x = 'a'; y = 'b'; //extract multiple values at same time
-
-let {length : len} = 'abc'; // len = 3 nifty trick to call string.length
-
+</code></pre>
+<pre><code>let { first: f, last: l } = {first: 'westin', last: 'w'};
+let [x, y] = ['a', 'b'];
+let {length : len} = 'abc';
 </code></pre>
                 </section>
                 <section>
                     <h2>Destructuring Array</h2>
-                    <ul>
-                        <li>Fails quietly to undefined</li>
-                    </ul>
-<pre><code>
-var [month, date, year] = [3, 14, 1977];
-//swapping
-x = 3;
-y = 4;
+<pre><code>var [month, date, year] = [3, 14, 1977];
+
+let x = 3;
+let y = 4;
 [x, y] = [y, x];
+
 //ignore an index
 var [a, ,b] = [1,2,3];
 var doWork = function() {
     return [1, 3, 2];
 };
-let [, x, y, z] = doWork();
+
+let [x, y, z] = doWork();
 </code></pre>
                 </section>
                 <section>
                     <h2>Default, Rest, Spread</h2>
                     <h3>Default Params</h3>
-<pre><code>
-function f(x, y=12, z=y) {
-  // y is 12 if not passed (or passed as undefined)
+<pre><code>let f =(x, y=12, z=y) => {
   return x + y;
 }
+
 f(3) == 15;
 
-let [x=3, y] = []; // x = 3; y = undefined nifty use with destructuring
+let [x=3, y] = []; // x = 3; y = undefined
 
 </code></pre>
                 </section>
                 <section>
                     <h2>Rest</h2>
                     <ul>
-                        <li>rest parameters are only the ones that haven't been given a separate name, while the arguments object contains all arguments passed to the function</li>
-                        <li>the arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort, map, forEach or pop can be applied on it directly</li>
-                        <li>true array unlike the argument psuedo array</li>
+                        <li>arguments object no real array</li>
+                        <li>rest parameters are arrays meaning can use map,filter,reduce,etc</li>
+                        <li>rest parameters are the params that haven't been named</li>
                     </ul>
-<pre><code>
-function multiply(multiplier, ...theArgs) {
+<pre><code>function multiply(multiplier, ...theArgs) {
   return theArgs.map(function (element) {
     return multiplier * element;
   });
@@ -426,17 +336,18 @@ function multiply(multiplier, ...theArgs) {
                 <section>
                     <h2>Spread</h2>
                     <div>Expand array params like Func.apply</div>
-<pre><code>
-function sum(x,y,z) {
+<pre><code>function sum(x,y,z) {
   return x + y + z;
 }
+
 total(1, 2, 3);
+
 //before
 total.apply(null, [1,2,3]);
 //now
 total(...[1,2,3]);
 
-let [x,...y] = 'abc'; // x='a'; y=['b', 'c']; //using with destructuring
+let [x,...y] = 'abc'; // x='a'; y=['b', 'c'];
 
 </code></pre>
                 </section>
@@ -446,71 +357,45 @@ let [x,...y] = 'abc'; // x='a'; y=['b', 'c']; //using with destructuring
                         <li>just some syntactic sugar for prototype</li>
                         <li>we will have supers and constructors</li>
                     </ul>
-<pre><code style="word-wrap: break-word;">
-class TodoModel {
-
+<pre><code style="word-wrap: break-word;">class TodoModel {
     constructor(storage) {
         this.storage = storage;
     }
 
-    get todo() {
-      return this.storage.get();
-    }
-
-    set todo(title) {
-      //... can override setters of properties to do same as create
-      // todo.x = 'xyz'; will call todo.create('xyz');
-      this.create(title);
-    }
-
-    create(title) {
-        title = title || '';
-        var newItem = {
-            title: title.trim(),
-            completed: false
-        };
-        return this.storage.save(newItem);
+    create(title='') {
+        return this.storage.save({title, completed: false});
     }
 
     ['h'+'ello' + 'world']() { //dynamic class properties
         return 'Hello World';
     }
 };
-console.log(obj.hello()); // hi
-}
-export default TodoModel;
 </code></pre>
                 </section>
                 <section>
-<pre><code style="word-wrap: break-word;">
-class EnhancedTodoModel extends TodoModel {
+<pre><code style="word-wrap: break-word;">class EnhancedTodoModel extends TodoModel {
     constructor(storage) {
         this.storage = storage;
     }
-    save(item) {
-        alert('Saving a new task');
-        super.save(item);
+
+    create(title) {
+        console.log('Creating a new todo with title' + title)
+        super.create(title);
     }
 }
 </code></pre>
                 </section>
                 <section>
                     <h2>Modules</h2>
-<pre><code>
-import name from "module-name";
+<pre><code>import name from "module-name";
 import { member } from "module-name";
 import {member as alias } from "module-name";
 import { member1 , member2 } from "module-name";
-import { member1 , member2 as alias2 , [...] } from "module-name";
-import name , { member [ , [...] ] } from "module-name";
-import "module-name" as name;
-//export syntax
-Example 1:
-export name1, name2, ..., nameN;
-Example 2:
-export *;
-Example 3:
-export default function() {...}
+import "module-name" as name from 'simpler-module';
+import "module" from 'module';
+
+export function() { console.log('other module method') };
+export default function() { console.log('default module method'); }
 </code></pre>
                 </section>
                 <section>
@@ -518,16 +403,13 @@ export default function() {...}
                     <span>Default is really just another named export</span>
                     <span>Default are favored however</span>
 <pre><code>
-//------ underscore.js ------
-export default function (obj) {
-    ...
-};
-export function each(obj, iterator, context) {
-    ...
-}
+export default function (obj) {...};
+
+export function each(obj, iterator, context) {...};
+
 export { each as forEach };
-//------ main.js ------
-import _, { each } from 'underscore';
+
+import _, { each } from 'lodash';
 </code></pre>
                 </section>
             </section>
