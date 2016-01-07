@@ -2,7 +2,7 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import Login from './Login';
+import Login from './LoginContainer';
 
 
 describe('Components', () => {
@@ -25,11 +25,6 @@ describe('Components', () => {
     it('should render into the document', () => {
       let result = TestUtils.findRenderedDOMComponentWithClass(component, 'app-login');
       expect(result).to.be.defined;
-    });
-
-    it('should print the name passed in', () => {
-      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'app-login');
-      expect(result.innerHTML).to.contain('Test');
     });
   });
 });

@@ -4,3 +4,5 @@ export const MOVIES_UPDATED = 'ITEMS_UPDATED';
 export const FIND_MOVIE_GET_SUCESS = 'FIND_MOVIE_GET_SUCESS';
 export const SORT_MOVIES_BY_KEY = 'SORT_MOVIES_BY_KEY';
 export const RATE_MOVIE = 'RATE_MOVIE';
+
+export const USER_UPDATED = 'USER_UPDATED';

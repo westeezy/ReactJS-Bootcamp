@@ -4,6 +4,7 @@ import MovieTile from '../MovieTile/MovieTile';
 
 let MovieList = (props) => {
   return (<div className="movie-list">
+    <h1 className="categoryHeader">Top Picks For { props.user.name }</h1>
     <ul className="items">
       {
         props.movies.map((movie, idx) => {
@@ -19,7 +20,8 @@ MovieList.deafultProps = {
 };
 
 MovieList.propTypes = {
-  movies: React.PropTypes.array
+  movies: React.PropTypes.array,
+  user: React.PropTypes.object
 };
 
 export default MovieList;

@@ -6,4 +6,30 @@
   margin-right: 20px;
   font-family: Impact, Lato, sans-serif;
   text-transform: UPPERCASE;
+
+  .user-input {
+    width: 200px;
+    padding-left: 26px;
+    -webkit-appearance: none;
+    margin-top: -3px;
+    padding: 0 8px;
+    float: left;
+    color: white;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+
+  .user-form {
+    display: inline;
+    position: relative;
+  }
+
+  .fa {
+    color: white;
+    margin-left: 10px;
+  }
 }
+

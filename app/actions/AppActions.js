@@ -7,7 +7,8 @@ import {
   MOVIES_GET_SUCCESS,
   FIND_MOVIE_GET_SUCCESS,
   SORT_MOVIES_BY_KEY,
-  RATE_MOVIE
+  RATE_MOVIE,
+  USER_UPDATED
 }
 from '../constants/AppConstants';
 
@@ -44,6 +45,13 @@ export default {
           title, rating
         },
         actionType: RATE_MOVIE
+      });
+    },
+
+    changeUser(user) {
+      AppDispatcher.dispatch({
+        data: user,
+        actionType: USER_UPDATED
       });
     }
 

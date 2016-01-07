@@ -7,7 +7,7 @@ import MovieList from './MovieList';
 describe('Components', () => {
   describe('MovieList', () => {
     let component,
-        props = {movies: [{title: 'One'}, {title: 'Two'}]};
+        props = {movies: [{title: 'One'}, {title: 'Two'}], user: {name: 'Test'}};
 
     beforeEach(() => {
       let wrapper = React.createClass({
