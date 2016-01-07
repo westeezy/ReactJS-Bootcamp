@@ -46,12 +46,6 @@
                         <h2>Why the ^@#$% is there another js framework</h2>
                     </section>
                     <section>
-                        <h2>MVC isn't a holy grail</h2>
-                        <ul>
-                            <li>Decent steam behind an non MVC clientside movement</li>
-                        </ul>
-                    </section>
-                    <section>
                         <h2>React</h2>
                         <ul style="float:left; width:45%;font-size:20px;">
                             <li>Small Modular Components</li>
@@ -63,9 +57,6 @@
                             <li>JSX can be strange at first</li>
                             <li>Since it is just a view layer you must enforce good patterns</li>
                         </ul>
-                    </section>
-                    <section>
-                        <h2>Just use what makes sense and enables you to be productive!</h2>
                     </section>
                     <section>
                         <h2>Angular</h2>
@@ -113,12 +104,14 @@
                         </ul>
                     </section>
                     <section>
-                        <img src="./img/just-do-it.jpg" />
+                        <h3>Use what makes sense and enables you to be productive!</h3>
+                        <img src="http://i.imgur.com/z9zn3F7.jpg" />
                     </section>
                 </section>
                 <section>
                     <section>
-                        <h2>React - according to Facebook</h2>
+                        <h2>React</h2>
+                        <h4>according to Facebook</h4>
                         <ul>
                             <li>It's simple</li>
                             <li>It's declarative</li>
@@ -135,7 +128,7 @@
                     </section>
                     <section>
                         <h2>How can we break this down into components?</h2>
-                        <img src="./img/reddit.png"/>
+                        <img src="https://cdn.rawgit.com/westeezy/ReactJS-Bootcamp/master/walkthroughs/slides/day1/img/reddit.png"/>
                     </section>
                     <section>
                       <div>Great Comparison Article here</div>
@@ -155,24 +148,24 @@
                 </section>
                 <section>
                     <h2>Mounting a component</h2>
-        <pre>
+        <pre><code>
 import React from 'react';
 
-import App from './components/App/App';
+import app from './components/App/App';
 
-React.render(<App />, document.getElementById('app'));
-</pre>
+React.render(<App></App>, document.getElementById('app'));
+</code></pre>
                 </section>
                 <section>
                     <h2>Simple Component</h2>
-        <pre><code>
-import React from 'react';
+        <pre><code>import React from 'react';
 import './_Hai.scss';
+
 export default class Hai extends React.Component {
   render() {
     let name = 'React';
     return (
-      <div className="my-super-awesome-react-app-with-a-class-name">
+      <div className="my-super-awesome-react-app">
         <span>Hello Margret, It's me,</span>
         <span>{name}</span>
       </div>

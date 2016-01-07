@@ -58,15 +58,11 @@
                     <br />
                     <br />
                     <div style="color:red;">these can not update state</div>
-                  </section>
-                  <section>
-                    <h4>render()</h4>
-                    <ul>
-                      <li>This is the meat of your component and generates the React Element to draw into the DOM</li>
-                      <li>Pure function - does not modify state</li>
-                    </ul>
-                  </section>
-                  <section>
+                    </section>
+                    <section>
+                        <img style="margin-top: -45px;" src="https://cdn.rawgit.com/westeezy/ReactJS-Bootcamp/master/walkthroughs/slides/day2/img/React%20Lifecycle.png" />
+                    </section>
+                    <section>
                     <h4>getInitialState()</h4>
                     <ul>
                       <li>return the basic representation of your state. Invocked once before component is mounted</li>
@@ -86,13 +82,6 @@
                     <ul>
                       <li>Invoked once before initial render</li>
                       <li>chance to update state before render</li>
-                    </ul>
-                  </section>
-                  <section>
-                    <h4>componentDidMount()</h4>
-                    <ul>
-                      <li>Good place to use 3rd party libs or attach listeners or use ajax</li>
-                      <li>First chance to interact with the DOM node</li>
                     </ul>
                   </section>
                   <section>
@@ -121,6 +110,13 @@
                     </ul>
                   </section>
                   <section>
+                    <h4>render()</h4>
+                    <ul>
+                      <li>This is the meat of your component and generates the React Element to draw into the DOM</li>
+                      <li>Pure function - does not modify state</li>
+                    </ul>
+                  </section>
+                  <section>
                     <h4>componentDidUpdate()</h4>
                     <ul>
                       <li>not called for initial render</li>
@@ -143,12 +139,7 @@
                       </ul>
                   </section>
                   <section>
-                    <img src="./img/compose.jpg"/>
-                    <ul>
-                      <li>Notice how Cart Component is a parent to CartListComponent</li>
-                      <li>CartListComponent may contain child components to render each list item</li>
-                      <li>With this scheme the list items can own their state of qty and total while the cart list is only concerned with having x amount of generic items</li>
-                    </ul>
+                    <img src="https://cdn.rawgit.com/westeezy/ReactJS-Bootcamp/master/walkthroughs/slides/day2/img/react_component_hierarchy.png" />
                   </section>
                   <section>
                     <ul>
@@ -160,11 +151,12 @@
                 </section>
                 <section>
                     <h2>Passing Props</h2>
-                    <pre><code>
+<pre><code>
 <div className="wrapper">
-  <ChildComponent propToPass={this.propToPass} />
+  <ChildComponent propToPass={this.propToPass} >
+  </ChildComponent>
 </div>
-                    </code></pre>
+</code></pre>
                 </section>
                 <section>
                   <section>
@@ -175,7 +167,8 @@
                     </ul>
                     <pre><code>
 <div className="wrapper">
-  <ChildComponent ref="childComponent" />
+  <ChildComponent ref="childComponent">
+  </ChildComponent>
 </div>
                     </code></pre>
                   </section>

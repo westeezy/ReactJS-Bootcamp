@@ -66,27 +66,25 @@
                         <li>Always shows whats in it's value property</li>
                         <li>Thus direct user input has no effect</li>
                         <li>onChange and state can be used to change it's value</li>
-                        <li>React onws state of the component at any time</li>
+                        <li>React owns state of the component at any time</li>
                     </ul>
                 </section>
                 <section>
                     <h2>Examples</h2>
-<pre><code>
-getInitialState() {
-  return {
-    value: "Person"
-  }
+<pre><code>getInitialState() {
+  return { value: "Person" };
 }
+
 handleChange(event) {
-  this.setState({
-    value: event.target.value
-  });
+  this.setState({ value: event.target.value });
 }
+
 render() {
-                                          return (<div>
-                                                <input type="text" value={this.state.value} onChange={this.handleChange} />
-<span>{'Hello ' + this.state.value}</span>
-                                        </div>);
+  return (
+  <div>
+    <input value={this.state.value} onChange={this.handleChange} />
+    <span>{'Hello ' + this.state.value}</span>
+  </div>);
 }
 </code></pre>
                 </section>
@@ -103,17 +101,15 @@ render() {
                 <section>
                     <h2>Examples</h2>
 <pre><code>
-//TODO: update this slide
 handleChange(event) {
-  this.setState({
-    value: event.target.value
-  });
+  let newValue = event.target.value;
+  this.setState({ value: newValue });
 }
 render() {
-                                          return (<div>
-                                                <input type="text" onChange={this.handleChange} />
-<span>{'Hello ' + this.state.value}</span>
-                                        </div>);
+  return (<div>
+            <input onChange={this.handleChange} />
+            <span>{'Hello ' + this.state.value}</span>
+          </div>);
 }
 </code></pre>
                 </section>
@@ -121,7 +117,6 @@ render() {
             <section>
                 <h2>State with Forms</h2>
                 <ul>
-                    <li>React has two way binding but not typically used</li>
                     <li>You can use state to trigger error messaging etc for on blur</li>
                     <li>State can be used to defaultValue from api responses</li>
                 </ul>
