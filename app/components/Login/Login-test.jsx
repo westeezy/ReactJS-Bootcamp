@@ -2,7 +2,7 @@
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
-import Login from './LoginContainer';
+import Login from './Login';
 
 
 describe('Components', () => {
