@@ -1,28 +1,19 @@
 import React from 'react';
-import _ from 'lodash';
+import '../MovieList/_MovieList.scss';
 import './_MovieTile.scss';
-import Rating from '../Rating/Rating';
 
-let MovieTile = (props) => {
-	return (<li className="movie-tile-container item">
-		<div className="bg-img"
-			style={{'backgroundImage': `url('img/${props.movie.cover}')`}}></div>
-		<a href={'/movies/' + props.movie.title}>
-			<div className="content">
-				<h2>{props.movie.title}</h2>
-        <Rating stars={parseInt(_.get(props, 'movie.rating',0))}
-          title={_.get(props, 'movie.title')}/>
-			</div>
-		</a>
-	</li>);
-};
+// TODO: Add some more text and see hot reloader
 
-MovieTile.defaultProps = {
-	movie: {}
-};
-
-MovieTile.propTypes = {
-	movie: React.PropTypes.object
-};
-
-export default MovieTile;
+export default class MovieTile extends React.Component {
+  render() {
+    return (
+      <div className="movie-list">
+        <ul className="items">
+          <li className="movie-tile-container item">
+            Hello From Chicago
+          </li>
+        </ul>
+      </div>
+    );
+  }
+}
