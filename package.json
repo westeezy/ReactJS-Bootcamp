@@ -11,8 +11,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production npm run webpack",
-    "clean": "rimraf $npm_package_config_buildDir && mkdir $npm_package_config_buildDir",
-    "env": "env",
+    "clean": "./node_modules/.bin/rimraf $npm_package_config_buildDir && mkdir $npm_package_config_buildDir",
     "lint": "eslint --ext .js --ext .jsx ./app ./webpack && echo No linting errors.",
     "prebuild": "npm run clean",
     "prestart": "npm install",
@@ -22,10 +21,12 @@
     "start-windows": "set NODE_ENV=development node dev-server ./webpack/config",
     "test": "NODE_ENV=test karma start",
     "test-travis": "NODE_ENV=test karma start --single-run",
-    "webpack": "webpack --colors --progress --config ./webpack/config"
+    "webpack": "./node_modules/.bin/webpack --colors --progress --config ./webpack/config",
+    "heroku-build": "npm run build && ./node_modules/http-server/bin/http-server build"
   },
   "dependencies": {
     "flux": "^2.0.3",
+    "http-server": "^0.8.5",
     "lodash": "^3.10.1",
     "normalize.css": "^3.0.3",
     "page": "^1.6.3",
