@@ -27,10 +27,6 @@ If you are familiar with Docker, or are willing to learn it, there is a Dockerfi
 
 NOTE: If you want to have the live updates enabled, you would need to properly mount the app directory as a volume.  Ex on Mac: `docker run -v $(pwd)/app:/app/app -p 8001:8001 react-bootcamp`
 
-### Bootcamp Start
-Bootcamp starts on a stripped down version of the master branch to start building up the application from scratch. Please see branch [ndc_day_one].
-
-
 
 ####TypeScript
 For the TypeScript version of the code see [here][typescript]
