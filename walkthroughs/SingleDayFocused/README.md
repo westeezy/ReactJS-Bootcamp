@@ -1,7 +1,7 @@
 Single Day Agenda
 ====================
 
-Day 1
+Day 1 [Main Page][Index]
 ---------------------
 
 | Time  | Topic  | Link | Take Aways |
@@ -22,12 +22,13 @@ Day 1
 [React View Kata]: http://codepen.io/westeezy/pen/epGgdB
 [React State Kata]: http://codepen.io/westeezy/pen/Qjqddw
 
-[Day0]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day0/
-[Day1]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day1/
-[Day2]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day2/
-[Day3]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day3/
-[Day4]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day4/
-[Day5]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day5/
-[Day6]: https://github.com/westeezy/ReactJS-Bootcamp/blob/master/walkthroughs/day6/
+[Index]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/
+[Day0]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day0#/
+[Day1]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day1#/
+[Day2]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day2#/
+[Day3]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day3#/
+[Day4]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day4#/
+[Day5]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day5#/
+[Day6]: http://westinwrzesinski.com/ReactJS-Bootcamp/slides/day6#/
 [TypeScript]: https://github.com/westeezy/ReactJS-Bootcamp/tree/typescript
 
