@@ -3,76 +3,40 @@
 import './_App.scss';
 
 import React from 'react';
-import { Enhance } from '../Router/Router';
+import MovieList from '../MovieList/MovieList';
+import { getMoviesNow } from '../../util/api';
 import Header from '../Header/Header';
-import AppActions from '../../actions/AppActions';
-import MovieStore from '../../stores/MovieStore';
-import UserStore from '../../stores/UserStore';
+import MovieTile from '../MovieTile/MovieTile';
 
-class App extends React.Component {
+// TODO: Render a List of Movies
+//        - Which requires retrieving the movies
+// TODO: Pass in sort, search, and reset methods to Header
 
-  constructor(...args) {
-    super(...args);
-    this.moviesUpdated = this.moviesUpdated.bind(this);
-    this.userUpdated = this.userUpdated.bind(this);
-    this.state = {
-      movies: [],
-      user: { name: 'User' }
-    };
-  }
-
-  componentDidMount() {
-    AppActions.fetchMovies();
-    MovieStore.addChangeListener(this.moviesUpdated);
-    UserStore.addChangeListener(this.userUpdated);
-  }
-
-  componentWillUnmount() {
-    MovieStore.removeChangeListener(this.moviesUpdated);
-    UserStore.removeChangeListener(this.userUpdated);
-  }
+export default class App extends React.Component {
 
   render() {
     return (
-      <div className={'app'}>
+      <div className="app">
         <Header />
-        <div className="main">
-        {
-          this.props.component && this.state.movies.length ?
-            <this.props.component context={this.props.context}
-                                  user={this.state.user}
-                                  movies={this.state.movies}/>
-            :
-            <div className="loader-overlay">
-              <div className="loader">Loading...</div>
-            </div>
-        }
+        <div className="movie-list">
+          <ul className="items">
+            <MovieTile />
+          </ul>
         </div>
       </div>
     );
   }
 
-  moviesUpdated() {
-    this.setState({
-      movies: MovieStore.getAll()
-    });
+  search(query) {
+    console.log(`search ${query}`);
   }
 
-  userUpdated() {
-    this.setState({
-      user: UserStore.getUser()
-    });
+  sort(key) {
+    console.log(`sort ${key}`);
+  }
+
+  reset() {
+    console.log('reset');
   }
 }
 
-App.defaultProps = {
-  component: {},
-  context: {}
-};
-
-App.propTypes = {
-  component: React.PropTypes.func,
-  context: React.PropTypes.object
-};
-
-export default Enhance(App); //Note: the move of export to wrap
