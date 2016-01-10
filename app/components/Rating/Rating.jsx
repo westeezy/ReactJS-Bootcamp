@@ -1,58 +1,42 @@
 import React from 'react';
-import _ from 'lodash';
-import AppActions from '../../actions/AppActions';
 
 const MAX_STARS = 5;
 
-export default class Rating extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
-		this.state = {
-			stars: props.stars
-		};
-	}
+const Rating = (props) => {
+  const updateRating = (e) => {
+    e.preventDefault();
+    const stars = parseInt(e.target.attributes['data-rating'].value) + 1;
+    props.updateRating(props.title, stars);
+  };
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			stars: nextProps.stars
-		});
-	}
+  const rating = Array(MAX_STARS)
+    .fill(0)
+    .map((s, i) => {
+      return i < props.stars ?
+      <i key={i}
+        className="fa fa-star"
+        data-rating={i}
+        onClick={updateRating}/>
+      :
+      <i key={i}
+        className="fa fa-star-o"
+        data-rating={i}
+        onClick={updateRating}/>
+    });
 
-	render() {
-		return (<div className="stars">
-							{
-								this.retrieveRating()
-							}
-						</div>);
-	}
-
-	retrieveRating() {
-		return _.map(_.range(MAX_STARS), (idx) => {
-			return idx < this.state.stars ?
-							<i 	key={idx} className="fa fa-star"
-									onClick={this.updateRating.bind(this)}
-									data-rating={idx}/>
-							:
-							<i 	key={idx} className="fa fa-star-o"
-									onClick={this.updateRating.bind(this)}
-									data-rating={idx}/>;
-			});
-	}
-
-	updateRating(e) {
-		e.preventDefault();
-		let stars = parseInt(e.target.attributes['data-rating'].value) + 1;
-		this.setState({stars});
-		AppActions.rateMovie(this.props.title, stars);
-	}
-}
+  return (
+    <div className="stars">
+      {rating}
+    </div>
+  );
+};
 
 Rating.defaultProps = {
-	stars: 0,
-	title: ''
+  stars: 0
 };
 
 Rating.propTypes = {
-	stars: React.PropTypes.number,
-	title: React.PropTypes.string
+  stars: React.PropTypes.number
 };
+
+export default Rating;

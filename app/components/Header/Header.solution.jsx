@@ -9,8 +9,8 @@ export default class Header extends React.Component {
   constructor(...args) {
     super(...args);
     this.state = {
-      submitted: false,
-      searchTerm: null
+      searchTerm: null,
+      submitted: false
     };
   }
 
@@ -21,7 +21,7 @@ export default class Header extends React.Component {
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
             {
-               false ?
+                this.state.submitted ?
                 <h3 className="term">
                   {this.state.searchTerm}
                   <a href='#'>
@@ -52,7 +52,7 @@ export default class Header extends React.Component {
   }
 
   updateSearchTerm(e) {
-    console.log(e.target.value);
+    this.setState({searchTerm: e.target.value});
   }
 
   search(e) {

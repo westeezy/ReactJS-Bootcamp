@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Rating from '../Rating/Rating';
 import './_MovieTile.scss';
@@ -12,7 +13,8 @@ const MovieTile = (props) => {
         <div className="content">
           <h2>{props.movie.title}</h2>
           <Rating title={props.movie.title}
-                  stars={parseInt(props.movie.rating, 10)}/>
+                  stars={parseInt(props.movie.rating, 10)}
+                  updateRating={props.updateRating}/>
         </div>
       </a>
     </li>);
@@ -27,3 +29,4 @@ MovieTile.propTypes = {
 };
 
 export default MovieTile;
+
