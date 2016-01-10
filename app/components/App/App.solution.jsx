@@ -1,9 +1,7 @@
-'use strict';
-
 import './_App.scss';
 
 import React from 'react';
-import Header from '../Header/Header';
+import Header from '../Header/Header.solution';
 import AppActions from '../../actions/AppActions';
 import MovieStore from '../../stores/MovieStore';
 import UserStore from '../../stores/UserStore';
@@ -34,11 +32,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        <Header filtered={MovieStore.isFiltered()}
-                user={this.state.user}/>
+      <div className={'app'}>
+        <Header />
         <div className="main">
-          <MovieList movies={this.state.movies} user={this.state.user} />
+          <MovieList user={this.state.user} movies={this.state.movies}/>
         </div>
       </div>
     );
@@ -56,3 +53,13 @@ export default class App extends React.Component {
     });
   }
 }
+
+App.defaultProps = {
+  component: {},
+  context: {}
+};
+
+App.propTypes = {
+  component: React.PropTypes.func,
+  context: React.PropTypes.object
+};

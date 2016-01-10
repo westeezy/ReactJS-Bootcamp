@@ -1,12 +1,11 @@
 import React from 'react';
-import _ from 'lodash';
 import AppActions from '../../actions/AppActions';
 
 const MAX_STARS = 5;
 
 export default class Rating extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
+	constructor(props) {
+		super(props);
 		this.state = {
 			stars: props.stars
 		};
@@ -20,23 +19,22 @@ export default class Rating extends React.Component {
 
 	render() {
 		return (<div className="stars">
-							{
-								this.retrieveRating()
-							}
-						</div>);
+			{
+				this.retrieveRating()
+			}
+		</div>);
 	}
 
 	retrieveRating() {
-		return _.map(_.range(MAX_STARS), (idx) => {
+	  return Array(MAX_STARS).fill(0).map((s, idx) => {
 			return idx < this.state.stars ?
-							<i 	key={idx} className="fa fa-star"
-									onClick={this.updateRating.bind(this)}
-									data-rating={idx}/>
-							:
-							<i 	key={idx} className="fa fa-star-o"
-									onClick={this.updateRating.bind(this)}
-									data-rating={idx}/>;
-			});
+				<i 	key={idx} className="fa fa-star"
+					onClick={this.updateRating.bind(this)}
+					data-rating={idx}/>
+				: <i key={idx} className="fa fa-star-o"
+						onClick={this.updateRating.bind(this)}
+						data-rating={idx}/>;
+		});
 	}
 
 	updateRating(e) {
