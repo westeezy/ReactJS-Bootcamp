@@ -1,28 +1,29 @@
 import React from 'react';
-import _ from 'lodash';
+import '../MovieList/_MovieList.scss';
 import './_MovieTile.scss';
-import Rating from '../Rating/Rating';
+
+// TODO: Make Movie Title a variable that gets interpolated
+// TODO: Abstract the stars into a method that returns the JSX
+// TODO: How might we have this function accept the parameters of getStars(filledStars, totalStars)?
+// TODO: How might we abstract Stars into it's own component? (named Rating)
 
 let MovieTile = (props) => {
-	return (<li className="movie-tile-container item">
-		<div className="bg-img"
-			style={{'backgroundImage': `url('img/${props.movie.cover}')`}}></div>
-		<a href={'/movies/' + props.movie.title}>
-			<div className="content">
-				<h2>{props.movie.title}</h2>
-        <Rating stars={parseInt(_.get(props, 'movie.rating',0))}
-          title={_.get(props, 'movie.title')}/>
-			</div>
-		</a>
-	</li>);
-};
+  const img = `img/fake${Math.floor(Math.random() * 10) + 1}.jpg`;
+  const rating = Array(5).fill(0).map((s, i) => i < 3 ? <i key={i} className="fa fa-star" /> : <i key={i} className="fa fa-star-o" />);
 
-MovieTile.defaultProps = {
-	movie: {}
-};
-
-MovieTile.propTypes = {
-	movie: React.PropTypes.object
+	return (
+	  <li className="movie-tile-container item">
+	    <div className="bg-img" style={{backgroundImage: `url('${img}')`}}/>
+	    <a href="#">
+	      <div className="content">
+	        <h2>Movie Title</h2>
+	        <div className="stars">
+	          { rating }
+	        </div>
+	      </div>
+	    </a>
+	  </li>
+	);
 };
 
 export default MovieTile;

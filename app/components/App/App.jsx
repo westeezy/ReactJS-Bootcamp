@@ -3,76 +3,55 @@
 import './_App.scss';
 
 import React from 'react';
-import { Enhance } from '../Router/Router';
+import MovieList from '../MovieList/MovieList';
+import { getMoviesNow } from '../../util/api';
+import MoviesModel from '../../models/Movies';
 import Header from '../Header/Header';
-import AppActions from '../../actions/AppActions';
-import MovieStore from '../../stores/MovieStore';
-import UserStore from '../../stores/UserStore';
+import MovieTile from '../MovieTile/MovieTile';
 
-class App extends React.Component {
+let moviesModel = new MoviesModel();
+
+// TODO: Render a List of Movies
+//        - Which requires retrieving the movies
+// TODO: Pass in sort, search, and reset methods to Header
+// TODO: Refactor to use state.
+export default class App extends React.Component {
 
   constructor(...args) {
     super(...args);
-    this.moviesUpdated = this.moviesUpdated.bind(this);
-    this.userUpdated = this.userUpdated.bind(this);
-    this.state = {
-      movies: [],
-      user: { name: 'User' }
-    };
-  }
-
-  componentDidMount() {
-    AppActions.fetchMovies();
-    MovieStore.addChangeListener(this.moviesUpdated);
-    UserStore.addChangeListener(this.userUpdated);
-  }
-
-  componentWillUnmount() {
-    MovieStore.removeChangeListener(this.moviesUpdated);
-    UserStore.removeChangeListener(this.userUpdated);
   }
 
   render() {
     return (
-      <div className={'app'}>
+      <div className="app">
         <Header />
-        <div className="main">
-        {
-          this.props.component && this.state.movies.length ?
-            <this.props.component context={this.props.context}
-                                  user={this.state.user}
-                                  movies={this.state.movies}/>
-            :
-            <div className="loader-overlay">
-              <div className="loader">Loading...</div>
-            </div>
-        }
+        <div className="movie-list">
+          <ul className="items">
+
+            <MovieTile />
+          </ul>
         </div>
       </div>
     );
   }
 
-  moviesUpdated() {
-    this.setState({
-      movies: MovieStore.getAll()
-    });
-  }
-
-  userUpdated() {
-    this.setState({
-      user: UserStore.getUser()
-    });
-  }
+  /*
+     search(query) {
+     this.setState({
+movies: moviesModel.getBySearch(query)
+});
 }
 
-App.defaultProps = {
-  component: {},
-  context: {}
-};
+sort(key) {
+this.setState({
+movies: moviesModel.getSorted(key)
+});
+}
 
-App.propTypes = {
-  component: React.PropTypes.func,
-  context: React.PropTypes.object
-};
+reset() {
+moviesModel.movies = getMoviesNow();
+this.setState({movies: moviesModel.movies})
+}
+*/
+}
 
-export default Enhance(App); //Note: the move of export to wrap
