@@ -1,57 +1,42 @@
 import React from 'react';
-import UserStore from '../../stores/UserStore';
-import { changeUser } from '../../actions/AppActions';
+import AppActions from '../../actions/AppActions';
 import './_Login.scss';
 
-export default class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.showForm = this.showForm.bind(this);
-    this.updateUserName = this.updateUserName.bind(this);
-    this.submitUser = this.submitUser.bind(this);
-    this.state = {
-      user: UserStore.getUser().name,
-      newUser: null,
-      edit: false
-    };
+
+const Login = (props) => {
+  const showForm = () => {
+    AppActions.editUser({showForm: !props.user.editing});
   }
 
-  render() {
-    return (
-      <div className="app-login">
-        {
-          this.state.edit ?
-            <form className="user-form" onSubmit={this.submitUser}>
-              <input className="user-input" placeholder="UserName" value={this.state.newUser} onChange={this.updateUserName} />
-            </form>
-            : <span>{this.state.user}</span>
-        }
-        <a href="#" onClick={() => this.showForm()}>
-          <i className={this.state.edit ? 'fa fa-close' :  'fa fa-pencil'} />
-        </a>
-      </div>
-    );
+  const updateUserName = (e) => {
+    AppActions.editUser({showForm: true, name: e.target.value});
   }
 
-  showForm() {
-    this.setState({
-      edit: !this.state.edit
-    });
-  }
-
-  updateUserName(event) {
-    this.setState({ newUser: event.target.value });
-  }
-
-  submitUser(event) {
+  const submitUser = (event) => {
     event.preventDefault();
-
-    this.setState({
-      user: this.state.newUser,
-      newUser: null,
-      edit: false
-    });
-
-    changeUser({ name: this.state.newUser });
+    AppActions.changeUser();
   }
+
+  return (<div className="app-login">
+       {
+          props.user.editing ?
+            <form className="user-form" onSubmit={submitUser}>
+              <input className="user-input" placeholder="UserName" onChange={updateUserName} />
+            </form>
+            : <span>{props.user.name}</span>
+        }
+        <a href="#" onClick={showForm}>
+          <i className={props.user.editing ? 'fa fa-close' :  'fa fa-pencil'} />
+        </a>
+      </div>);
 };
+
+Login.defaultProps = {
+  user: {name: 'User', editing: false}
+};
+
+Login.propTypes = {
+  user: React.PropTypes.object
+};
+
+export default Login;

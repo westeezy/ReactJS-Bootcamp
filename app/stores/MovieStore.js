@@ -21,29 +21,40 @@ class MovieStore extends EventEmitter {
   constructor() {
     super();
     this.movieModel = new MovieModel();
+    this.filtered = false;
   }
 
   getAll() {
     return this.movieModel.movies || [];
   }
 
-  getByTitle(title) { //TODO: move this to model
+  isFiltered() {
+    return this.filtered;
+  }
+
+  getByTitle(title) {
     return _.findWhere(this.getAll(), {title});
   }
 
-  set(movies) {
+  populate(movies) {
     this.movieModel.movies = movies;
+    this.filtered = false;
+    this.emitChange();
+  }
+
+  filter(movies) {
+    this.movieModel.movies = movies;
+    this.filtered = true;
     this.emitChange();
   }
 
   sort(key) {
-    this.set(this.movieModel.getSorted(key));
+    this.populate(this.movieModel.getSorted(key));
   }
 
   rate(title, rating) {
     this.movieModel.updateRating(title, rating);
-    //no need to trigger an event as the UI updates and can let this lazily
-    //happen on full refresh
+    this.emitChange();
   }
 
   emitChange() {
@@ -64,10 +75,10 @@ let store = new MovieStore();
 AppDispatcher.register((action) => {
   switch (action.actionType) {
     case MOVIES_GET_SUCCESS:
-      store.set(action.data.movies);
+      store.populate(action.data.movies);
       break;
     case FIND_MOVIE_GET_SUCCESS:
-      store.set(action.data);
+      store.filter(action.data);
       break;
     case SORT_MOVIES_BY_KEY:
       store.sort(action.data);
