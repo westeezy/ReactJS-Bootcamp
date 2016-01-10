@@ -4,42 +4,39 @@ import _ from 'lodash';
 import MovieStore from '../../stores/MovieStore';
 
 const findMovieFromAll = (props) => {
-  const title = _.get(props.context, 'params.title', '');
+  const title = _.get(props.route, 'params.title', '');
   return MovieStore.getByTitle(title);
 };
 
-const MovieTile = (props) => {
+const MovieDetail = (props) => {
   const movie = findMovieFromAll(props) || {};
   return (
-    <div className="movie-detail-container">
-      <div className="movie-detail-content">
-        <div className="pull-left">
-          <img height="300px" src={`img/${movie.cover}`} width="200px" />
-        </div>
-        <div className="pull-right">
-          <h2 className="title">{movie.title}</h2>
-
-          <h3 className="year">{movie.year}</h3>
-
-          <p className="description">{movie.description}</p>
-
-          <p>
-            <a href="/">
-              <i className="fa fa-backward" />
-              <span>  Back</span>
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>);
+		<div className="movie-detail-container">
+			<div className="movie-detail-content">
+				<div className="pull-left">
+					<img height="300px" src={`img/${movie.cover}`} width="200px" />
+				</div>
+				<div className="pull-right">
+					<h2 className="title">{movie.title}</h2>
+					<h3 className="year">{movie.year}</h3>
+					<p className="description">{movie.description}</p>
+					<p>
+						<a href="/">
+							<i className="fa fa-backward" />
+							<span>  Back</span>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>);
 };
 
-MovieTile.defaultProps = {
-  context: {}
+MovieDetail.defaultProps = {
+  route: {}
 };
 
-MovieTile.propTypes = {
-  context: React.PropTypes.object
+MovieDetail.propTypes = {
+  route: React.PropTypes.object
 };
 
-export default MovieTile;
+export default MovieDetail;

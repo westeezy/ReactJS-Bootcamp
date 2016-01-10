@@ -7,6 +7,7 @@
   "extends": "airbnb",
   "globals": {
     "describe": true,
+    "xit": true,
     "it": true,
     "sinon": true,
     "beforeEach": true

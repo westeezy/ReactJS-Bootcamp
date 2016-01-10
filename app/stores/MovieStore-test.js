@@ -5,7 +5,7 @@ describe('Stores', () => {
   describe('MovieStore', () => {
     let movieStore;
     const setMovies = () => {
-      movieStore.set([{ title: 'One', rating: '5' }, { title: 'Two' }, { title: 'Three' }]);
+      movieStore.populate([{ title: 'One', rating: '5' }, { title: 'Two' }, { title: 'Three' }]);
     };
 
     beforeEach(() => {
