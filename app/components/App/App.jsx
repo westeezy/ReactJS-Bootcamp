@@ -39,6 +39,19 @@ export default class App extends React.Component {
                 user={this.state.user}/>
         <div className="main">
           <MovieList movies={this.state.movies} user={this.state.user} />
+          {
+            /*
+            this.props.component && this.state.movies.length ?
+              <this.props.component context={this.props.context}
+                                    user={this.state.user}
+                                    movies={this.state.movies}/>
+              :
+              <div className="loader-overlay">
+                <div className="loader">Loading...</div>
+              </div>
+              */
+          }
+>>>>>>> day four stub
         </div>
       </div>
     );
@@ -56,3 +69,15 @@ export default class App extends React.Component {
     });
   }
 }
+
+App.defaultProps = {
+  component: {},
+  context: {}
+};
+
+App.propTypes = {
+  component: React.PropTypes.func,
+  context: React.PropTypes.object
+};
+
+// export default Enhance(App); //Note: the move of export to wrap
