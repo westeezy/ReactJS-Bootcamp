@@ -8,8 +8,9 @@ import AppActions from '../../actions/AppActions';
 import MovieStore from '../../stores/MovieStore';
 import UserStore from '../../stores/UserStore';
 import MovieList from '../MovieList/MovieList';
+import {Enhance} from '../Router/Router';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor(...args) {
     super(...args);
@@ -17,7 +18,7 @@ export default class App extends React.Component {
     this.userUpdated = this.userUpdated.bind(this);
     this.state = {
       movies: [],
-      user: { name: 'User' }
+      user: UserStore.getUser()
     };
   }
 
@@ -36,9 +37,21 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <Header filtered={MovieStore.isFiltered()}
-                user={this.state.user}/>
+          user={this.state.user}
+          router={this.props.route}/>
         <div className="main">
-          <MovieList movies={this.state.movies} user={this.state.user} />
+          {
+
+            this.props.component && this.state.movies.length ?
+              <this.props.component route={this.props.route}
+                                    user={this.state.user}
+                                    movies={this.state.movies}/>
+              :
+              <div className="loader-overlay">
+                <div className="loader">Loading...</div>
+              </div>
+
+          }
         </div>
       </div>
     );
@@ -56,3 +69,15 @@ export default class App extends React.Component {
     });
   }
 }
+
+App.defaultProps = {
+  component: {},
+  router: {}
+};
+
+App.propTypes = {
+  component: React.PropTypes.func,
+  router: React.PropTypes.object
+};
+
+export default Enhance(App); //Note: the move of export to wrap

@@ -1,0 +1,36 @@
+.movie-detail-container {
+  color: white;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+
+  .movie-detail-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      font-size: 0.85rem;
+    }
+  }
+
+  .pull-right {
+    margin-left: 20px;
+    width: 250px;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  p {
+    margin-top: 15px;
+  }
+}

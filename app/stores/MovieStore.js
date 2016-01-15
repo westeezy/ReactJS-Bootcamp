@@ -49,13 +49,12 @@ class MovieStore extends EventEmitter {
   }
 
   sort(key) {
-    this.set(this.movieModel.getSorted(key));
+    this.populate(this.movieModel.getSorted(key));
   }
 
   rate(title, rating) {
     this.movieModel.updateRating(title, rating);
-    //no need to trigger an event as the UI updates and can let this lazily
-    //happen on full refresh
+    this.emitChange();
   }
 
   emitChange() {

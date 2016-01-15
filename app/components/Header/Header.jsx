@@ -4,7 +4,6 @@ import AppActions from '../../actions/AppActions';
 import Login from '../Login/Login';
 
 export default class Header extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +37,7 @@ export default class Header extends React.Component {
 
   search(e) {
     e.preventDefault();
+    this.setState({filtered: true});
     AppActions.searchMovies(this.state.searchTerm);
   }
 
@@ -47,12 +47,12 @@ export default class Header extends React.Component {
 
   reset() {
     AppActions.fetchMovies();
-    this.setState({searchTerm: undefined});
+    this.setState({searchTerm: undefined, filtered: false});
   }
 
   getSearchBox() {
     let searchBox;
-    if (this.props.filtered) {
+    if (this.state.filtered) {
       searchBox = (
         <h3 className="term">
           {this.state.searchTerm}
