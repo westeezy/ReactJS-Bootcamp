@@ -1,8 +1,10 @@
 import React from 'react';
 
+const MAX_STARS = 5;
+
 export default class Rating extends React.Component {
-	constructor(props, ...args) {
-		super(props, ...args);
+	constructor(props) {
+		super(props);
 	}
 
 	render() {

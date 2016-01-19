@@ -11,8 +11,8 @@ import './_Header.scss';
 // TODO: Wire up sort functionality
 
 export default class Header extends React.Component {
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -21,16 +21,12 @@ export default class Header extends React.Component {
         <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-            <form onSubmit={f => f} className="search-form">
-              <input className="search-input"
-                type="text"
-                placeholder="Search"/>
-              <select onChange={f => f} className={"display-select"}>
-                <option>View By:</option>
-                <option value="title">Title</option>
-                <option value="rating">Rating</option>
-              </select>
-            </form>
+            { this.getSearchBox() }
+            <select onChange={f => f} className={"display-select"}>
+              <option>View By:</option>
+              <option value="title">Title</option>
+              <option value="rating">Rating</option>
+            </select>
           </div>
         </div>
       </header>
@@ -50,16 +46,16 @@ export default class Header extends React.Component {
     console.log('reset');
   }
 
-}
+  updateSearchTerm(e) {
+    console.log(e.target.value);
+  }
 
-/*
-   //  Markup for searchBox
-    const searchBox = true ?
+  getSearchBox() {
+    return true ?
       <form className="search-form" onSubmit={this.search.bind(this)}>
         <input ref="searchBox"
           className="search-input"
           type="text"
-          value={this.state.searchTerm}
           onChange={this.updateSearchTerm.bind(this)}
           placeholder="Search"/>
       </form>
@@ -71,4 +67,6 @@ export default class Header extends React.Component {
                 onClick={this.reset.bind(this)}/>
             </a>
           </h3>;
-*/
+  }
+}
+

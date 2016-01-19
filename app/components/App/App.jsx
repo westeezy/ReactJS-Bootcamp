@@ -17,8 +17,8 @@ let moviesModel = new MoviesModel();
 // TODO: Refactor to use state.
 export default class App extends React.Component {
 
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -27,7 +27,6 @@ export default class App extends React.Component {
         <Header />
         <div className="movie-list">
           <ul className="items">
-
             <MovieTile />
           </ul>
         </div>
@@ -35,23 +34,24 @@ export default class App extends React.Component {
     );
   }
 
-  /*
-     search(query) {
-     this.setState({
-movies: moviesModel.getBySearch(query)
-});
-}
+  search(query) {
+    console.log(`search ${query}`);
+    //this.setState({
+    //  movies: moviesModel.getBySearch(query)
+    //});
+  }
 
-sort(key) {
-this.setState({
-movies: moviesModel.getSorted(key)
-});
-}
+  sort(key) {
+    console.log(`sort ${key}`);
+    //this.setState({
+    //  movies: moviesModel.getSorted(key)
+    //});
+  }
 
-reset() {
-moviesModel.movies = getMoviesNow();
-this.setState({movies: moviesModel.movies})
-}
-*/
+  reset() {
+    console.log('reset');
+    //moviesModel.movies = getMoviesNow();
+    //this.setState({movies: moviesModel.movies})
+  }
 }
 

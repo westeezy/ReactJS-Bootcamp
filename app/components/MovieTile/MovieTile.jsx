@@ -26,4 +26,12 @@ let MovieTile = (props) => {
 	);
 };
 
+MovieTile.defaultProps = {
+  movie: {}
+};
+
+MovieTile.propTypes = {
+  movie: React.PropTypes.obj
+};
+
 export default MovieTile;
