@@ -2,10 +2,6 @@ import React from 'react';
 import './_Header.scss';
 
 export default class Header extends React.Component {
-  constructor(...args) {
-    super(...args);
-  }
-
   render() {
     return (
       <header className="app-header">

@@ -5,10 +5,6 @@ import './_MovieTile.scss';
 // TODO: Add some more text and see hot reloader
 
 export default class MovieTile extends React.Component {
-  constructor(...args) {
-    super(...args);
-  }
-
   render() {
     return (
       <div className="movie-list">
