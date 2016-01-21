@@ -4,7 +4,7 @@ import _ from 'lodash';
 import MovieStore from '../../stores/MovieStore';
 
 const findMovieFromAll = (props) => {
-	let title = _.get(props.context, 'params.title', '');
+	let title = _.get(props.route, 'params.title', '');
 	return MovieStore.getByTitle(title);
 }
 
@@ -32,11 +32,11 @@ let MovieDetail = (props) => {
 };
 
 MovieDetail.defaultProps = {
-	context: {}
+	route: {}
 };
 
 MovieDetail.propTypes = {
-	context: React.PropTypes.object
+	route: React.PropTypes.object
 };
 
 export default MovieDetail;
