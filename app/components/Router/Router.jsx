@@ -4,7 +4,7 @@ import page from 'page';
 import MovieList from '../MovieList/MovieList';
 import MovieDetail from '../MovieDetail/MovieDetail';
 
-export var Enhance = ComposedComponent => class extends React.Component {
+export const Enhance = ComposedComponent => class extends React.Component {
   constructor() {
     super();
     this.state = { data: null, component: null };

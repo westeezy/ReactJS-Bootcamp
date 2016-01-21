@@ -54,6 +54,7 @@ class MovieStore extends EventEmitter {
 
   rate(title, rating) {
     this.movieModel.updateRating(title, rating);
+    this.emitChange();
   }
 
   emitChange() {
