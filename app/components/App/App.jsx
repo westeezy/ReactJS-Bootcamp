@@ -51,7 +51,6 @@ export default class App extends React.Component {
               </div>
               */
           }
->>>>>>> day four stub
         </div>
       </div>
     );

@@ -2,7 +2,6 @@ import React from 'react';
 import AppActions from '../../actions/AppActions';
 import './_Login.scss';
 
-
 const Login = (props) => {
   const showForm = () => {
     AppActions.editUser({showForm: !props.user.editing});
