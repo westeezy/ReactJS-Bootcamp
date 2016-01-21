@@ -37,12 +37,13 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header filtered={MovieStore.isFiltered()}
-                user={this.state.user}/>
+          user={this.state.user}
+          router={this.props.route}/>
         <div className="main">
           {
 
             this.props.component && this.state.movies.length ?
-              <this.props.component context={this.props.context}
+              <this.props.component route={this.props.route}
                                     user={this.state.user}
                                     movies={this.state.movies}/>
               :
@@ -71,12 +72,12 @@ class App extends React.Component {
 
 App.defaultProps = {
   component: {},
-  context: {}
+  router: {}
 };
 
 App.propTypes = {
   component: React.PropTypes.func,
-  context: React.PropTypes.object
+  router: React.PropTypes.object
 };
 
 export default Enhance(App); //Note: the move of export to wrap

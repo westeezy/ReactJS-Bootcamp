@@ -2,6 +2,7 @@ import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
 import Login from '../Login/Login';
+import page from 'page';
 
 export default class Header extends React.Component {
 
@@ -38,6 +39,7 @@ export default class Header extends React.Component {
 
   search(e) {
     e.preventDefault();
+    // page(`/movies/${this.state.searchTerm}`);
     AppActions.searchMovies(this.state.searchTerm);
   }
 
@@ -47,6 +49,7 @@ export default class Header extends React.Component {
 
   reset() {
     AppActions.fetchMovies();
+    // page('/');
     this.setState({searchTerm: undefined});
   }
 

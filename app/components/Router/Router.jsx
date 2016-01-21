@@ -34,6 +34,6 @@ export const Enhance = ComposedComponent => class extends React.Component {
   render() {
     return ( <ComposedComponent {...this.props}
                               component={this.state.component}
-                              context={this.state.context} /> );
+                              route={this.state.context} /> );
   }
 };
