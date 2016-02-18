@@ -9,7 +9,8 @@ import {
   SORT_MOVIES_BY_KEY,
   RATE_MOVIE,
   USER_UPDATED,
-  USER_EDITING
+  USER_EDITING,
+  CART_UPDATED
 }
 from '../constants/AppConstants';
 
@@ -60,6 +61,13 @@ export default {
     AppDispatcher.dispatch({
       data: isEditing,
       actionType: USER_EDITING
+    });
+  },
+
+  addMovieToCart(movie) {
+    AppDispatcher.dispatch({
+      data: movie,
+      actionType: CART_UPDATED
     });
   }
 };

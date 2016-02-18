@@ -2,10 +2,15 @@ import './_MovieDetail.scss';
 import React from 'react';
 import _ from 'lodash';
 import MovieStore from '../../stores/MovieStore';
+import AppActions from '../../actions/AppActions';
 
 const findMovieFromAll = (props) => {
   const title = _.get(props.route, 'params.title', '');
   return MovieStore.getByTitle(title);
+};
+
+const addToCart = (i) => {
+  AppActions.addMovieToCart(i.route);
 };
 
 const MovieDetail = (props) => {
@@ -26,6 +31,7 @@ const MovieDetail = (props) => {
 							<span>  Back</span>
 						</a>
 					</p>
+					<p onClick={addToCart.bind(this, props)}>Add To Cart</p>
 				</div>
 			</div>
 		</div>);

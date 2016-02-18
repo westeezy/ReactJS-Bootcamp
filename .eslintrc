@@ -21,6 +21,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "arrow-body-style": 0,
     "comma-dangle": [2, "never"],
     "max-len": [2, 140, 4],
     "new-cap": 0,

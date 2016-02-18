@@ -6,6 +6,7 @@ import AppActions from '../../actions/AppActions';
 import MovieStore from '../../stores/MovieStore';
 import UserStore from '../../stores/UserStore';
 import { Enhance } from '../Router/Router';
+import CartStore from '../../stores/CartStore';
 
 class App extends React.Component {
 
@@ -13,9 +14,11 @@ class App extends React.Component {
     super(...args);
     this.moviesUpdated = this.moviesUpdated.bind(this);
     this.userUpdated = this.userUpdated.bind(this);
+    this.cartUpdated = this.cartUpdated.bind(this);
     this.state = {
       movies: [],
-      user: UserStore.getUser()
+      user: UserStore.getUser(),
+      cart: []
     };
   }
 
@@ -23,11 +26,19 @@ class App extends React.Component {
     AppActions.fetchMovies();
     MovieStore.addChangeListener(this.moviesUpdated);
     UserStore.addChangeListener(this.userUpdated);
+    CartStore.addChangeListener(this.cartUpdated);
   }
 
   componentWillUnmount() {
     MovieStore.removeChangeListener(this.moviesUpdated);
     UserStore.removeChangeListener(this.userUpdated);
+    CartStore.removeChangeListener(this.cartUpdated);
+  }
+
+  cartUpdated() {
+    this.setState({
+      cart: CartStore.getMovies()
+    });
   }
 
   moviesUpdated() {
@@ -53,6 +64,7 @@ class App extends React.Component {
 
             this.props.component && this.state.movies.length ?
               <this.props.component route={this.props.route}
+                cart={this.state.cart}
                 user={this.state.user}
                 movies={this.state.movies} />
               :

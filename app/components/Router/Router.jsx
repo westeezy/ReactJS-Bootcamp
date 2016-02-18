@@ -2,6 +2,7 @@
 import React from 'react';
 import page from 'page';
 import MovieList from '../MovieList/MovieList';
+import CartList from '../CartList/CartList';
 import MovieDetail from '../MovieDetail/MovieDetail';
 
 export const Enhance = ComposedComponent => class extends React.Component {
@@ -21,6 +22,13 @@ export const Enhance = ComposedComponent => class extends React.Component {
     page('/movies/:title', (ctx) => {
       this.setState({
         component: MovieDetail,
+        context: ctx
+      });
+    });
+
+    page('/cart', (ctx) => {
+      this.setState({
+        component: CartList,
         context: ctx
       });
     });

@@ -2,13 +2,24 @@ import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
 import Login from '../Login/Login';
+import CartStore from '../../stores/CartStore';
 
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: null
+      searchTerm: null,
+      cart: []
     };
+    this.cartUpdated = this.cartUpdated.bind(this);
+  }
+
+  componentDidMount() {
+    CartStore.addChangeListener(this.cartUpdated);
+  }
+
+  componentWillUnmount() {
+    CartStore.removeChangeListener(this.cartUpdated);
   }
 
   getSearchBox() {
@@ -38,6 +49,12 @@ export default class Header extends React.Component {
     return searchBox;
   }
 
+  cartUpdated() {
+    this.setState({
+      cart: CartStore.getMovies()
+    });
+  }
+
   search(e) {
     e.preventDefault();
     this.setState({ filtered: true });
@@ -65,6 +82,10 @@ export default class Header extends React.Component {
         <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
+            <a className="header-cart-container" href={'/cart/'}>
+              <div className="fa fa-shopping-cart"></div>
+              <div className="circle">{this.state.cart.length}</div>
+            </a>
             { this.getSearchBox() }
             <select className="display-select"
               onChange={this.sort.bind(this)}>

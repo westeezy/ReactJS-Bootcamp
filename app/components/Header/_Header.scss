@@ -22,6 +22,37 @@
 
   .header-right {
     float: right;
+    width: 515px;
+  }
+
+  .header-cart-container{
+    position: relative;
+    top: 8px;
+    float: left;
+    margin-right: 10px;
+    display: inline;
+
+    .fa-shopping-cart{
+      color: white;
+      text-decoration: none;
+      font-size: 24pt;
+      display: inline-block;
+    }
+
+    .circle {
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      background-color: #fff;
+      color: #000;
+      text-align: center;
+      font-size: 14pt;
+      line-height: 19pt;
+      display: inline-block;
+      margin-left: 5px;
+      font-weight: bolder;
+    }
+
   }
 
   .search-form {
@@ -45,6 +76,7 @@
     margin: 10px 5px;
     padding: 0 8px;
     float: left;
+    display: inline;
     color: white;
     border: 1px solid white;
     background-color: rgba(0, 0, 0, 0.7);
@@ -56,6 +88,8 @@
   .search-input {
     width: 200px;
     padding-left: 26px;
+    float: left;
+    display: inline;
 
     &:before {
       content: "S";
