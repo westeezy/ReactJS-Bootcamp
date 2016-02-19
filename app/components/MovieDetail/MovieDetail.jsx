@@ -31,7 +31,10 @@ const MovieDetail = (props) => {
 							<span>  Back</span>
 						</a>
 					</p>
-					<p onClick={addToCart.bind(this, props)}>Add To Cart</p>
+					<p>
+						<button onClick={addToCart.bind(this, props)}>Add To Cart</button>
+					</p>
+
 				</div>
 			</div>
 		</div>);

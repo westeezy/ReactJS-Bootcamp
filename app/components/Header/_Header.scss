@@ -41,18 +41,16 @@
 
     .circle {
       border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      background-color: #fff;
-      color: #000;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      color: white;
       text-align: center;
-      font-size: 14pt;
-      line-height: 19pt;
+      font-size: 12pt;
+      line-height: 15pt;
       display: inline-block;
       margin-left: 5px;
-      font-weight: bolder;
     }
-
   }
 
   .search-form {

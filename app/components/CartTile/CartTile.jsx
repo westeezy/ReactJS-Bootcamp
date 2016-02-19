@@ -19,7 +19,7 @@ const CartTile = (props) => {
         <div className="content-container bold">
           <h2>{movie.title} {`(${movie.year})`}</h2>
           <p>{movie.description}</p>
-          <Rating stars={movie.rating ? Number(movie.rating) : 0} />
+          <Rating stars={movie.rating ? Number(movie.rating) : 0} title={movie.title} />
         </div>
       </div>
     </li>
