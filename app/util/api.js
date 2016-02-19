@@ -7,7 +7,7 @@ export function getMovies() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(movies);
-    }, 1000);
+    }, 500);
   });
 }
 
@@ -16,6 +16,6 @@ export function searchMovies(title) {
     setTimeout(() => {
       let movie = _.findWhere(movies.movies, {title});
       resolve(movie);
-    }, 1000);
+    }, 0);
   });
 }

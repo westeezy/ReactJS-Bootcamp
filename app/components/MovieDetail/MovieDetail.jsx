@@ -4,11 +4,11 @@ import _ from 'lodash';
 import MovieStore from '../../stores/MovieStore';
 
 const findMovieFromAll = (props) => {
-	let title = _.get(props.context, 'params.title', '');
+	let title = _.get(props.route, 'params.title', '');
 	return MovieStore.getByTitle(title);
 }
 
-let MovieTile = (props) => {
+let MovieDetail = (props) => {
 	let movie = findMovieFromAll(props) || {};
 	return (
 		<div className='movie-detail-container'>
@@ -31,12 +31,12 @@ let MovieTile = (props) => {
 		</div>);
 };
 
-MovieTile.defaultProps = {
-	context: {}
+MovieDetail.defaultProps = {
+	route: {}
 };
 
-MovieTile.propTypes = {
-	context: React.PropTypes.object
+MovieDetail.propTypes = {
+	route: React.PropTypes.object
 };
 
-export default MovieTile;
+export default MovieDetail;

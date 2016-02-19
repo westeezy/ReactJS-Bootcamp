@@ -4,7 +4,7 @@ import page from 'page';
 import MovieList from '../MovieList/MovieList';
 import MovieDetail from '../MovieDetail/MovieDetail';
 
-export const Enhance = ComposedComponent => class extends React.Component {
+export var Enhance = ComposedComponent => class extends React.Component {
   constructor() {
     super();
     this.state = { data: null, component: null };
@@ -34,6 +34,6 @@ export const Enhance = ComposedComponent => class extends React.Component {
   render() {
     return ( <ComposedComponent {...this.props}
                               component={this.state.component}
-                              route={this.state.context} /> );
+                              context={this.state.context} /> );
   }
 };

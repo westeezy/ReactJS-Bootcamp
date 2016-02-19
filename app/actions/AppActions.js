@@ -8,7 +8,8 @@ import {
   FIND_MOVIE_GET_SUCCESS,
   SORT_MOVIES_BY_KEY,
   RATE_MOVIE,
-  USER_UPDATED
+  USER_UPDATED,
+  USER_EDITING
 }
 from '../constants/AppConstants';
 
@@ -23,7 +24,7 @@ export default {
       });
     },
 
-    searchMovie(title) {
+    searchMovies(title) {
       searchMovies(title).then((movie) => {
         AppDispatcher.dispatch({
           data: [movie],
@@ -53,6 +54,12 @@ export default {
         data: user,
         actionType: USER_UPDATED
       });
-    }
+    },
 
+    editUser(isEditing) {
+      AppDispatcher.dispatch({
+        data: isEditing,
+        actionType: USER_EDITING
+      });
+    }
 };

@@ -11,7 +11,7 @@ let MovieTile = (props) => {
 			<div className="content">
 				<h2>{props.movie.title}</h2>
         <Rating stars={parseInt(_.get(props, 'movie.rating',0))}
-          title={_.get(props, 'movie.title')}/>
+          			title={_.get(props, 'movie.title')}/>
 			</div>
 		</a>
 	</li>);
