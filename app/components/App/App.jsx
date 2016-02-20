@@ -58,23 +58,21 @@ class App extends React.Component {
       <div className="app">
         <Header filtered={MovieStore.isFiltered()}
           user={this.state.user}
-          router={this.props.route} />
+          router={this.props.route}
+          cartCount={this.state.cart.length} />
         <div className="main">
           {
-
             this.props.component && this.state.movies.length ?
               <this.props.component route={this.props.route}
                 cart={this.state.cart}
                 user={this.state.user}
                 movies={this.state.movies} />
-              :
-                <div className="loader-overlay">
+              : <div className="loader-overlay">
                   <div className="loader">Loading...</div>
-                </div>
-
-                }
               </div>
-            </div>
+          }
+          </div>
+        </div>
     );
   }
 }

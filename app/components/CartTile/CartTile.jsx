@@ -1,15 +1,9 @@
 import React from 'react';
 import './_CartTile.scss';
-import MovieStore from '../../stores/MovieStore';
 import Rating from '../Rating/Rating';
 
-const findMovieFromAll = (props) => {
-  const title = props.cartItem.params.title;
-  return MovieStore.getByTitle(title);
-};
-
 const CartTile = (props) => {
-  const movie = findMovieFromAll(props) || {};
+  const movie = props.movie;
   return (
     <li className="cart-tile">
       <div className="cart-container">
@@ -31,7 +25,8 @@ CartTile.defaultProps = {
 };
 
 CartTile.propTypes = {
-  cart: React.PropTypes.object
+  cart: React.PropTypes.object,
+  movie: React.PropTypes.object
 };
 
 export default CartTile;

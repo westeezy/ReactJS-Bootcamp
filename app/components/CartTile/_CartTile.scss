@@ -1,32 +1,26 @@
-
 .cart-tile{
-    width: 500px;
-    height: 150px;
-    border: 1px solid white;
-    margin: 10px auto;
+  width: 500px;
+  border: 1px solid white;
+  margin: 10px auto;
+  padding: 20px;
+  color: white;
+
+  .cart-container{
     text-align: left;
-    padding: 20px;
 
-    .cart-container{
-      text-align: left;
+    .image-container, .content-container{
+      display: inline-block;
+    }
 
-      .image-container, .content-container{
-        display: inline-block;
-      }
+    .content-container{
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 10px;
+      width: 380px;
 
-      .content-container{
-        display: inline-block;
-        vertical-align: top;
-        margin-left: 10px;
-        width: 380px;
-
-        h2, p, Rating{
-          margin-bottom: 8px;
-        }
+      h2, p, Rating{
+        margin-bottom: 8px;
       }
     }
-}
-
-li{
-  color: white;
+  }
 }

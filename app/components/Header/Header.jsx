@@ -2,57 +2,14 @@ import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
 import Login from '../Login/Login';
-import CartStore from '../../stores/CartStore';
 
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: null,
-      cart: []
+      submitted: false
     };
-    this.cartUpdated = this.cartUpdated.bind(this);
-  }
-
-  componentDidMount() {
-    CartStore.addChangeListener(this.cartUpdated);
-  }
-
-  componentWillUnmount() {
-    CartStore.removeChangeListener(this.cartUpdated);
-  }
-
-  getSearchBox() {
-    let searchBox;
-    if (this.state.filtered) {
-      searchBox = (
-        <h3 className="term">
-          {this.state.searchTerm}
-          <a href="#">
-            <i className="fa fa-remove"
-              onClick={this.reset.bind(this)} />
-          </a>
-        </h3>
-      );
-    } else {
-      searchBox = (
-        <form className="search-form" onSubmit={this.search.bind(this)}>
-          <input ref="searchBox"
-            className="search-input"
-            type="text"
-            placeholder="Search"
-            value={this.state.searchTerm}
-            onChange={this.updateSearchTerm.bind(this)} />
-        </form>
-      );
-    }
-    return searchBox;
-  }
-
-  cartUpdated() {
-    this.setState({
-      cart: CartStore.getMovies()
-    });
   }
 
   search(e) {
@@ -77,16 +34,36 @@ export default class Header extends React.Component {
   }
 
   render() {
+    let searchBox;
+    if (this.state.filtered) {
+      searchBox = (
+        <h3 className="term">
+          {this.state.searchTerm}
+          <a href="#">
+            <i className="fa fa-remove"
+              onClick={this.reset.bind(this)} />
+          </a>
+        </h3>
+      );
+    } else {
+      searchBox = (
+        <form className="search-form" onSubmit={this.search.bind(this)}>
+          <input ref="searchBox"
+            className="search-input"
+            type="text"
+            placeholder="Search"
+            value={this.state.searchTerm}
+            onChange={this.updateSearchTerm.bind(this)} />
+        </form>
+      );
+    }
+
     return (
       <header className="app-header">
         <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-            <a className="header-cart-container" href={'/cart/'}>
-              <div className="fa fa-shopping-cart"></div>
-              <div className="circle">{this.state.cart.length}</div>
-            </a>
-            { this.getSearchBox() }
+            { searchBox }
             <select className="display-select"
               onChange={this.sort.bind(this)}>
               <option>View By:</option>
@@ -94,6 +71,10 @@ export default class Header extends React.Component {
               <option value="rating">Rating</option>
             </select>
             <Login user={this.props.user} />
+            <a className="header-cart-container" href="/cart">
+              <div className="fa fa-shopping-cart"></div>
+              <div className="circle">{this.props.cartCount}</div>
+            </a>
           </div>
         </div>
       </header>
@@ -102,5 +83,6 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: React.PropTypes.object
+  user: React.PropTypes.object,
+  cartCount: React.PropTypes.number
 };
