@@ -27,8 +27,8 @@ class MovieStore extends EventEmitter {
     return this.movieModel.movies || [];
   }
 
-  getByTitle(title) { //TODO: move this to model
-    return _.findWhere(this.getAll(), {title});
+  getByTitle(title) { // TODO: move this to model
+    return _.findWhere(this.getAll(), { title });
   }
 
   set(movies) {
@@ -42,8 +42,8 @@ class MovieStore extends EventEmitter {
 
   rate(title, rating) {
     this.movieModel.updateRating(title, rating);
-    //no need to trigger an event as the UI updates and can let this lazily
-    //happen on full refresh
+    // no need to trigger an event as the UI updates and can let this lazily
+    // happen on full refresh
   }
 
   emitChange() {
@@ -59,7 +59,7 @@ class MovieStore extends EventEmitter {
   }
 }
 
-let store = new MovieStore();
+const store = new MovieStore();
 
 AppDispatcher.register((action) => {
   switch (action.actionType) {

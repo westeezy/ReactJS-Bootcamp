@@ -16,23 +16,6 @@ export default class Login extends React.Component {
     };
   }
 
-  render() {
-    return (
-      <div className="app-login">
-        {
-          this.state.edit ?
-            <form className="user-form" onSubmit={this.submitUser}>
-              <input className="user-input" placeholder="UserName" value={this.state.newUser} onChange={this.updateUserName} />
-            </form>
-            : <span>{this.state.user}</span>
-        }
-        <a href="#" onClick={() => this.showForm()}>
-          <i className={this.state.edit ? 'fa fa-close' :  'fa fa-pencil'} />
-        </a>
-      </div>
-    );
-  }
-
   showForm() {
     this.setState({
       edit: !this.state.edit
@@ -54,4 +37,21 @@ export default class Login extends React.Component {
 
     changeUser({ name: this.state.newUser });
   }
-};
+
+  render() {
+    return (
+      <div className="app-login">
+        {
+          this.state.edit ?
+            <form className="user-form" onSubmit={this.submitUser}>
+              <input className="user-input" placeholder="UserName" value={this.state.newUser} onChange={this.updateUserName} />
+            </form>
+            : <span>{this.state.user}</span>
+        }
+        <a href="#" onClick={() => this.showForm()}>
+          <i className={this.state.edit ? 'fa fa-close' : 'fa fa-pencil'} />
+        </a>
+      </div>
+    );
+  }
+}

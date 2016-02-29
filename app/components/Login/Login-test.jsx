@@ -10,20 +10,20 @@ describe('Components', () => {
     let component;
 
     beforeEach(() => {
-      let wrapper = class Wrapper extends React.Component {
+      const wrapper = class Wrapper extends React.Component {
         render() {
           return (
-            <div><Login user={'Test'}/></div>
+            <div><Login user={'Test'} /></div>
           );
         }
       };
 
-      let element = React.createElement(wrapper);
+      const element = React.createElement(wrapper);
       component = TestUtils.renderIntoDocument(element);
     });
 
     it('should render into the document', () => {
-      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'app-login');
+      const result = TestUtils.findRenderedDOMComponentWithClass(component, 'app-login');
       expect(result).to.be.defined;
     });
   });

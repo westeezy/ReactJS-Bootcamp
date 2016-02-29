@@ -2,7 +2,7 @@ import React from 'react';
 import './_MovieList.scss';
 import MovieTile from '../MovieTile/MovieTile';
 
-let MovieList = (props) => {
+const MovieList = (props) => {
   return (<div className="movie-list">
     <h1 className="categoryHeader">Top Picks For { props.user.name }</h1>
     <ul className="items">

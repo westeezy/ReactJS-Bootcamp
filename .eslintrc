@@ -20,6 +20,11 @@
   },
   "plugins": ["react"],
   "rules": {
-    "comma-dangle": [2, "never"]
+    "comma-dangle": [2, "never"],
+    "max-len": [2, 140, 4],
+    "new-cap": 0,
+    "radix": [2, "as-needed"],
+    "react/jsx-closing-bracket-location": [2, "after-props"],
+    "react/jsx-no-bind": 0,
   }
 }

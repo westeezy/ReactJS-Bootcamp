@@ -1,8 +1,8 @@
-var pkg = require('../package.json');
-var path = require('path');
+const pkg = require('../package.json');
+const path = require('path');
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
 
 module.exports = {
   context: path.join(__dirname, '../public'),
@@ -19,7 +19,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'] },
-      { test: /\.scss$/, loaders: ['style', 'css', 'sass']}
+      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] }
     ],
     noParse: [
       './public/scripts/dist/'

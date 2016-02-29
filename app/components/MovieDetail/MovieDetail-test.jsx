@@ -5,37 +5,37 @@ import { expect } from 'chai';
 import MovieDetail from './MovieDetail';
 
 MovieDetail.__Rewire__('MovieStore', {
-    getByTitle: () => {
-      return {
-        title: 'Fake Title',
-        year: '2015',
-        description: 'Fake Desc',
-      };
-    }
+  getByTitle: () => {
+    return {
+      title: 'Fake Title',
+      year: '2015',
+      description: 'Fake Desc'
+    };
+  }
 });
 
 describe('Components', () => {
   describe('MovieDetail', () => {
-    let component,
-        props = { context: { params: {title: 'Monopoly'} } };
+    let component;
+    const props = { context: { params: { title: 'Monopoly' } } };
 
     beforeEach(() => {
-      let wrapper = React.createClass({
+      const wrapper = React.createClass({
         render: () => {
           return <MovieDetail {...props} />;
         }
       });
-      let element = React.createElement(wrapper);
+      const element = React.createElement(wrapper);
       component = TestUtils.renderIntoDocument(element);
     });
 
     it('should render into the document', () => {
-      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-detail-container');
+      const result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-detail-container');
       expect(result).to.be.defined;
     });
 
     it('should render the movie passed in through props', () => {
-      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-detail-container');
+      const result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-detail-container');
       expect(result.querySelector('.title').innerHTML).to.equal('Fake Title');
       expect(result.querySelector('.year').innerHTML).to.equal('2015');
       expect(result.querySelector('.description').innerHTML).to.equal('Fake Desc');

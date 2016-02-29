@@ -6,19 +6,19 @@ import _ from 'lodash';
  */
 
 export default class movies {
-  //no constructor on purpose
+  // no constructor on purpose
 
   get movies() {
     return _.clone(this._movies);
   }
 
-  set movies(_movies) { //only way to modify movies
+  set movies(_movies) { // only way to modify movies
     // could have used Symbols trick as well
     this._movies = _movies;
   }
 
   getSorted(key) {
-    let _movies = this.movies;
+    const _movies = this.movies;
     return _.sortBy(_movies, (movie) => {
       if (key === 'rating') {
         return parseInt(movie[key]);
@@ -29,18 +29,18 @@ export default class movies {
   }
 
   getBySearch(title, moviesArray) {
-    let _movies = moviesArray || this.movies;
-    let result = _.findWhere(_movies, {
+    const _movies = moviesArray || this.movies;
+    const result = _.findWhere(_movies, {
       title
     });
     return result ? [result] : [];
   }
 
   updateRating(title, rating) {
-    let moviesList = this.movies;
-    let [movie] = this.getBySearch(title, moviesList);
+    const moviesList = this.movies;
+    const [movie] = this.getBySearch(title, moviesList);
     if (movie) {
-      movie.rating = '' + rating;
+      movie.rating = `${rating}`;
       this.movies = moviesList;
     }
   }

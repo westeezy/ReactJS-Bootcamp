@@ -8,25 +8,26 @@ import MovieTile from './MovieTile';
 
 describe('Components', () => {
   describe('MovieTile', () => {
-    let component, props;
+    let component;
+    let props;
 
     beforeEach(() => {
-      let wrapper = React.createClass({
+      const wrapper = React.createClass({
         render: () => {
           return <MovieTile />;
         }
       });
-      let element = React.createElement(wrapper, props);
+      const element = React.createElement(wrapper, props);
       component = TestUtils.renderIntoDocument(element);
     });
 
     it('should render into the document', () => {
-      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-tile-container');
+      const result = TestUtils.findRenderedDOMComponentWithClass(component, 'movie-tile-container');
       expect(result).to.be.defined;
     });
 
     it('should compose the rating component', () => {
-      let result = TestUtils.findRenderedDOMComponentWithClass(component, 'stars');
+      const result = TestUtils.findRenderedDOMComponentWithClass(component, 'stars');
       expect(result).to.be.defined;
     });
   });
