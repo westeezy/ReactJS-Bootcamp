@@ -1,7 +1,7 @@
 'use strict';
 
 import './index.html';
-import 'babel-core/polyfill';
+import 'babel-polyfill';
 import 'normalize.css/normalize.css';
 import './scss/app.scss';
 import 'font-awesome/css/font-awesome.css';

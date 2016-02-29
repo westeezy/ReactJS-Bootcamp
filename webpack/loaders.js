@@ -35,7 +35,7 @@ if (DEBUG || TEST) {
     //Not needed since .babelrc. keeping for legacy reasons
     //jsxLoader.push('babel-loader?optional[]=runtime&stage=0&plugins=rewire');
   } else {
-    jsxLoader.push('babel-loader?optional[]=runtime&stage=0');
+    jsxLoader.push('babel-loader');
   }
   sassParams.push('sourceMap', 'sourceMapContents=true');
   sassLoader = [
@@ -45,7 +45,7 @@ if (DEBUG || TEST) {
     'sass-loader?' + sassParams.join('&')
   ].join('!');
 } else {
-  jsxLoader = ['babel-loader?optional=runtime'];
+  jsxLoader = ['babel-loader'];
   sassLoader = ExtractTextPlugin.extract('style-loader', [
     'css-loader',
     'postcss-loader',
