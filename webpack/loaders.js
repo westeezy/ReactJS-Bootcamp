@@ -1,3 +1,5 @@
+'use strict'; // eslint-disable-line strict
+
 const path = require('path');
 const pkg = require('../package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');

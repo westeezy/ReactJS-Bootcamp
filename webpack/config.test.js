@@ -1,3 +1,5 @@
+'use strict'; // eslint-disable-line strict
+
 const config = require('./config');
 
 delete config.context;

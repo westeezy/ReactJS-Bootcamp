@@ -189,7 +189,7 @@ export default class movies {
 
   getBySearch(title, moviesArray) {
     let movies = moviesArray || this.movies;
-    let result = _.findWhere(movies, {
+    let result = _.find(movies, {
       title
     });
     return result ? [result] : [];
@@ -226,7 +226,7 @@ export function getMovies() {
 export function searchMovies(title) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      let movie = _.findWhere(movies.movies, {title})
+      let movie = _.find(movies.movies, {title})
       resolve(movie)
     }, 1000);
   });

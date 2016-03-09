@@ -13,9 +13,7 @@ describe('Components', () => {
 
     beforeEach(() => {
       const wrapper = React.createClass({
-        render: () => {
-          return <MovieTile />;
-        }
+        render: () => <MovieTile />
       });
       const element = React.createElement(wrapper, props);
       component = TestUtils.renderIntoDocument(element);

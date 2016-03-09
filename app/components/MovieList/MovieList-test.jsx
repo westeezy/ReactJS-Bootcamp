@@ -11,9 +11,7 @@ describe('Components', () => {
 
     beforeEach(() => {
       const wrapper = React.createClass({
-        render: () => {
-          return <MovieList {...props} />;
-        }
+        render: () => <MovieList {...props} />
       });
 
       const element = React.createElement(wrapper);

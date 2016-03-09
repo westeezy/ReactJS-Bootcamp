@@ -3,8 +3,8 @@ import _ from 'lodash';
 import './_MovieTile.scss';
 import Rating from '../Rating/Rating';
 
-const MovieTile = (props) => {
-  return (<li className="movie-tile-container item">
+const MovieTile = (props) =>
+  (<li className="movie-tile-container item">
       <div
         className="bg-img"
         style={{ backgroundImage: `url('img/${props.movie.cover}')` }}></div>
@@ -17,7 +17,6 @@ const MovieTile = (props) => {
         </div>
       </a>
     </li>);
-};
 
 MovieTile.defaultProps = {
   movie: {}

@@ -26,5 +26,7 @@
     "radix": [2, "as-needed"],
     "react/jsx-closing-bracket-location": [2, "after-props"],
     "react/jsx-no-bind": 0,
+    "react/prefer-es6-class": 1,
+    "react/prefer-stateless-function": 1
   }
 }

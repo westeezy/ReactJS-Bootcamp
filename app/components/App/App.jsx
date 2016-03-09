@@ -43,13 +43,14 @@ class App extends React.Component {
   }
 
   render() {
+    const Component = this.props.component;
     return (
       <div className={'app'}>
         <Header />
         <div className="main">
           {
             this.props.component && this.state.movies.length ?
-              <this.props.component
+              <Component
                 context={this.props.context}
                 user={this.state.user}
                 movies={this.state.movies} />

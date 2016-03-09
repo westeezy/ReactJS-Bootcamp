@@ -5,13 +5,11 @@ import { expect } from 'chai';
 import MovieDetail from './MovieDetail';
 
 MovieDetail.__Rewire__('MovieStore', {
-  getByTitle: () => {
-    return {
-      title: 'Fake Title',
-      year: '2015',
-      description: 'Fake Desc'
-    };
-  }
+  getByTitle: () => ({
+    title: 'Fake Title',
+    year: '2015',
+    description: 'Fake Desc'
+  })
 });
 
 describe('Components', () => {
@@ -21,9 +19,7 @@ describe('Components', () => {
 
     beforeEach(() => {
       const wrapper = React.createClass({
-        render: () => {
-          return <MovieDetail {...props} />;
-        }
+        render: () => <MovieDetail {...props} />
       });
       const element = React.createElement(wrapper);
       component = TestUtils.renderIntoDocument(element);

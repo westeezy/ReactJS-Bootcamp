@@ -30,7 +30,7 @@ export default class movies {
 
   getBySearch(title, moviesArray) {
     const _movies = moviesArray || this.movies;
-    const result = _.findWhere(_movies, {
+    const result = _.find(_movies, {
       title
     });
     return result ? [result] : [];

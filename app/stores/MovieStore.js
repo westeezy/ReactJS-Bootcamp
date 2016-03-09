@@ -28,7 +28,7 @@ class MovieStore extends EventEmitter {
   }
 
   getByTitle(title) { // TODO: move this to model
-    return _.findWhere(this.getAll(), { title });
+    return _.find(this.getAll(), { title });
   }
 
   set(movies) {

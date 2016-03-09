@@ -44,7 +44,7 @@ export default class App extends React.Component {
   }
 
   searchMovies(key) {
-    let searchResults = _.findWhere(this.state.movies, {title: key});
+    let searchResults = _.find(this.state.movies, {title: key});
     this.setState({movies: [searchResults]});
   }
 

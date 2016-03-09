@@ -19,8 +19,8 @@ export default class Rating extends React.Component {
   }
 
   retrieveRating() {
-    return _.map(_.range(MAX_STARS), (idx) => {
-      return idx < this.state.stars ?
+    return _.map(_.range(MAX_STARS), (idx) =>
+      idx < this.state.stars ?
         <i
           key={idx} className="fa fa-star"
           onClick={this.updateRating.bind(this)}
@@ -29,8 +29,8 @@ export default class Rating extends React.Component {
         <i
           key={idx} className="fa fa-star-o"
           onClick={this.updateRating.bind(this)}
-          data-rating={idx} />;
-    });
+          data-rating={idx} />
+    );
   }
 
   updateRating(e) {

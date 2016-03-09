@@ -1,3 +1,5 @@
+'use strict'; // eslint-disable-line strict
+
 const pkg = require('../package.json');
 const path = require('path');
 
