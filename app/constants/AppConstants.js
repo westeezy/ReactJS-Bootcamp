@@ -6,3 +6,6 @@ export const SORT_MOVIES_BY_KEY = 'SORT_MOVIES_BY_KEY';
 export const RATE_MOVIE = 'RATE_MOVIE';
 
 export const USER_UPDATED = 'USER_UPDATED';
+export const USER_EDITING = 'USER_EDITING';
+
+export const CART_UPDATED = 'CART_UPDATED';

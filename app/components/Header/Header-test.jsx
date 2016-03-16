@@ -4,11 +4,9 @@ import TestUtils from 'react-addons-test-utils';
 import { expect } from 'chai';
 import Header from './Header';
 
-Header.__Rewire__('page', () => {});
-
 const searchAction = (component) => {
   const search = component.querySelector('.search-input');
-  const form = component.querySelector('form');
+  const form = component.querySelector('.search-form');
   search.value = 'Query';
   TestUtils.Simulate.change(search);
   TestUtils.Simulate.submit(form);
@@ -17,7 +15,7 @@ const searchAction = (component) => {
 describe('Components', () => {
   describe('Header', () => {
     let component;
-    const props = {};
+    const props = { user: {} };
 
     beforeEach(() => {
       const element = React.createElement(Header, props);
@@ -29,7 +27,7 @@ describe('Components', () => {
       expect(result).to.be.defined;
     });
 
-    it('should update the search query when user enteres one', () => {
+    it('should update the search query when user enters one', () => {
       const result = TestUtils.findRenderedDOMComponentWithClass(component, 'app-header');
       searchAction(result, 'Query');
       expect(result.querySelector('.term').textContent).to.equal('Query');

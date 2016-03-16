@@ -2,27 +2,20 @@ import React from 'react';
 import './_Header.scss';
 import AppActions from '../../actions/AppActions';
 import Login from '../Login/Login';
-import page from 'page'; // Note: Can abstract to not rely heavily on page
 
 export default class Header extends React.Component {
-
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.state = {
       searchTerm: null,
       submitted: false
     };
   }
 
-  updateSearchTerm(e) {
-    const searchTerm = e.target.value;
-    this.setState({ searchTerm });
-  }
-
   search(e) {
     e.preventDefault();
-    this.setState({ submitted: true });
-    page(`/movies/${this.state.searchTerm}`); // Note: can cleanup
+    this.setState({ filtered: true });
+    AppActions.searchMovies(this.state.searchTerm);
   }
 
   sort(e) {
@@ -30,19 +23,24 @@ export default class Header extends React.Component {
   }
 
   reset() {
-    page('/');
-    this.setState({ submitted: false, searchTerm: undefined });
+    AppActions.fetchMovies();
+    this.setState({ searchTerm: undefined, filtered: false });
+  }
+
+
+  updateSearchTerm(e) {
+    const searchTerm = e.target.value;
+    this.setState({ searchTerm });
   }
 
   render() {
     let searchBox;
-    if (this.state.submitted) {
+    if (this.state.filtered) {
       searchBox = (
         <h3 className="term">
           {this.state.searchTerm}
           <a href="#">
-            <i
-              className="fa fa-remove"
+            <i className="fa fa-remove"
               onClick={this.reset.bind(this)} />
           </a>
         </h3>
@@ -50,8 +48,7 @@ export default class Header extends React.Component {
     } else {
       searchBox = (
         <form className="search-form" onSubmit={this.search.bind(this)}>
-          <input
-            ref="searchBox"
+          <input ref="searchBox"
             className="search-input"
             type="text"
             placeholder="Search"
@@ -66,19 +63,26 @@ export default class Header extends React.Component {
         <div className="inner">
           <h1 className="title">FakeFlix</h1>
           <div className="header-right">
-            {searchBox}
-            <select
-              className="display-select"
+            { searchBox }
+            <select className="display-select"
               onChange={this.sort.bind(this)}>
               <option>View By:</option>
               <option value="title">Title</option>
               <option value="rating">Rating</option>
             </select>
-            <Login user={'User'} />
+            <Login user={this.props.user} />
+            <a className="header-cart-container" href="/cart">
+              <div className="fa fa-shopping-cart"></div>
+              <div className="circle">{this.props.cartCount}</div>
+            </a>
           </div>
         </div>
       </header>
     );
   }
-
 }
+
+Header.propTypes = {
+  user: React.PropTypes.object,
+  cartCount: React.PropTypes.number
+};

@@ -2,6 +2,7 @@
 import React from 'react';
 import page from 'page';
 import MovieList from '../MovieList/MovieList';
+import CartList from '../CartList/CartList';
 import MovieDetail from '../MovieDetail/MovieDetail';
 
 export const Enhance = ComposedComponent => class extends React.Component {
@@ -25,6 +26,13 @@ export const Enhance = ComposedComponent => class extends React.Component {
       });
     });
 
+    page('/cart', (ctx) => {
+      this.setState({
+        component: CartList,
+        context: ctx
+      });
+    });
+
     page({
       hashbang: true
     });
@@ -34,7 +42,7 @@ export const Enhance = ComposedComponent => class extends React.Component {
     return (
       <ComposedComponent {...this.props}
         component={this.state.component}
-        context={this.state.context} />
+        route={this.state.context} />
     );
   }
 };
