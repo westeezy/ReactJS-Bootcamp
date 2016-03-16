@@ -336,7 +336,7 @@ export default class movies {
 
     getBySearch(title, moviesArray) { //allow searching a random array as well for flexibility later
         let movies = moviesArray || this.movies;
-        let result = _.findWhere(movies, {title});
+        let result = _.find(movies, {title});
         return result ? [result] : []; //always return something the view can handle gracefully
     }
 

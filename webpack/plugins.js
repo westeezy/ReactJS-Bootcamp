@@ -1,15 +1,17 @@
-var path = require('path');
-var util = require('util');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
-var pkg = require('../package.json');
+'use strict'; // eslint-disable-line strict
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
+const path = require('path');
+const util = require('util');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const pkg = require('../package.json');
 
-var cssBundle = path.join('css', util.format('[name].%s.css', pkg.version));
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
 
-var plugins = [
+const cssBundle = path.join('css', util.format('[name].%s.css', pkg.version));
+
+const plugins = [
   new webpack.optimize.OccurenceOrderPlugin()
 ];
 if (DEBUG) {

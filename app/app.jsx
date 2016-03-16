@@ -1,12 +1,10 @@
-'use strict';
-
 import './index.html';
-import 'babel-core/polyfill';
+import 'babel-polyfill';
 import 'normalize.css/normalize.css';
 import './scss/app.scss';
 import 'font-awesome/css/font-awesome.css';
 
-let context = require.context('.', true, /\.jpg?$/);
+const context = require.context('.', true, /\.jpg?$/);
 context.keys().forEach(context);
 
 import React from 'react';

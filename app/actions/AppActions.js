@@ -2,7 +2,7 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import {
   getMovies, searchMovies
 }
-from '../util/api';
+  from '../util/api';
 import {
   MOVIES_GET_SUCCESS,
   FIND_MOVIE_GET_SUCCESS,
@@ -10,49 +10,49 @@ import {
   RATE_MOVIE,
   USER_UPDATED
 }
-from '../constants/AppConstants';
+  from '../constants/AppConstants';
 
 export default {
 
   fetchMovies() {
-      getMovies().then((movies) => {
-        AppDispatcher.dispatch({
-          data: movies,
-          actionType: MOVIES_GET_SUCCESS
-        });
-      });
-    },
-
-    searchMovie(title) {
-      searchMovies(title).then((movie) => {
-        AppDispatcher.dispatch({
-          data: [movie],
-          actionType: FIND_MOVIE_GET_SUCCESS
-        });
-      });
-    },
-
-    sortMovies(key) {
+    getMovies().then((movies) => {
       AppDispatcher.dispatch({
-        data: key,
-        actionType: SORT_MOVIES_BY_KEY
+        data: movies,
+        actionType: MOVIES_GET_SUCCESS
       });
-    },
+    });
+  },
 
-    rateMovie(title, rating) {
+  searchMovie(title) {
+    searchMovies(title).then((movie) => {
       AppDispatcher.dispatch({
-        data: {
-          title, rating
-        },
-        actionType: RATE_MOVIE
+        data: [movie],
+        actionType: FIND_MOVIE_GET_SUCCESS
       });
-    },
+    });
+  },
 
-    changeUser(user) {
-      AppDispatcher.dispatch({
-        data: user,
-        actionType: USER_UPDATED
-      });
-    }
+  sortMovies(key) {
+    AppDispatcher.dispatch({
+      data: key,
+      actionType: SORT_MOVIES_BY_KEY
+    });
+  },
+
+  rateMovie(title, rating) {
+    AppDispatcher.dispatch({
+      data: {
+        title, rating
+      },
+      actionType: RATE_MOVIE
+    });
+  },
+
+  changeUser(user) {
+    AppDispatcher.dispatch({
+      data: user,
+      actionType: USER_UPDATED
+    });
+  }
 
 };

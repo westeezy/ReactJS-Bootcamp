@@ -1,5 +1,4 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import MovieModel from '../models/Movies';
 import _ from 'lodash';
 
 import {
@@ -37,9 +36,9 @@ class UserStore extends EventEmitter {
   getUser() {
     return _.clone(this.user);
   }
-};
+}
 
-let store = new UserStore();
+const store = new UserStore();
 
 AppDispatcher.register((action) => {
   switch (action.actionType) {

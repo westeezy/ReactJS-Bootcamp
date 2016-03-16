@@ -1,59 +1,61 @@
-var path = require('path');
-var pkg = require('../package.json');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+'use strict'; // eslint-disable-line strict
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
+const path = require('path');
+const pkg = require('../package.json');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var jsxLoader;
-var sassLoader;
-var fileLoader = 'file-loader?name=[path][name].[ext]';
-var cssLoader = 'style!css!postcss';
-var fontLoader = 'url?limit=10000&mimetype=application/font-woff&prefix=fonts';
-var htmlLoader = [
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
+
+let jsxLoader;
+let sassLoader;
+const fileLoader = 'file-loader?name=[path][name].[ext]';
+const cssLoader = 'style!css!postcss';
+const fontLoader = 'url?limit=10000&mimetype=application/font-woff&prefix=fonts';
+const htmlLoader = [
   'file-loader?name=[path][name].[ext]',
-  'template-html-loader?' + [
+  `template-html-loader?${[
     'raw=true',
     'engine=lodash',
-    'version=' + pkg.version,
-    'title=' + pkg.name,
-    'debug=' + DEBUG
-  ].join('&')
+    `version=${pkg.version}`,
+    `title=${pkg.name}`,
+    `debug=${DEBUG}`
+  ].join('&')}`
 ].join('!');
-var jsonLoader = ['json-loader'];
+const jsonLoader = ['json-loader'];
 
-var sassParams = [
+const sassParams = [
   'outputStyle=expanded',
-  'includePaths[]=' + path.resolve(__dirname, '../app/scss'),
-  'includePaths[]=' + path.resolve(__dirname, '../node_modules')
+  `includePaths[]=${path.resolve(__dirname, '../app/scss')}`,
+  `includePaths[]=${path.resolve(__dirname, '../node_modules')}`
 ];
 
 if (DEBUG || TEST) {
   jsxLoader = [];
-  if(TEST) {
+  if (TEST) {
     jsxLoader.push('isparta');
-    //Not needed since .babelrc. keeping for legacy reasons
-    //jsxLoader.push('babel-loader?optional[]=runtime&stage=0&plugins=rewire');
+    // Not needed since .babelrc. keeping for legacy reasons
+    // jsxLoader.push('babel-loader?optional[]=runtime&stage=0&plugins=rewire');
   } else {
-    jsxLoader.push('babel-loader?optional[]=runtime&stage=0');
+    jsxLoader.push('babel-loader');
   }
   sassParams.push('sourceMap', 'sourceMapContents=true');
   sassLoader = [
     'style-loader',
     'css-loader?sourceMap',
     'postcss-loader',
-    'sass-loader?' + sassParams.join('&')
+    `sass-loader?${sassParams.join('&')}`
   ].join('!');
 } else {
-  jsxLoader = ['babel-loader?optional=runtime'];
+  jsxLoader = ['babel-loader'];
   sassLoader = ExtractTextPlugin.extract('style-loader', [
     'css-loader',
     'postcss-loader',
-    'sass-loader?' + sassParams.join('&')
+    `sass-loader?${sassParams.join('&')}`
   ].join('!'));
 }
 
-var loaders = [
+const loaders = [
   {
     test: /-test.js(x|)*/,
     loader: 'babel-loader'

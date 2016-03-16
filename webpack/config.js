@@ -1,18 +1,19 @@
-var path = require('path');
-var util = require('util');
-var autoprefixer = require('autoprefixer');
-var pkg = require('../package.json');
+'use strict'; // eslint-disable-line strict
 
-var loaders = require('./loaders');
-var plugins = require('./plugins');
-var postLoaders = [];
+const path = require('path');
+const util = require('util');
+const autoprefixer = require('autoprefixer');
+const pkg = require('../package.json');
 
-var DEBUG = process.env.NODE_ENV === 'development';
-var TEST = process.env.NODE_ENV === 'test';
+const loaders = require('./loaders');
+const plugins = require('./plugins');
 
-var jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
 
-var entry = {
+const jsBundle = path.join('js', util.format('[name].%s.js', pkg.version));
+
+const entry = {
   app: ['./app.jsx']
 };
 
@@ -27,13 +28,13 @@ if (DEBUG) {
   entry.app.push('webpack/hot/dev-server');
 }
 
-var config = {
+const config = {
   context: path.join(__dirname, '../app'),
   cache: DEBUG,
   debug: DEBUG,
   target: 'web',
   devtool: DEBUG || TEST ? 'inline-source-map' : false,
-  entry: entry,
+  entry,
   output: {
     path: path.resolve(pkg.config.buildDir),
     publicPath: '/',
@@ -41,12 +42,12 @@ var config = {
     pathinfo: false
   },
   module: {
-    loaders: loaders
+    loaders
   },
   postcss: [
     autoprefixer
   ],
-  plugins: plugins,
+  plugins,
   resolve: {
     extensions: ['', '.js', '.json', '.jsx']
   },
@@ -56,7 +57,7 @@ var config = {
     noInfo: false,
     inline: true,
     stats: { colors: true },
-    historyApiFallback: true //NOTE: for pushstate
+    historyApiFallback: true // NOTE: for pushstate
   }
 };
 

@@ -133,7 +133,7 @@ Now we can actually start updating Header.jsx to do something more functional. S
                 search={this.searchMovies.bind(this)}/>
 //new class methods
 searchMovies(key) { //search for movies that we can pass down into Header to call
-  let searchResults = _.findWhere(this.state.movies, {title: key});
+  let searchResults = _.find(this.state.movies, {title: key});
   this.setState({movies: [searchResults]});
 }
 

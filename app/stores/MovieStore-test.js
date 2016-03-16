@@ -3,10 +3,10 @@ import MovieStore from './MovieStore';
 
 describe('Stores', () => {
   describe('MovieStore', () => {
-    let movieStore,
-        setMovies = () => {
-          movieStore.set([{title: 'One', rating: '5'},{title:'Two'},{title: 'Three'}]);
-        };
+    let movieStore;
+    const setMovies = () => {
+      movieStore.set([{ title: 'One', rating: '5' }, { title: 'Two' }, { title: 'Three' }]);
+    };
 
     beforeEach(() => {
       movieStore = MovieStore;
@@ -18,20 +18,20 @@ describe('Stores', () => {
     });
 
     it('should get movies by title', () => {
-      let result = movieStore.getByTitle('One');
+      const result = movieStore.getByTitle('One');
       expect(result.title).to.equal('One');
     });
 
     it('should sort movies', () => {
       movieStore.sort('title');
-      let result = movieStore.getAll();
+      const result = movieStore.getAll();
       expect(result).to.have.length(3);
       expect(result[1].title).to.equal('Three');
     });
 
-    it('should rate a movie',() => {
+    it('should rate a movie', () => {
       movieStore.rate('One', '4');
-      let result = movieStore.getByTitle('One');
+      const result = movieStore.getByTitle('One');
       expect(result.rating).to.equal('4');
     });
   });

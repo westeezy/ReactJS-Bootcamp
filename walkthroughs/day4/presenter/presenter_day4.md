@@ -308,7 +308,7 @@ export default class movies {
 
 	getBySearch(title, moviesArray) {
 		let movies = moviesArray || this.movies;
-		let result = _.findWhere(movies, {title});
+		let result = _.find(movies, {title});
 		return result ? [result] : [];
 	}
 
